@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,30 +14,47 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+    
     <div class="container">
         <div class="attach">
             <h1>Please upload listed documents</h1>
-            <form action="">
+            <form action="php/teacherDoc.php" method="POST" enctype="multipart/form-data">
                 <ul>
                     <li>
-                        <input type="file" id="uploadID" required>
+                        <input type="file" id="uploadID" required name="IDc" onchange="updateFileName(this)">
                         <i class="bi bi-file-earmark-arrow-up"></i>
                         <label for="uploadID">Identification Card</label>
                     </li>
                     <li>
-                        <input type="file" id="uploadDoc" required>
+                        <input type="file" id="uploadDoc" required name="EDd" onchange="updateFileName(this)">
                         <i class="bi bi-file-earmark-arrow-up"></i>
-                        <label for="uploadDoc">Document</label>
+                        <label for="uploadDoc">Educational Document</label>
                     </li>
                     <li>
-                        <input type="file" id="uploadCV" required>
+                        <input type="file" id="uploadCV" required name="CRv" onchange="updateFileName(this)">
                         <i class="bi bi-file-earmark-arrow-up"></i>
                         <label for="uploadCV">CV</label>                    
                     </li>
                 </ul>
-                <button>SUBMIT</button>
+                <button class="button" type="submit">SUBMIT</button>
             </form>
         </div>
     </div>
+    
+    <script>
+        window.onload = function() {
+            var status = "<?php echo isset($_SESSION['status']) ? $_SESSION['status'] : '' ?>";
+            if (status !== "") {
+                alert(status);
+                <?php if (isset($_SESSION['status'])) unset($_SESSION['status']); ?>
+            }
+        };
+
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            var label = input.parentElement.querySelector("label");
+            label.textContent = fileName;
+        }
+    </script>
 </body>
 </html>
