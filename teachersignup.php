@@ -34,6 +34,13 @@
                         <input type="text" placeholder="First Name" name="fName" required>
                         <input type="text" placeholder="Last Name" name="lName" required>
                         <input type="email" placeholder="Email" name="email" required>
+                                        <?php
+                                            if(isset($_SESSION['error']))
+                                            {
+                                                echo $_SESSION['error'];
+                                                unset($_SESSION['error']);
+                                            }
+                                        ?>
                         <input type="password" placeholder="Password" name="Password" id="password" required>
                     </div>
                     <div class="info-2">

@@ -1,47 +1,39 @@
 <?php
 
-    include 'connection.php';
+include 'connection.php';
 
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["IDc"])) {
-
+function uploadAndSaveFile($fileKey, $columnName, $username, $conn, &$successFlag) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES[$fileKey])) {
         $targetDir = "../teacherfiles/";
+        $fileExtension = pathinfo($_FILES[$fileKey]["name"], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid() . '.' . $fileExtension;
+        $targetFile = $targetDir . $uniqueFileName;
 
-        $fileName = $_FILES["IDc"]["name"];
-        $targetFile = $targetDir . $fileName;
-
-        if(move_uploaded_file($_FILES["IDc"]["tmp_name"], $targetFile)) {
-            echo "The file ".$fileName." has been upload successfully.";
+        if (move_uploaded_file($_FILES[$fileKey]["tmp_name"], $targetFile)) {
+            $updateQuery = "UPDATE teacheraccount SET $columnName = '$uniqueFileName' WHERE emailAdd = '$username'";
+            if ($conn->query($updateQuery)) {
+                $successFlag = true;
+            } else {
+                echo "Error updating database: " . $conn->error;
+            }
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
+}
 
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["EDd"])) {
+$username = $_POST['username'];
+echo $username . "<br>";
 
-        $targetDir = "../teacherfiles/";
+$successFlag = false;
+uploadAndSaveFile("IDc", "IDcPath", $username, $conn, $successFlag);
+uploadAndSaveFile("EDd", "EdPath", $username, $conn, $successFlag);
+uploadAndSaveFile("CRv", "CvPath", $username, $conn, $successFlag);
 
-        $fileName = $_FILES["EDd"]["name"];
-        $targetFile = $targetDir . $fileName;
-
-        if(move_uploaded_file($_FILES["EDd"]["tmp_name"], $targetFile)) {
-            echo "The file ".$fileName." has been upload successfully.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
-
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["CRv"])) {
-
-        $targetDir = "../teacherfiles/";
-
-        $fileName = $_FILES["CRv"]["name"];
-        $targetFile = $targetDir . $fileName;
-
-        if(move_uploaded_file($_FILES["CRv"]["tmp_name"], $targetFile)) {
-            echo "The file ".$fileName." has been upload successfully.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
+if ($successFlag) {
+    echo "All files have been uploaded successfully.";
+} else {
+    echo "No files were uploaded successfully.";
+}
 
 ?>

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TMAH | Attachment</title>
     <link rel="icon" href="photo/logo.png">
-    <link rel="stylesheet" href="css/attachement.css">
+    <link rel="stylesheet" href="css/attachment.css">
     <link rel="stylesheet" href="css/accountType.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -17,8 +17,13 @@
     
     <div class="container">
         <div class="attach">
+            <?php
+                $username = $_SESSION['email'];
+            ?>
             <h1>Please upload listed documents</h1>
             <form action="php/teacherDoc.php" method="POST" enctype="multipart/form-data">
+
+                <input type="text" name="username" value="<?php echo $username?>"/>
                 <ul>
                     <li>
                         <input type="file" id="uploadID" required name="IDc" onchange="updateFileName(this)">
