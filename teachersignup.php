@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/preloader.css">
     <link rel="icon" href="photo/logo.png">
     <link rel="stylesheet" href="css/alertValidation.css">
-    <link rel="stylesheet" href="country-region-dropdown-menu/assets/css/geodatasource-countryflag.css">
-    <link rel="gettext" type="application/x-po" href="country-region-dropdown-menu/languages/en/LC_MESSAGES/en.po" />
+    <link rel="stylesheet" href="css/country-dropdown.css">
+    <link rel="gettext" type="application/x-po" href="js/en.po" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
@@ -99,7 +99,7 @@
     <script src="js/joinScript.js"></script>
     <script src="js/loader.js"></script>
     <script src="js/validation.js"></script>
-    <script src="country-region-dropdown-menu/assets/js/geodatasource-cr.min.js"></script>
-    <script type="text/javascript" src="country-region-dropdown-menu/assets/js/Gettext.js"></script>
+    <script src="js/country-dropdown.js"></script>
+    <script type="text/javascript" src="js/Gettext.js"></script>
 </body>
 </html>
