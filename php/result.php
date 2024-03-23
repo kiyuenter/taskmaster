@@ -1,6 +1,7 @@
 <?php
-
+include 'connection.php';
 // Retrieving answers from the form
+$email = $_POST['email'];
 $question1 = $_POST['ques1'];
 $question2 = $_POST['ques2'];
 $question3 = $_POST['ques3'];
@@ -12,6 +13,9 @@ $question8 = $_POST['ques8'];
 $question9 = $_POST['ques9'];
 $question10 = $_POST['ques10'];
 
+//Insert into database
+$insert = "INSERT INTO teacherevaanswer (teachEmail, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10) values('$email','$question1','$question2','$question3','$question4','$question5','$question6','$question7','$question8','$question9', '$question10')";
+$conn -> query($insert);
 // Initializing variables to store grades
 $grade1 = 0;
 $grade2 = 0;
@@ -69,6 +73,6 @@ if ($question10 == 'Highly accessible and supportive') {
 $total = $grade1 + $grade2 + $grade3 + $grade4 + $grade5 + $grade6 + $grade7 + $grade8 + $grade9 + $grade10;
 
 // Output total score
-echo $total;
+echo $email.$total;
 
 ?>

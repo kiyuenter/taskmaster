@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,47 +19,29 @@
         <h2 style="text-align: center; color: rgb(206, 19, 19)">
           Please give answers carefully!!!
         </h2>
+        <?php
+          $username = $_SESSION['email'];
+        ?>
         <form action="result.php" method="POST">
           <ul>
+            <li>
+              <input type="text" name="email" value="<?php echo $username?>"/>
+            </li>
             <li class="head">
               1. How would you rate the teacher's depth of knowledge in the
               subject matter?
             </li>
             <li>
-              <input
-                name="ques1"
-                class="little"
-                type="radio"
-                value="Excellent"
-                required
-              />Excellent
+              <input name="ques1" class="little" type="radio" value="Excellent" required/>Excellent
             </li>
             <li>
-              <input
-                name="ques1"
-                class="little"
-                type="radio"
-                value="Good"
-                required
-              />Good
+              <input name="ques1" class="little" type="radio" value="Good" required/>Good
             </li>
             <li>
-              <input
-                name="ques1"
-                class="little"
-                type="radio"
-                value="Average"
-                required
-              />Average
+              <input name="ques1" class="little" type="radio" value="Average" required/>Average
             </li>
             <li>
-              <input
-                name="ques1"
-                class="little"
-                type="radio"
-                value="Poor"
-                required
-              />Poor
+              <input name="ques1" class="little" type="radio" value="Poor" required/>Poor
             </li>
 
             <li class="head">
@@ -63,80 +49,32 @@
               the teacher?
             </li>
             <li>
-              <input
-                name="ques2"
-                class="little"
-                type="radio"
-                value="Very diverse"
-                required
-              />Very diverse
+              <input name="ques2" class="little" type="radio" value="Very diverse" required/>Very diverse
             </li>
             <li>
-              <input
-                name="ques2"
-                class="little"
-                type="radio"
-                value="Moderately diverse"
-                required
-              />Moderately diverse
+              <input name="ques2" class="little" type="radio" value="Moderately diverse" required/>Moderately diverse
             </li>
             <li>
-              <input
-                name="ques2"
-                class="little"
-                type="radio"
-                value="Somewhat limited"
-                required
-              />Somewhat limited
+              <input name="ques2" class="little" type="radio" value="Somewhat limited" required/>Somewhat limited
             </li>
             <li>
-              <input
-                name="ques2"
-                class="little"
-                type="radio"
-                value="Very limited"
-                required
-              />Very limited
+              <input name="ques2" class="little" type="radio" value="Very limited"required/>Very limited
             </li>
 
             <li class="head">
               3. How well does the teacher manage the classroom environment?
             </li>
             <li>
-              <input
-                name="ques3"
-                class="little"
-                type="radio"
-                value="Very effectively"
-                required
-              />Very effectively
+              <input name="ques3" class="little" type="radio" value="Very effectively" required />Very effectively
             </li>
             <li>
-              <input
-                name="ques3"
-                class="little"
-                type="radio"
-                value="Moderately effectively"
-                required
-              />Moderately effectively
+              <input name="ques3" class="little" type="radio" value="Moderately effectively" required/>Moderately effectively
             </li>
             <li>
-              <input
-                name="ques3"
-                class="little"
-                type="radio"
-                value="Satisfactorily"
-                required
-              />Satisfactorily
+              <input name="ques3" class="little" type="radio" value="Satisfactorily" required/>Satisfactorily
             </li>
             <li>
-              <input
-                name="ques3"
-                class="little"
-                type="radio"
-                value="Ineffectively"
-                required
-              />Ineffectively
+              <input name="ques3" class="little" type="radio" value="Ineffectively" required/>Ineffectively
             </li>
 
             <li class="head">
@@ -144,31 +82,13 @@
               process?
             </li>
             <li>
-              <input
-                name="ques4"
-                class="little"
-                type="radio"
-                value="Highly engaged"
-                required
-              />Highly engaged
+              <input name="ques4" class="little" type="radio" value="Highly engaged" required/>Highly engaged
             </li>
             <li>
-              <input
-                name="ques4"
-                class="little"
-                type="radio"
-                value="Moderately engaged"
-                required
-              />Moderately engaged
+              <input name="ques4" class="little" type="radio" value="Moderately engaged" required/>Moderately engaged
             </li>
             <li>
-              <input
-                name="ques4"
-                class="little"
-                type="radio"
-                value="Minimally engaged"
-                required
-              />Minimally engaged
+              <input name="ques4" class="little" type="radio" value="Minimally engaged"required/>Minimally engaged
             </li>
             <li>
               <input name="ques4" class="little" type="radio" value="Notengaged" required/>Not engaged
@@ -178,40 +98,16 @@
               5. How effectively does the teacher communicate with students?
             </li>
             <li>
-              <input
-                name="ques5"
-                class="little"
-                type="radio"
-                value="Very effectively"
-                required
-              />Very effectively
+              <input name="ques5" class="little" type="radio" value="Very effectively" required />Very effectively
             </li>
             <li>
-              <input
-                name="ques5"
-                class="little"
-                type="radio"
-                value="Moderately effectively"
-                required
-              />Moderately effectively
+              <input name="ques5" class="little" type="radio" value="Moderately effectively" required/>Moderately effectively
             </li>
             <li>
-              <input
-                name="ques5"
-                class="little"
-                type="radio"
-                value="Satisfactorily"
-                required
-              />Satisfactorily
+              <input name="ques5" class="little" type="radio" value="Satisfactorily" required/>Satisfactorily
             </li>
             <li>
-              <input
-                name="ques5"
-                class="little"
-                type="radio"
-                value="Ineffectively"
-                required
-              />Ineffectively
+              <input name="ques5" class="little" type="radio" value="Ineffectively" required/>Ineffectively
             </li>
 
             <li class="head">
@@ -219,40 +115,16 @@
               feedback?
             </li>
             <li>
-              <input
-                name="ques6"
-                class="little"
-                type="radio"
-                value="Regularly and effectively"
-                required
-              />Regularly and effectively
+              <input name="ques6" class="little" type="radio" value="Regularly and effectively" required/>Regularly and effectively
             </li>
             <li>
-              <input
-                name="ques6"
-                class="little"
-                type="radio"
-                value="Regularly but ineffectively"
-                required
-              />Regularly but ineffectively
+              <input name="ques6" class="little" type="radio" value="Regularly but ineffectively" required/>Regularly but ineffectively
             </li>
             <li>
-              <input
-                name="ques6"
-                class="little"
-                type="radio"
-                value="Irregularly and effectively"
-                required
-              />Irregularly and effectively
+              <input name="ques6" class="little" type="radio" value="Irregularly and effectively" required/>Irregularly and effectively
             </li>
             <li>
-              <input
-                name="ques6"
-                class="little"
-                type="radio"
-                value="Irregularly and ineffectively"
-                required
-              />Irregularly and ineffectively
+              <input name="ques6" class="little" type="radio" value="Irregularly and ineffectively" required/>Irregularly and ineffectively
             </li>
 
             <li class="head">
@@ -260,40 +132,16 @@
               diverse needs of students?
             </li>
             <li>
-              <input
-                name="ques7"
-                class="little"
-                type="radio"
-                value="Very effectively"
-                required
-              />Very effectively
+              <input name="ques7" class="little" type="radio" value="Very effectively" required/>Very effectively
             </li>
             <li>
-              <input
-                name="ques7"
-                class="little"
-                type="radio"
-                value="Moderately effectively"
-                required
-              />Moderately effectively
+              <input name="ques7" class="little" type="radio" value="Moderately effectively" required/>Moderately effectively
             </li>
             <li>
-              <input
-                name="ques7"
-                class="little"
-                type="radio"
-                value="Satisfactorily"
-                required
-              />Satisfactorily
+              <input name="ques7" class="little" type="radio" value="Satisfactorily" required/>Satisfactorily
             </li>
             <li>
-              <input
-                name="ques7"
-                class="little"
-                type="radio"
-                value="Ineffectively"
-                required
-              />Ineffectively
+              <input name="ques7" class="little" type="radio" value="Ineffectively" required/>Ineffectively
             </li>
 
             <li class="head">
@@ -301,31 +149,13 @@
               instruction?
             </li>
             <li>
-              <input
-                name="ques8"
-                class="little"
-                type="radio"
-                value="Extensively"
-                required
-              />Extensively
+              <input name="ques8" class="little" type="radio" value="Extensively" required/>Extensively
             </li>
             <li>
-              <input
-                name="ques8"
-                class="little"
-                type="radio"
-                value="Moderately"
-                required
-              />Moderately
+              <input name="ques8" class="little" type="radio" value="Moderately" required/>Moderately
             </li>
             <li>
-              <input
-                name="ques8"
-                class="little"
-                type="radio"
-                value="Minimally"
-                required
-              />Minimally
+              <input name="ques8" class="little" type="radio" value="Minimally" required/>Minimally
             </li>
             <li>
               <input name="ques8" class="little" type="radio" value="Not at all" required/>Not at all
@@ -336,40 +166,17 @@
               professional development?
             </li>
             <li>
-              <input
-                name="ques9"
-                class="little"
-                type="radio"
-                value="Actively participates"
-                required
-              />Actively participates
+              <input name="ques9" class="little" type="radio" value="Actively participates" required/>Actively participates
             </li>
             <li>
-              <input
-                name="ques9"
-                class="little"
-                type="radio"
-                value="Occasionally participates"
-                required
-              />Occasionally participates
+              <input name="ques9" class="little" type="radio" value="Occasionally participates" required/>Occasionally participates
             </li>
             <li>
-              <input
-                name="ques9"
-                class="little"
-                type="radio"
-                value="Rarely participates"
-                required
+              <input name="ques9" class="little" type="radio" value="Rarely participates" required
               />Rarely participates
             </li>
             <li>
-              <input
-                name="ques9"
-                class="little"
-                type="radio"
-                value="Does not participate"
-                required
-              />Does not participate
+              <input name="ques9" class="little" type="radio" value="Does not participate" required/>Does not participate
             </li>
 
             <li class="head">
@@ -377,31 +184,13 @@
               the classroom?
             </li>
             <li>
-              <input
-                name="ques10"
-                class="little"
-                type="radio"
-                value="Highly accessible and supportive"
-                required
-              />Highly accessible and supportive
+              <input name="ques10" class="little" type="radio" value="Highly accessible and supportive" required/>Highly accessible and supportive
             </li>
             <li>
-              <input
-                name="ques10"
-                class="little"
-                type="radio"
-                value="Moderately accessible and supportive"
-                required
-              />Moderately accessible and supportive
+              <input name="ques10" class="little" type="radio" value="Moderately accessible and supportive" required/>Moderately accessible and supportive
             </li>
             <li>
-              <input
-                name="ques10"
-                class="little"
-                type="radio"
-                value="Somewhat accessible and supportive"
-                required
-              />Somewhat accessible and supportive
+              <input name="ques10" class="little" type="radio" value="Somewhat accessible and supportive" required/>Somewhat accessible and supportive
             </li>
             <li>
               <input name="ques10" class="little" type="radio" value="Not accessible or supportive" required/>Not accessible or supportive
