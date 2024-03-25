@@ -37,3 +37,15 @@ body {
   border-radius: 12px;
   transition: 0.6s;
 }
+
+.profile {
+  padding-top: 100px;
+}
+
+.profile-status {
+  padding-top: 100px;
+}
+
+.profile img{
+  width: 100px;
+}
