@@ -7,7 +7,7 @@ body {
   color: white;
 }
 .container-1 {
-    background-image: url(../photo/background-1.avif);
+    background-image: url(../photo/background-1.jpg);
     height: 100vh;
     width: 100%;
     background-size: cover;

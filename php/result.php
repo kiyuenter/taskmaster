@@ -15,7 +15,7 @@ $question10 = $_POST['ques10'];
 
 //Insert into database
 $insert = "INSERT INTO teacherevaanswer (teachEmail, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10) values('$email','$question1','$question2','$question3','$question4','$question5','$question6','$question7','$question8','$question9', '$question10')";
-$conn -> query($insert);
+$conn->query($insert);
 // Initializing variables to store grades
 $grade1 = 0;
 $grade2 = 0;
@@ -68,11 +68,16 @@ if ($question9 == 'Actively participates') {
 if ($question10 == 'Highly accessible and supportive') {
     $grade10 = 1;
 }
- $total = 0;
+$total = 0;
 // Calculating total score
 $total = $grade1 + $grade2 + $grade3 + $grade4 + $grade5 + $grade6 + $grade7 + $grade8 + $grade9 + $grade10;
 
 // Output total score
-echo $email.$total;
+if ($total > 8) {
+    echo "You are successfully passed.<br> Your score is $total/10.<br> Welcome to teacher partner.";
+
+} else {
+    echo "I am sorry you are not eligable to receive teacher partner. Your score is $total/10.";
+}
 
 ?>
