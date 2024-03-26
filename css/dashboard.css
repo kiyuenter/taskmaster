@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 14px;
+}
+
+.prof {
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px rgba(133, 209, 245, 0.74) solid;
+    background-color: rgba(189, 227, 245, 0.315);
+}
+
+.share-profile p{
+    margin-top: 10px;
+    background-color: rgba(70, 169, 235, 0.507);
+    border-radius: 8px;
+  }
+
+  .prof-1{
+    margin-top: 15px;
+  }
+  
+
+  /* Progress bar */
+
+  .progress-container {
+    box-sizing: border-box;
+    border-radius: 100%;
+    box-shadow: 0 0 10px 0 rgba(7, 84, 184, 0.65);
+    width: 100px;
+    height: 100px;
+  }
+  
+  .progress-circle {
+    position: relative;
+  }
+  
+  .progress {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .progress-ring {
+    fill: none;
+    stroke-width: 8;
+    stroke: rgb(21, 189, 71);
+  }
+  
+  .progress-text {
+    font-size: 20px;
+    fill: #333;
+    font-weight: bold;
+  }
+  
