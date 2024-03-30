@@ -7,33 +7,62 @@
 }
 
 body {
-  color: white;
+  color: rgb(187, 179, 179);
   font-family: "Fira Sans", sans-serif !important;
 }
+
 
 .navbar-brand {
   font-family: "Federant", serif !important;
 }
 .container-1 {
-  background-color: rgba(31, 68, 230, 0.6);
-  background: linear-gradient(to right, #dee8ee, #52a0e0);
   height: 100vh;
   width: 100%;
   background-size: cover;
 }
 
 .navigation {
-  color: white;
+  color: black;
 }
 
 .dropdown-item:hover {
   background-color: rgba(14, 117, 214, 0.479) !important;
-  background: linear-gradient(to right, #011f57, #034072) !important;
+  background: linear-gradient(to right, #648cd4, #5397ce) !important;
+  color: white !important;
 }
 
 .nav-link:hover {
   background-color: rgba(14, 117, 214, 0.479) !important;
-  background: linear-gradient(to right, #011f57, #034072) !important;
+  background: linear-gradient(to right, #0e51cf, #1779ca) !important;
+  color: white !important;
   border-radius: 12px;
   transition: 0.6s;
+}
+
+/* Front content style judt like assignment helper website */
+
+.front-content{
+  margin: 0 auto;
+  max-width: 800px;
+}
+.img-1 img {
+  width: 500px;
+  max-width: 100%;
+  padding: 20px;
+  background-color: #0e51cf;
+  background: linear-gradient(to right, #d476e0, #4197dd);
+  border-radius: 50px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 50px 5px rgba(0, 0, 0, 0.445) ;
+  transition: background 0.6s ease, box-shadow 0.6s;
+}
+
+.img-1 img:hover {
+  box-shadow: 10px 10px 30px 10px rgba(0, 0, 0, 0.445);
+  background-color: #0e51cf;
+  background: linear-gradient(to right, #4197dd, #d476e0);
+}
+
+.paragraph p{
+  font-size: 20px;
 }
