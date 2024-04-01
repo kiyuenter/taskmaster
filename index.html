@@ -69,8 +69,20 @@
     
     </div>
     <div class="container-fluid div-1">
-
+      <div class="row div-1 banner align-items-center justify-content-center">
+        <div class="col-md-6 text-center">
+          <img src="photo/taskmaster background.svg" alt="Taskmaster Background" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+          <h1 class="text-primary text-md-right">Welcome to <br><img src="photo/Task.png" alt="Task Logo" style="max-width: 50px;" class="img-fluid"> Taskmaster Assignment Helper and CV Maker</h1>
+          <p>Rest assured, we specialize in connecting you with top-tier assignment experts, ensuring unparalleled quality every step of the way.</p>
+          <div class="scroll-down-btn text-center text-md-right">
+            <button onclick="scrollDown()">Scroll Down</button>
+          </div>
+        </div>
+      </div>
     </div>
+    
     <div class="container-1 container d-flex justify-content-center align-items-center">
       <div class="front-content row">
         <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
@@ -94,6 +106,22 @@
                 navbar.classList.add('navbar-transparent');
             }
         });
+
+        function scrollDown() {
+    window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+    });
+}
+
+function scrollUp() {
+    window.scrollBy({
+        top: -window.innerHeight,
+        behavior: 'smooth'
+    });
+}
+
+
     </script>
 </body>
 </html>
