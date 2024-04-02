@@ -96,3 +96,13 @@ body {
 .scroll-down-btn button:hover {
   background-color: #0056b3;
 }
+
+/* Div - 2 create style */
+.support-list{
+  background-color: #0056b3;
+  width: 100%;
+}
+.support-list-1{
+  background-color: #801c8d;
+  width: 100%;
+}
