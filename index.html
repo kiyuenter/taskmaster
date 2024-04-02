@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="icon" href="photo/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font icon -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Taskmaster | Teacher Dashboard</title>
@@ -84,8 +86,8 @@
         </div>
       </div>
     </div>
-    <div class="container div-2 m-5 d-flex flex-column align-items-center justify-content-center">
-      <div class="row">
+    <div class="container-fluid div-2 mt-5 d-flex flex-column align-items-center justify-content-center">
+      <div class="container row w-100 m-2 d-flex align-items-center justify-content-center">
           <div class="col-md-3">
               <div class="support-list">
                   <div class="search">
@@ -95,7 +97,7 @@
               </div>
           </div>
           <div class="col-md-3">
-              <div class="support-list-1">
+              <div class="support-list">
                   <div class="search">
                       <i class="bi bi-bookmark-star"></i>
                       <p>Orginal Content</p>
@@ -111,7 +113,7 @@
               </div>
           </div>
           <div class="col-md-3">
-              <div class="support-list-1">
+              <div class="support-list">
                   <div class="search">
                       <i class="bi bi-infinity"></i>
                       <p>Infinity access resource</p>
@@ -119,9 +121,9 @@
               </div>
           </div>
       </div>
-      <div class="row">
+      <div class="container row w-100 m-2 d-flex align-items-center justify-content-center">
           <div class="col-md-3">
-              <div class="support-list-1">
+              <div class="support-list">
                   <div class="search">
                       <i class="bi bi-star"></i>
                       <p>Give your feedback</p>
@@ -132,12 +134,12 @@
               <div class="support-list">
                   <div class="search">
                       <i class="bi bi-stopwatch"></i>
-                      <p>Save your time</p>
+                      <p>Get answers before deadline</p>
                   </div>
               </div>
           </div>
           <div class="col-md-3">
-              <div class="support-list-1">
+              <div class="support-list">
                   <div class="search">
                       <i class="bi bi-bell"></i>
                       <p>Turn on notification</p>
@@ -146,7 +148,7 @@
           </div>
           <div class="col-md-3">
               <div class="support-list">
-                  <div class="search d-flex align-items-center justify-content-center">
+                  <div class="search">
                       <i class='bx bx-support'></i>
                       <p class="text-center">24/7 support</p>
                   </div>
@@ -155,7 +157,60 @@
       </div>
   </div>
 
-  
+  <div class="container-fluid mt-5 pt-5 pb-5 div-3">
+    <h2 class="text-center">These courses are covered by our experts.</h2>
+    <p class="text-center">We provide top experts for the following courses</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 book-store d-flex justify-content-center align-items-center">
+          <img src="photo/book-store.jpg" alt="">
+        </div>
+        <div class="col-md-2 course-list">
+          <ul>
+            <li>Marketing</li>
+            <li>Business</li>
+            <li>Economics</li>
+            <li>CRM</li>
+            <li>History</li>
+            <li>Finance</li>
+            <li>HR</li>
+            <li>Accounting</li>
+            <li>English</li>
+            <li>Management</li>
+          </ul>
+        </div>
+        <div class="col-md-3 course-list">
+          <ul>
+            <li>Computer Architecture</li>
+            <li>Software Engineering</li>
+            <li>Computer Science</li>
+            <li>Information Technology</li>
+            <li>Database</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>C++</li>
+            <li>Web Development</li>
+            <li>C#</li>
+          </ul>
+        </div>
+        <div class="col-md-3 course-list">
+          <ul>
+            <li>MBA</li>
+            <li>MSc</li>
+            <li>Master of Applied Science</li>
+            <li>Master of Engineering</li>
+            <li>Business Enviroment</li>
+            <li>Psychology</li>
+            <li>Operation Management</li>
+            <li>Public Economics</li>
+            <li>Political Science</li>
+            <li>Travel & Tourism</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="container-1 container d-flex justify-content-center align-items-center">
       <div class="front-content row">
         <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
@@ -166,6 +221,193 @@
         </div>
       </div>
     </div>
+
+    <!-- testimonial -->
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item testimonial-img active">
+          <img src="photo/testimonial-student-1.jpg" class="d-block w-100" alt="...">
+          <p></p>
+        </div>
+        <div class="carousel-item testimonial-img">
+          <img src="photo/testimonial-student-2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item testimonial-img">
+          <img src="photo/testimonial-student-3.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Single item -->
+    <div class="carousel-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <!-- Content for the fourth testimonial -->
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <!-- Content for the fifth testimonial -->
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <!-- Content for the sixth testimonial -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more carousel items for additional testimonials -->
+  </div>
+  <!-- Inner -->
+
+  <!-- Previous & Next buttons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->
+
+    
+
+    <!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Company name
+          </h6>
+          <p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Laravel</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // JavaScript to add/remove scrolling class
@@ -187,14 +429,42 @@
     });
 }
 
-function scrollUp() {
-    window.scrollBy({
-        top: -window.innerHeight,
-        behavior: 'smooth'
-    });
-}
+      function scrollUp() {
+          window.scrollBy({
+              top: -window.innerHeight,
+              behavior: 'smooth'
+          });
+      }
+    </script>
 
+    <!-- testimonial -->
+      <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <!-- Font awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.1/js/v4-shims.js"></script>
+    <script>
+      var swiper = new Swiper('.swiper', {
+        slidesPerView: 3,
+        direction: getDirection(),
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        on: {
+          resize: function () {
+            swiper.changeDirection(getDirection());
+          },
+        },
+      });
+  
+      function getDirection() {
+        var windowWidth = window.innerWidth;
+        var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  
+        return direction;
+      }
     </script>
 </body>
 </html>
