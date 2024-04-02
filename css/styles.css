@@ -152,8 +152,29 @@ body {
 }
 
 /* testimonial style */
+.div-4{
+  background-color: #d5e3f3;
+}
+
+.testimonial-img{
+  width: 600px !important;
+  text-align: center;
+}
+
 .testimonial-img img{
-  width: 300px !important;
-  height: 300px;
+  width: 150px !important;
+  border: #0056b3 5px solid;
+  border-radius: 50%;
+  height: 150px;
   object-fit: cover;
+}
+
+.bg-test{
+  background-color: #0056b3;
+  background: linear-gradient(to right, #0431c496, #4de4e985);
+  border-radius: 50px;
+}
+
+.test{
+  width: 800px;
 }
