@@ -16,7 +16,7 @@ body {
   font-family: "Federant", serif !important;
 }
 .container-1 {
-  height: 100vh;
+  margin: 50px;
   width: 100%;
   background-size: cover;
 }
@@ -56,7 +56,7 @@ body {
 .img-1 img {
   width: 500px;
   max-width: 100%;
-  padding: 20px;
+  padding: 10px;
   background-color: #0e51cf;
   background: linear-gradient(to right, #d476e0, #4197dd);
   border-radius: 50px;
@@ -73,8 +73,23 @@ body {
 
 .paragraph p{
   font-size: 20px;
+  color: #0056b3;
 }
 
+.definition p{
+  color: #64686b;
+  font-size: 14px;
+}
+
+.div-promotion {
+  background: rgb(255,255,255);
+  background: linear-gradient(63deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(213,227,243,1) 50%, rgba(213,227,243,1) 100%);
+}
+
+.div-promotion-2 {
+  background: rgb(255,255,255);
+  background: linear-gradient(-63deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(213,227,243,1) 50%, rgba(213,227,243,1) 100%);
+}
 /* Scroll Down Button Style */
 
 .scroll-down-btn {
@@ -171,10 +186,10 @@ body {
 
 .bg-test{
   background-color: #0056b3;
-  background: linear-gradient(to right, #0431c496, #4de4e985);
+  background: linear-gradient(to top, #b6cbeb, #1d68da85);
   border-radius: 50px;
 }
 
 .test{
-  width: 800px;
+  width: 1000px;
 }
