@@ -27,10 +27,16 @@
 
         .navbar-scrolled {
             background-color: rgba(0, 0, 0, 0.678) !important;
-            background: linear-gradient(to top, #98c0d8a2, #fdffff) !important;
+            background: linear-gradient(to top, #98bfd8da, #fdffff) !important;
             transition: background-color 0.6s ease;
             border-bottom:1px #42414134 solid ;
             color: white;
+        }
+
+        .dr {
+          background-color: #96055e !important;
+          background: linear-gradient(to top, #98bfd8da, #98bfd8da) !important;
+          border: none;
         }
     </style>
 </head>
@@ -38,30 +44,33 @@
     <div class="navigation">
       <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-transparent fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand text-dark" href="#"><img style="border-radius: 20px; margin-right: 5px;" src="photo/logo.gif" alt="" width="50px">Taskmaster</a>
+          <a class="navbar-brand text-dark" href="index.html"><img style="border-radius: 20px; margin-right: 5px;" src="photo/logo.gif" alt="" width="50px">Taskmaster</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
               <li class="nav-item">
-                <a class="nav-link active text-dark me-4 text-center w-100" aria-current="page" href="#">Home</a>
+                <a class="nav-link active text-dark me-4 text-center w-100" aria-current="page" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light text-dark me-4 text-center w-100" href="#">About Us</a>
+                <a class="nav-link text-light text-dark me-4 text-center w-100" href="#">Experts</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark me-4 text-center w-100 text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Service
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dr">
                   <li><a class="dropdown-item text-dark" href="#">Ask Question</a></li>
                   <li><a class="dropdown-item text-dark" href="#">CV Maker</a></li>
                   <li><a class="dropdown-item text-dark" href="#">Resource</a></li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light text-dark me-4 text-center w-100" href="#">Experts</a>
+                <a class="nav-link text-light text-dark me-4 text-center w-100" href="#">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light text-dark me-4 text-center w-100" href="#">About Us</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
