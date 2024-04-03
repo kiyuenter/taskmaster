@@ -11,6 +11,29 @@ body {
   font-family: "Fira Sans", sans-serif !important;
 }
 
+/* Scroll-bar style Start */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0097ee4b; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7d03a167;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* Scroll-bar style End */
+
 
 .navbar-brand {
   font-family: "Federant", serif !important;
