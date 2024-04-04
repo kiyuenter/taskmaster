@@ -48,18 +48,42 @@ body {
   color: black;
 }
 
+.dropdown-item{
+  border-radius: 12px !important;
+}
+
 .dropdown-item:hover {
   background-color: rgba(14, 117, 214, 0.479) !important;
   background: linear-gradient(to right, #648cd4, #5397ce) !important;
+  border-radius: 0px !important;
+  transition: 0.6s;
   color: white !important;
+}
+
+.nav-link {
+  border-radius: 20px !important;
 }
 
 .nav-link:hover {
   background-color: rgba(14, 117, 214, 0.479) !important;
   background: linear-gradient(to right, #0e51cf, #1779ca) !important;
+  border-radius: 6px !important;
   color: white !important;
-  border-radius: 12px;
   transition: 0.6s;
+}
+
+/* Sign In and Join Us button Style start */
+.join-button{
+  width: 100px;
+  background: linear-gradient(to right, rgb(155, 128, 236),rgb(132, 232, 236));
+  border: none;
+}
+
+.join-button:hover{
+  color: #ffffff !important;
+  transition: 0.6s;
+  background: linear-gradient(to right, #569ae793, #2be4cbc2);
+  border-radius: 15px;
 }
 
 /* First container */
@@ -81,7 +105,7 @@ body {
   max-width: 100%;
   padding: 10px;
   background-color: #0e51cf;
-  background: linear-gradient(to right, #d476e0, #4197dd);
+  background-image: linear-gradient(to right, #659ffc 0%, #c2e9fb 51%, #afa1fd 100%);
   border-radius: 50px;
   box-sizing: border-box;
   box-shadow: 5px 5px 50px 5px rgba(0, 0, 0, 0.445) ;
@@ -90,8 +114,7 @@ body {
 
 .img-1 img:hover {
   box-shadow: 10px 10px 30px 10px rgba(0, 0, 0, 0.445);
-  background-color: #0e51cf;
-  background: linear-gradient(to right, #4197dd, #d476e0);
+  background-image: linear-gradient(to right, #afa1fd 0%, #c2e9fb 51%, #659ffc 100%);
 }
 
 .paragraph p{
