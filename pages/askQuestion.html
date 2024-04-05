@@ -107,13 +107,13 @@
                 <form action="process.php" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <input class="form-control" type="text" id="subject" name="subject" placeholder="Subject" required>
-                    <select class="form-control" id="course" name="course" required>
+                    <select title="Select_Course" class="form-control" id="course" name="course" required>
                         <option value="">Select Course</option>
                         <option value="MATH101">Introduction to Mathematics</option>
                         <option value="CS202">Data Structures & Algorithms</option>
                         <option value="other">Other (Specify below)</option>
                     </select>
-                    <input class="form-control" type="text" id="other_course" name="other_course" disabled>
+                    <input class="form-control" placeholder="Other Course" type="text" id="other_course" name="other_course" disabled>
                     <textarea placeholder="Type your question..." class="form-control" id="question" name="question" rows="10" required></textarea>
 
                     <input class="form-control" type="file" id="attachment" name="attachment" accept=".jpg,.jpeg,.png,.pdf">
