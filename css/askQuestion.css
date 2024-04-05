@@ -1,0 +1,43 @@
+.img-container{
+    height: 100vh;
+}
+
+.definition-ask{
+    border-bottom: 2px solid #d4d4d4;
+    background: rgb(139,190,244);
+    background: linear-gradient(20deg, rgb(7, 81, 151) 0%, rgb(176, 205, 236) 40%, rgb(248, 248, 248) 50%, rgb(219, 223, 228) 100%);
+}
+
+.askForm{
+    background: linear-gradient(155deg, rgb(7, 81, 151) 0%, rgb(194, 218, 250) 40%, rgb(194, 218, 250) 50%, rgb(209, 215, 221) 100%) ;
+}
+
+/* Ask Question button */
+.submit-btn{
+    width: 140px;
+    background: linear-gradient(to right, #249beb, rgb(97, 182, 238), rgb(51, 190, 255), rgb(17, 219, 255));
+}
+
+.submit-btn:hover{
+    color: white !important;
+    transition: 0.6s ease-in;
+    width: 150px;
+    background: #0b70b3 !important;
+}
+
+input, select, textarea{
+    margin-top: 10px !important;
+}
+
+textarea {
+    height: 300px !important;
+}
+
+.askimg img{
+    width: 75%;
+    height: 75%;
+    border-radius: 50px;
+    background: linear-gradient(50deg, rgb(231, 47, 231), #3e4af1, rgb(18, 190, 212));
+    padding: 10px;
+}
+

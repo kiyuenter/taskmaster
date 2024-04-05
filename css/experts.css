@@ -147,3 +147,8 @@ a{
     box-shadow: 5px 5px 30px 1px #1a2c3aa6;
   }
   
+
+  .card img{
+    height: 250px !important;
+    object-fit: cover;
+  }
