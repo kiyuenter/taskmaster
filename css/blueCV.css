@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.section-2{
+    padding: 10px;
+    color: rgb(228, 231, 233);
+    background: rgb(13, 20, 53) !important;
+}
+
+.section-2 img{
+    width: 75%;
+    border-radius: 50%;
+}
+h2{
+    color: antiquewhite !important;
+    font-size: 20px !important;
+}
+
