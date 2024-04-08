@@ -7,6 +7,13 @@
     padding: 10px;
     color: rgb(228, 231, 233);
     background: rgb(13, 20, 53) !important;
+    width: 200px !important;
+    margin: 0px !important;
+}
+.a4-paper{
+    width: 595px !important; /* A4 paper width */
+    height: 842px !important; /* A4 paper height */
+    margin: 0; /* Remove default margins */
 }
 
 .section-2 img{
