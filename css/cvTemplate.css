@@ -1,0 +1,32 @@
+.wetry img{
+    width: 80%;
+    padding: 10px;
+    border-radius: 50px;
+    background: linear-gradient(to right, #068be4, #61a1b4, #89b48b, #4e4);
+}
+.cv-try{
+    height: 100vh;
+    background: linear-gradient(to right, #7af3f3, #a7d7e6, #3f95f8);
+}
+
+.cv-temp-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cv-temp-img img{
+    margin: 10px;
+    width: 300px !important;
+    padding: 15px;
+    height: 400px !important;
+    border-radius: 20px;
+    background: linear-gradient(to right, #f1a257, #90c5e9);
+}
+.list-cv{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.cv-store{
+    background-color: #d2e5f1;
+}

@@ -1,0 +1,41 @@
+.current-form{
+    padding-top: 20px;
+    width: 100%;
+    background: linear-gradient(to right, #a8c7db, #bccdeb);
+}
+
+.form-outline input{
+    margin-top: 10px;
+}
+
+.form-all{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 50px 50px 50px 50px !important;
+    border-radius: 50px;
+    background-color: #4dc0c456;
+}
+
+/* TextBox */
+
+textarea{
+    min-height: 100% !important;
+    max-height: 175px;
+}
+
+.textarea{
+    height: 175px;
+}
+
+/* progress */
+.progress-container {
+    width: 100%;
+    background-color: #f5f5f5;
+  }
+  
+  .progress-bar {
+    width: 0%;
+    height: 30px;
+    background-color: #4caf50;
+    transition: width 0.3s ease-in-out; /* Added transition for smooth animation */
+  }
