@@ -96,25 +96,12 @@
                             <input type="number" class="form-control input-custom" placeholder="Phone" required name="pnumber"/>
                             <input type="email" class="form-control input-custom" placeholder="Email" required name="email"/>
                             <input type="text" class="form-control input-custom" placeholder="Type your skill..." required name="skill"/>
-                            <div class="progress my-2">
-                                <div class="progress-bar" id="progressBar" width="0%"></div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                            <input type="hidden" name="widthx" id="progressBar">
-                            <button class="btn btn-success" onclick="advanceProgressBar()">Advance Progress</button>
-                            <button class="btn btn-danger" onclick="resetProgressBar()">Reset Progress</button>
-                            </div>
+                            <input type="number" min="0" max="100" class="form-control input-custom" placeholder="Insert you skill with percent '%'" name="widthx"/>
                             <input type="text" class="form-control input-custom" placeholder="Language" required name="language"/>
-                            <div class="progress my-2">
-                                <div class="progress-bar" id="eduprogressBar" width="0%" name="widthy"></div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <input type="hidden" name="widthy" id="eduprogressBar">
-                            <button class="btn btn-success" onclick="eduProgress()">Advance Progress</button>
-                            <button class="btn btn-danger" onclick="reseteduProgress()">Reset Progress</button>
-                            </div>
-                            <div class="textarea">
-                                <textarea type="text" class="form-control input-custom" placeholder="Type your biography" required name="biography"></textarea>
+                            <input type="number" min="0" max="100" class="form-control input-custom" placeholder="Insert your language skill with percent '%'" name="widthy">
+                            <div class="textarea mt-3">
+                                <textarea id="my-text-box" rows="5" cols="30" type="text" class="form-control input-custom" placeholder="Type your biography" required name="biography"></textarea>
+                                <span class="ps-4" id="word-count">0</span><span>/100 words</span>
                             </div>
                         </div>
                     </div>
@@ -163,33 +150,6 @@
             </form>
         </div>
     </div>
-
-
-    <!-- Progress Bar -->
-    <script>
-        const progressBar = document.getElementById('progress');
-        const progressValueInput = document.getElementById('progress-value');
-    
-        function updateProgress(newValue) {
-          if (newValue < 0) {
-            newValue = 0;
-          } else if (newValue > 100) {
-            newValue = 100;
-          }
-          const newWidth = newValue + '%';
-          progressBar.style.width = newWidth;
-          progressValueInput.value = newValue; // Update hidden field with progress value
-        }
-    
-        const submitButton = document.getElementById('submit-button');
-    
-        submitButton.addEventListener('click', () => {
-          // Calculate progress value (replace with your logic)
-          const currentProgress = 70; // Example: Set progress based on form data or a process
-          updateProgress(currentProgress);
-        });
-      </script>
-
 
      <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
@@ -367,6 +327,33 @@
     
           return direction;
         }
+      </script>
+
+      <!-- text box word count -->
+      <script>
+        const textBox = document.getElementById('my-text-box');
+        const wordCountSpan = document.getElementById('word-count'); // Optional
+
+        textBox.addEventListener('input', () => {
+          const text = textBox.value.trim(); // Trim leading/trailing whitespace
+          const words = text.split(/\s+/); // Split into words using whitespace separator
+          const wordCount = words.length;
+
+          // Update word count display (Optional)
+          if (wordCountSpan) {
+            wordCountSpan.textContent = `${wordCount}`;
+          }
+
+          // Validate and restrict word count
+          if (wordCount > 100) { // Replace 100 with your desired maximum
+            textBox.value = words.slice(0, 100).join(' '); // Limit to first 100 words
+            textBox.disabled = true; // Disable typing when limit reached
+          } else {
+            textBox.disabled = false; // Enable typing when below limit
+          }
+        });
+
+
       </script>
 </body>
 </html>

@@ -20,11 +20,15 @@
 
 textarea{
     min-height: 100% !important;
-    max-height: 175px;
+    max-height: 203px !important;
 }
 
 .textarea{
-    height: 175px;
+    height: 203px !important;
+}
+
+.textarea span{
+    font-size: 12px;
 }
 
 /* progress */

@@ -21,8 +21,8 @@
     echo "<br/>" . $phone;
     echo "<br/>" . $email;
     echo "<br/>" . $skill;
-    echo "<br/>" . $widthx;
-    echo "<br/>" . $widthy;
+    echo "<br/>" . $widthx."%";
+    echo "<br/>" . $widthy."%";
     echo "<br/>" . $bio;
     echo "<br/>" . $expstart;
     echo "<br/>" . $expend;

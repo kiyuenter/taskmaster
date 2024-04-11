@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+button, a{
+    width: 100px;
+}
+
+.first-column {
+    padding: 0px !important;
+    background-color: #1f3b5e !important;
+    min-height: 29.7cm !important;
+    width: 7cm !important;
+}
+
+.second-column {
+    min-height: 29.7cm !important;
+    width: 13.5cm !important;
+}
+
+.title {
+    background-color: #0e2036 !important;
+}
+
+.page {
+    width: 21cm !important;
+    min-height: 29.7cm !important;
+    border: 1px solid #000;
+}
+
+h1{
+    font-size: 26px !important;
+}
+
+h2{
+    font-size: 23px !important;
+}
+
+h3{
+    font-size: 20px;
+}
+
+h4{
+    font-size: 18px;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
