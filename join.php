@@ -36,13 +36,19 @@
         </div>
         <div class="form-container sign-in">
             <form action="php/loginforall.php" method="POST">
-                <?php
-                    if(isset($_SESSION['status']))
+            <?php
+                if(isset($_SESSION['error']))
+                {
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                }
+
+                if(isset($_SESSION['status']))
                     {
                         echo $_SESSION['status'];
                         unset($_SESSION['status']);
                     }
-                ?>
+            ?>
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -52,7 +58,7 @@
                 </div>
                 <span>or use your email password</span>
                 <input type="email" placeholder="Email" name="uEmail" required>
-                <input type="password" placeholder="Password" name="uPassword" required>
+                <input type="password" placeholder="Password" name="Password" required>
                 <a href="#">Forget Your Password?</a>
                 <button class="button" type="submit" name="submit">Sign In</button>
             </form>
