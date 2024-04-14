@@ -51,18 +51,6 @@ session_start();
 </head>
 
 <body>
-
-    <?php
-      $show_message = false; // Flag to control message display
-
-      if (isset($_SESSION['status'])) {
-        $message = htmlspecialchars($_SESSION['status']);
-        $show_message = true; // Set flag to true if there's a message
-        echo "<script>alert('$message')</script>";
-        unset($_SESSION['status']);
-      }
-    ?>
-
     <div class="navigation">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-transparent fixed-top">
             <div class="container-fluid">
@@ -106,20 +94,34 @@ session_start();
                     </ul>
 
                     <?php
-                      if ($show_message) { // Check the flag instead of session
-                        // Message already displayed, skip displaying anything here
-                      } else {
-                        if(isset($_SESSION["status"]) && $_SESSION["status"] == true) {
-                          echo "Hello, K";
-                        } else {
-                          echo '
-                          <div class="d-flex" role="search">
-                              <a href="join.php" class="btn me-2 join-button">SIGN IN</a>
-                              <a href="accountType.html" class="btn join-button">JOIN US</a>
-                              ';
-                        }
-                      }
-                      ?>
+                            if(isset($_SESSION["status"]) && $_SESSION["status"] == true) {
+                                echo '
+                                <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                                    <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark me-4 text-center w-100 text-light" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-circle" style="font-size: 24px;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dr login-des w-100">
+                                        <div class="bg-info-subtle text-center w-100">
+                                        <span class="p-2 text-success w-100">Welcome ' . $_SESSION["username"] . '😊</span>
+                                        </div>
+                                        <li><a class="dropdown-item text-dark" href="pages/askQuestion.html">Profile</a></li>
+                                        <li><a class="dropdown-item text-dark" href="pages/cvTemplate.html">Asked Questions</a></li>
+                                        <li><a class="dropdown-item text-dark" href="pages/resource.html">Setting</a></li>
+                                        <li><a class="dropdown-item text-dark" href="php/logout.php" onclick="return confirm(\'Are you sure you want to logout?\');">Logout</a></li>
+                                    </ul>
+                                    </li>
+                                </ul>';
+                                } else {
+                                echo '
+                                <div class="d-flex" role="search">
+                                    <a href="join.php" class="btn me-2 join-button">SIGN IN</a>
+                                    <a href="accountType.html" class="btn join-button">JOIN US</a>
+                                </div>';
+                                }
+                                ?>
+
 
                 </div>
             </div>
