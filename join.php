@@ -22,32 +22,24 @@
         <div class="form-container sign-up">
             <form action="php/studentRegistration.php" method="POST" onsubmit="return validatePassword()">
                 <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registeration</span>
-                <input type="text" placeholder="First Name" name="fName" required>
-                <input type="text" placeholder="Last Name" name="lName" required>
+                <hr style="width: 100%; margin: 10px; border: 2px solid #6f16aa;">
+                <span>Insert your email for registeration</span>
+                <input type="text" placeholder="First Name" id="fName" name="fName" required>
+                <input type="text" placeholder="Last Name" id="lName" name="lName" required>
                 <input type="email" placeholder="Email" name="email" required>
                 <input type="password" placeholder="Password" name="Password" id="password" required>
                 <div class="select-dep">
                     <p>Level of Education</p>
-                    <select name="lvlofedu" id="lvlofedu" title="Select">
+                    <select name="lvlofedu" id="lvlofedu" title="Select" required>
                         <option value="select">Select</option>
                         <option value="high">High School</option>
                         <option value="college">Collage</option>
                     </select>
-                    <select title="dep-title" name="department" id="department" disabled>
+                    <select title="dep-title" name="department" id="department" required disabled>
                         <option value="">Select Department</option>
                     </select>
-                    <select title="dep-title" name="department" id="acadamic" disabled>
-                        <option value="acadeg">Acadamic Degree</option>
-                    </select>
                 </div>
-                <button class="button" type="submit">Sign Up</button>
+                <button class="button google-sign-in-button" type="submit" id="sign-in-button">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -60,17 +52,12 @@
                 }
             ?>
                 <h1>Sign In</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email password</span>
+                <hr style="width: 100%; margin: 10px; border: 2px solid #6f16aa;">
+                <span>Insert your email address, and password</span>
                 <input type="email" placeholder="Email" name="uEmail" required>
                 <input type="password" placeholder="Password" name="Password" required>
                 <a href="#">Forget Your Password?</a>
-                <button class="button" type="submit" name="submit">Sign In</button>
+                <button id="sign-in-button" class="button google-sign-in-button" type="submit" name="submit">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
@@ -92,20 +79,41 @@
     <script src="js/loader.js"></script>
     <script src="js/validation.js"></script>
 </body>
+<script>
+    // FName and LName input tag accept only text
+    const firstNameInput = document.getElementById('fName');
+const lastNameInput = document.getElementById('lName');
 
+firstNameInput.addEventListener('keypress', (event) => {
+  const char = String.fromCharCode(event.charCode); // Get the character typed
+  const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+
+  if (!pattern.test(char)) {
+    event.preventDefault(); // Prevent character insertion if not a letter or space
+  }
+});
+
+lastNameInput.addEventListener('keypress', (event) => {
+  const char = String.fromCharCode(event.charCode); // Get the character typed
+  const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+
+  if (!pattern.test(char)) {
+    event.preventDefault(); // Prevent character insertion if not a letter or space
+  }
+});
+
+</script>
 
 <script>
     // -------- Enable department
+const educationLevelSelect = document.getElementById("lvlofedu");
+const departmentSelect = document.getElementById("department");
+const acadamicSelect = document.getElementById("acadamic");
 
-        const educationLevelSelect = document.getElementById("lvlofedu");
-        const departmentSelect = document.getElementById("department");
-        const acadamicSelect = document.getElementById("acadamic");
-
-        function updateDepartmentOptions() {
-        const selectedLevel = educationLevelSelect.value;
-        departmentSelect.disabled = true; // Disable department selection initially
-        acadamicSelect.disabled = true; // Disable acadamic department
-        if (selectedLevel === "select") {
+function updateDepartmentOptions() {
+  const selectedLevel = educationLevelSelect.value;
+  departmentSelect.disabled = true; // Disable department selection initially
+  if (selectedLevel === "select") {
             departmentSelect.innerHTML = "";
             departmentSelect.disabled = true;
         } else if (selectedLevel === "high") {
@@ -144,21 +152,45 @@
             departmentSelect.disabled = false; // Enable department selection after choosing a level
         }
 
-        if (selectedLevel !== "select") {
-    departmentSelect.disabled = false; // Enable department selection after choosing a valid level
+        if (selectedLevel === "select") {
+    departmentSelect.disabled = true; // Enable department selection after choosing a valid level
   }
-
-        if (selectedLevel == "") {
-            acadamicSelect.options.add(new Option("BSc"));
-            acadamicSelect.options.add(new Option("MA"));
-            acadamicSelect.options.add(new Option("MSc"));
-        }
         }
 
-        educationLevelSelect.addEventListener("change", updateDepartmentOptions);
+educationLevelSelect.addEventListener("change", updateDepartmentOptions);
 
-        // Call the function initially to set the disabled state
-        updateDepartmentOptions();
+// Call the function initially to set the disabled state
+updateDepartmentOptions();
+
+function updateAcedamicOption() {
+  const selectDep = departmentSelect.value;
+  acadamicSelect.disabled = true; // Disable acadamic department
+
+  if (selectDep === "" || selectDep === "Department") {
+    acadamicSelect.disabled = true;
+  } else {
+    acadamicSelect.disabled = false;
+    acadamicSelect.innerHTML = "";
+    acadamicSelect.options.add(new Option("BSc"));
+    acadamicSelect.options.add(new Option("MA"));
+    acadamicSelect.options.add(new Option("MSc"));
+  }
+}
+
+departmentSelect.addEventListener("change", updateAcedamicOption);
+updateAcedamicOption();
+
+// Form validation and popup message
+const form = document.querySelector("form"); // Assuming your form has a tag
+form.addEventListener("submit", (event) => {
+  if (educationLevelSelect.value === "select" || departmentSelect.value === "" || departmentSelect.value === "Department") {
+    event.preventDefault(); // Prevent form submission
+
+    alert("Please select a valid Level of Education, Department, and Academic Degree."); // Display popup message
+  }
+});
+
+        
 
 </script>
 </html>

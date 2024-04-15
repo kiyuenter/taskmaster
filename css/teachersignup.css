@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -6,6 +8,7 @@
 }
 
 body{
+    font-family: "Oswald", sans-serif;
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -13,6 +16,10 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+}
+
+span {
+    font-size: 14px !important;
 }
 
 .container{
@@ -23,7 +30,7 @@ body{
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 500px;
+    min-height: 550px;
 }
 
 .container p, label{
@@ -171,5 +178,20 @@ input[type="date"] {
     text-transform: uppercase;
 }
 
+.select-dep{
+    width: 100%
+}
+.select-dep, select{
+    display:flex !important;
+    align-items: center;
+    height: 40px !important;
+    margin: 2px;
+}
+
+option{
+    background-color: #5a9ae473;
+    height: 25px;
+    font-size: 14px;
+}
 
 

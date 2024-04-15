@@ -17,22 +17,16 @@
 </head>
 <body>
     <div id="pageloader"></div>
-
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="php/teacherRegistration.php" method="POST" onsubmit="return validatePassword()">
                 <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+                <hr style="width: 100%; margin: 10px; border: 2px solid #6f16aa;">
                 <span>or use your email for registeration</span>
                 <div class="form-align">
                     <div class="info-1">
-                        <input type="text" placeholder="First Name" name="fName" required>
-                        <input type="text" placeholder="Last Name" name="lName" required>
+                        <input type="text" id="fName" placeholder="First Name" name="fName" required>
+                        <input type="text" id="lName" placeholder="Last Name" name="lName" required>
                         <input type="email" placeholder="Email" name="email" required>
                                         <?php
                                             if(isset($_SESSION['error']))
@@ -42,9 +36,7 @@
                                             }
                                         ?>
                         <input type="password" placeholder="Password" name="Password" id="password" required>
-                    </div>
-                    <div class="info-2">
-                        <div class="gender">
+                        <div style="margin-left: 15px;" class="gender">
                             <span>Gender</span>
                             <div class="male">
                                 <input type="radio" name="gender" id="male" value="Male" required>
@@ -55,40 +47,29 @@
                                 <label for="female">Female</label>
                             </div>
                         </div>
+                    </div>
+                    <div class="info-2">
                         <div class="dob">
                             <label for="dob">Date of Birth</label>
-                            <input style="width: 71%;" type="date" id="dob" name="dob" required>
+                            <input type="date" id="dob" name="dob" required>
                         </div>
-                        <div class="dob">
+                        <div class="dob" style="margin-bottom: 20px;">
                             <label for="dob" style="width: 20%;">Country</label>
                             <select style="width: 77%;" class="gds-cr" country-data-region-id="gds-cr-one" data-language="en" name="country" required></select>
                         </div>
-                        <div class="dob">
-                            <label for="edl">Education Level</label>
-                            <div class="edulevel">
-                                <label for="ba">BA</label>
-                                <input type="radio"name="edl" id="ba" value="Bachelor of Arts" required>
-                            </div>
-                            <div class="edulevel">
-                                <label for="bsc">BSc</label>
-                                <input type="radio"name="edl" id="bsc" value="Bachelor of Science" required>
-                            </div>
-                            <div class="edulevel">
-                                <label for="ma">MA</label>
-                                <input type="radio" name="edl" id="ma" value="Master of Arts" required>
-                            </div>
-                            <div class="edulevel">
-                                <label for="msc">MSc</label>
-                                <input type="radio" name="edl" id="msc" value="Master of Science" required>
-                            </div>
-                            <div class="edulevel">
-                                <label for="mba">MBA</label>
-                                <input type="radio" name="edl" id="mba" value="Master of Business Administration" required>
-                            </div>
-                            <div class="edulevel">
-                                <label for="phd">PhD</label>
-                                <input type="radio" name="edl" id="phd" value="Doctor of Philosophy" required>
-                            </div>
+                        <div class="select-dep">
+                            <p>Level of Education</p>
+                            <select name="lvlofedu" id="lvlofedu" title="Select" required>
+                                <option value="select">Select</option>
+                                <option value="high">High School</option>
+                                <option value="college">Collage</option>
+                            </select>
+                            <select title="dep-title" name="department" id="department" required disabled>
+                                <option value="">Select Department</option>
+                            </select>
+                            <select title="dep-title" name="academic" id="acadamic" required disabled>
+                                <option value="acadeg">Acadamic Degree</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -101,5 +82,132 @@
     <script src="js/validation.js"></script>
     <script src="js/country-dropdown.js"></script>
     <script type="text/javascript" src="js/Gettext.js"></script>
+
+    <script>
+        // FName and LName input tag accept only text
+    const firstNameInput = document.getElementById('fName');
+    const lastNameInput = document.getElementById('lName');
+    
+    firstNameInput.addEventListener('keypress', (event) => {
+      const char = String.fromCharCode(event.charCode); // Get the character typed
+      const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+    
+      if (!pattern.test(char)) {
+        event.preventDefault(); // Prevent character insertion if not a letter or space
+      }
+    });
+    
+    lastNameInput.addEventListener('keypress', (event) => {
+      const char = String.fromCharCode(event.charCode); // Get the character typed
+      const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+    
+      if (!pattern.test(char)) {
+        event.preventDefault(); // Prevent character insertion if not a letter or space
+      }
+    });
+    
+    </script>
+    
+    <script>
+        // -------- Enable department
+    const educationLevelSelect = document.getElementById("lvlofedu");
+    const departmentSelect = document.getElementById("department");
+    const acadamicSelect = document.getElementById("acadamic");
+    
+    function updateDepartmentOptions() {
+      const selectedLevel = educationLevelSelect.value;
+      departmentSelect.disabled = true; // Disable department selection initially
+      if (selectedLevel === "select") {
+                departmentSelect.innerHTML = "";
+                departmentSelect.disabled = true;
+            } else if (selectedLevel === "high") {
+                departmentSelect.innerHTML = ""; // Clear existing options
+                departmentSelect.options.add(new Option("Department"));
+                departmentSelect.options.add(new Option("Maths"));
+                departmentSelect.options.add(new Option("English"));
+                departmentSelect.options.add(new Option("Amharic"));
+                departmentSelect.options.add(new Option("Science"));
+                departmentSelect.options.add(new Option("Art"));
+                // Add relevant High School department options here (e.g., Math, English, Science)
+            } else if (selectedLevel === "college") {
+                departmentSelect.innerHTML = ""; // Clear existing options
+                departmentSelect.options.add(new Option("Department"));
+                departmentSelect.options.add(new Option("Accounting and Finance"));
+                departmentSelect.options.add(new Option("Human Resources Management"));
+                departmentSelect.options.add(new Option("International Business"));
+                departmentSelect.options.add(new Option("Management Information System"));
+                departmentSelect.options.add(new Option("Marketing"));
+                departmentSelect.options.add(new Option("Operation Management"));
+                departmentSelect.options.add(new Option("Entrepreneurship"));
+                departmentSelect.options.add(new Option("Engineering"));
+                departmentSelect.options.add(new Option("Civil Engineering"));
+                departmentSelect.options.add(new Option("Computer Engineering"));
+                departmentSelect.options.add(new Option("Nursing"));
+                departmentSelect.options.add(new Option("Law"));
+                departmentSelect.options.add(new Option("Medicine"));
+                departmentSelect.options.add(new Option("Public Health"));
+                // Add relevant College department options here (e.g., Computer Science, Engineering, Art)
+            } else {
+                departmentSelect.innerHTML = ""; // Clear existing options
+                departmentSelect.options.add(new Option("Select Department")); // Default option
+            }
+    
+            if (selectedLevel !== "") {
+                departmentSelect.disabled = false; // Enable department selection after choosing a level
+            }
+    
+            if (selectedLevel === "select") {
+        departmentSelect.disabled = true; // Enable department selection after choosing a valid level
+      }
+            }
+    
+    educationLevelSelect.addEventListener("change", updateDepartmentOptions);
+    
+    // Call the function initially to set the disabled state
+    updateDepartmentOptions();
+    
+    function updateAcedamicOption() {
+      const selectedLevel = educationLevelSelect.value;
+      const selectDep = departmentSelect.value;
+      acadamicSelect.disabled = true; // Disable acadamic department
+    
+      if (selectDep === "" || selectDep === "Department") {
+        acadamicSelect.disabled = true;
+      } else {
+        acadamicSelect.disabled = false;
+        acadamicSelect.innerHTML = "";
+        acadamicSelect.options.add(new Option("Select"));
+        acadamicSelect.options.add(new Option("BA"));
+        acadamicSelect.options.add(new Option("BSc"));
+        acadamicSelect.options.add(new Option("BFA"));
+        acadamicSelect.options.add(new Option("BAS"));
+        acadamicSelect.options.add(new Option("MA"));
+        acadamicSelect.options.add(new Option("MSc"));
+        acadamicSelect.options.add(new Option("MFA"));
+        acadamicSelect.options.add(new Option("Ph.D"));
+        acadamicSelect.options.add(new Option("Ed.D"));
+        acadamicSelect.options.add(new Option("M.D"));
+      }
+      if(selectedLevel === "select") {
+        acadamicSelect.disabled = true;
+      }
+    }
+    
+    departmentSelect.addEventListener("change", updateAcedamicOption);
+    updateAcedamicOption();
+    
+    // Form validation and popup message
+    const form = document.querySelector("form"); // Assuming your form has a tag
+    form.addEventListener("submit", (event) => {
+      if (educationLevelSelect.value === "select" || departmentSelect.value === "" || departmentSelect.value === "Department") {
+        event.preventDefault(); // Prevent form submission
+    
+        alert("Please select a valid Level of Education, Department, and Academic Degree."); // Display popup message
+      }
+    });
+    
+            
+    
+    </script>
 </body>
 </html>
