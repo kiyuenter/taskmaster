@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CV</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSc Department Selection</title>
 </head>
 <body>
-    <header>
-        <h1>[Your Name]</h1>
-        <p>[Your Contact Information (Email, Phone number)]</p>
-    </header>
-    <main>
-        <h2>Summary</h2>
-        <p id="summary-text">[Write a brief summary of your skills and experience]</p>
-        <input type="text" id="summary-edit" placeholder="[Write a brief summary of your skills and experience]">
-        <script>
-            // Get the summary text element and edit input field
-            const summaryText = document.getElementById("summary-text");
-            const summaryEdit = document.getElementById("summary-edit");
-
-            // Update the displayed text when the user edits the input field
-            summaryEdit.addEventListener("keyup", () => {
-                summaryText.textContent = summaryEdit.value;
-            });
-        </script>
-    </main>
+  <h1>Choose your MSc Department:</h1>
+  <form action="t.php" method="get"> <select name="department">
+      <option value="">Select Department</option>
+      <option value="MSc">Master of Science (MSc)</option>
+      </select>
+    <br>
+    <input type="checkbox" id="useQuestions" name="useQuestions">
+    <label for="useQuestions">Show me generated questions</label>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="response"></div> <script>
+    // (Optional) Handle form submission using JavaScript (improves user experience)
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+      fetch(this.action + "?" + new URLSearchParams(this.elements))
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById("response").innerHTML = text;
+        });
+    });
+  </script>
 </body>
 </html>

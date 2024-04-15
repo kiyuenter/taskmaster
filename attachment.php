@@ -26,11 +26,6 @@
                 <input type="text" name="username" value="<?php echo $username?>"/>
                 <ul>
                     <li>
-                        <input type="file" id="uploadID" required name="IDc" onchange="updateFileName(this)">
-                        <i class="bi bi-file-earmark-arrow-up"></i>
-                        <label for="uploadID">Identification Card</label>
-                    </li>
-                    <li>
                         <input type="file" id="uploadDoc" required name="EDd" onchange="updateFileName(this)">
                         <i class="bi bi-file-earmark-arrow-up"></i>
                         <label for="uploadDoc">Educational Document</label>

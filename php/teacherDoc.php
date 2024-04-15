@@ -26,7 +26,6 @@ $username = $_POST['username'];
 echo $username . "<br>";
 
 $successFlag = false;
-uploadAndSaveFile("IDc", "IDcPath", $username, $conn, $successFlag);
 uploadAndSaveFile("EDd", "EdPath", $username, $conn, $successFlag);
 uploadAndSaveFile("CRv", "CvPath", $username, $conn, $successFlag);
 

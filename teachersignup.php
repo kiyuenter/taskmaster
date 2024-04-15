@@ -59,7 +59,7 @@
                         </div>
                         <div class="select-dep">
                             <p>Level of Education</p>
-                            <select name="lvlofedu" id="lvlofedu" title="Select" required>
+                            <select name="edu" id="lvlofedu" title="Select" required>
                                 <option value="select">Select</option>
                                 <option value="high">High School</option>
                                 <option value="college">Collage</option>
@@ -110,101 +110,93 @@
     
     <script>
         // -------- Enable department
-    const educationLevelSelect = document.getElementById("lvlofedu");
-    const departmentSelect = document.getElementById("department");
-    const acadamicSelect = document.getElementById("acadamic");
-    
-    function updateDepartmentOptions() {
-      const selectedLevel = educationLevelSelect.value;
-      departmentSelect.disabled = true; // Disable department selection initially
-      if (selectedLevel === "select") {
-                departmentSelect.innerHTML = "";
-                departmentSelect.disabled = true;
-            } else if (selectedLevel === "high") {
-                departmentSelect.innerHTML = ""; // Clear existing options
-                departmentSelect.options.add(new Option("Department"));
-                departmentSelect.options.add(new Option("Maths"));
-                departmentSelect.options.add(new Option("English"));
-                departmentSelect.options.add(new Option("Amharic"));
-                departmentSelect.options.add(new Option("Science"));
-                departmentSelect.options.add(new Option("Art"));
-                // Add relevant High School department options here (e.g., Math, English, Science)
-            } else if (selectedLevel === "college") {
-                departmentSelect.innerHTML = ""; // Clear existing options
-                departmentSelect.options.add(new Option("Department"));
-                departmentSelect.options.add(new Option("Accounting and Finance"));
-                departmentSelect.options.add(new Option("Human Resources Management"));
-                departmentSelect.options.add(new Option("International Business"));
-                departmentSelect.options.add(new Option("Management Information System"));
-                departmentSelect.options.add(new Option("Marketing"));
-                departmentSelect.options.add(new Option("Operation Management"));
-                departmentSelect.options.add(new Option("Entrepreneurship"));
-                departmentSelect.options.add(new Option("Engineering"));
-                departmentSelect.options.add(new Option("Civil Engineering"));
-                departmentSelect.options.add(new Option("Computer Engineering"));
-                departmentSelect.options.add(new Option("Nursing"));
-                departmentSelect.options.add(new Option("Law"));
-                departmentSelect.options.add(new Option("Medicine"));
-                departmentSelect.options.add(new Option("Public Health"));
-                // Add relevant College department options here (e.g., Computer Science, Engineering, Art)
-            } else {
-                departmentSelect.innerHTML = ""; // Clear existing options
-                departmentSelect.options.add(new Option("Select Department")); // Default option
-            }
-    
-            if (selectedLevel !== "") {
-                departmentSelect.disabled = false; // Enable department selection after choosing a level
-            }
-    
-            if (selectedLevel === "select") {
-        departmentSelect.disabled = true; // Enable department selection after choosing a valid level
-      }
-            }
-    
-    educationLevelSelect.addEventListener("change", updateDepartmentOptions);
-    
-    // Call the function initially to set the disabled state
-    updateDepartmentOptions();
-    
-    function updateAcedamicOption() {
-      const selectedLevel = educationLevelSelect.value;
-      const selectDep = departmentSelect.value;
-      acadamicSelect.disabled = true; // Disable acadamic department
-    
-      if (selectDep === "" || selectDep === "Department") {
-        acadamicSelect.disabled = true;
-      } else {
-        acadamicSelect.disabled = false;
-        acadamicSelect.innerHTML = "";
-        acadamicSelect.options.add(new Option("Select"));
-        acadamicSelect.options.add(new Option("BA"));
-        acadamicSelect.options.add(new Option("BSc"));
-        acadamicSelect.options.add(new Option("BFA"));
-        acadamicSelect.options.add(new Option("BAS"));
-        acadamicSelect.options.add(new Option("MA"));
-        acadamicSelect.options.add(new Option("MSc"));
-        acadamicSelect.options.add(new Option("MFA"));
-        acadamicSelect.options.add(new Option("Ph.D"));
-        acadamicSelect.options.add(new Option("Ed.D"));
-        acadamicSelect.options.add(new Option("M.D"));
-      }
-      if(selectedLevel === "select") {
-        acadamicSelect.disabled = true;
-      }
-    }
-    
-    departmentSelect.addEventListener("change", updateAcedamicOption);
-    updateAcedamicOption();
-    
-    // Form validation and popup message
-    const form = document.querySelector("form"); // Assuming your form has a tag
-    form.addEventListener("submit", (event) => {
-      if (educationLevelSelect.value === "select" || departmentSelect.value === "" || departmentSelect.value === "Department") {
-        event.preventDefault(); // Prevent form submission
-    
-        alert("Please select a valid Level of Education, Department, and Academic Degree."); // Display popup message
-      }
-    });
+        const educationLevelSelect = document.getElementById("lvlofedu");
+        const departmentSelect = document.getElementById("department");
+        const acadamicSelect = document.getElementById("acadamic");
+        
+        function updateDepartmentOptions() {
+        const selectedLevel = educationLevelSelect.value;
+        departmentSelect.disabled = true; // Disable department selection initially
+        if (selectedLevel === "select") {
+                    departmentSelect.innerHTML = "";
+                    departmentSelect.disabled = true;
+                } else if (selectedLevel === "high") {
+                    departmentSelect.innerHTML = ""; // Clear existing options
+                    departmentSelect.options.add(new Option("Department"));
+                    departmentSelect.options.add(new Option("Mathematics"));
+                    departmentSelect.options.add(new Option("English"));
+                    departmentSelect.options.add(new Option("Amharic"));
+                    departmentSelect.options.add(new Option("Science"));
+                    departmentSelect.options.add(new Option("Art"));
+                
+                } else if (selectedLevel === "college") {
+                    departmentSelect.innerHTML = ""; // Clear existing options
+                    departmentSelect.options.add(new Option("Department"));
+                    departmentSelect.options.add(new Option("Accounting and Finance"));
+                    departmentSelect.options.add(new Option("Human Resources Management"));
+                    departmentSelect.options.add(new Option("Management"));
+                    departmentSelect.options.add(new Option("Marketing"));
+                    departmentSelect.options.add(new Option("Engineering"));
+                    departmentSelect.options.add(new Option("Computer Science"));
+                    
+                } else {
+                    departmentSelect.innerHTML = ""; // Clear existing options
+                    departmentSelect.options.add(new Option("Select Department")); // Default option
+                }
+        
+                if (selectedLevel !== "") {
+                    departmentSelect.disabled = false; // Enable department selection after choosing a level
+                }
+        
+                if (selectedLevel === "select") {
+            departmentSelect.disabled = true; // Enable department selection after choosing a valid level
+        }
+                }
+        
+        educationLevelSelect.addEventListener("change", updateDepartmentOptions);
+        
+        // Call the function initially to set the disabled state
+        updateDepartmentOptions();
+        
+        function updateAcedamicOption() {
+        const selectedLevel = educationLevelSelect.value;
+        const selectDep = departmentSelect.value;
+        acadamicSelect.disabled = true; // Disable acadamic department
+        
+        if (selectDep === "" || selectDep === "Department") {
+            acadamicSelect.disabled = true;
+        } else {
+            acadamicSelect.disabled = false;
+            acadamicSelect.innerHTML = "";
+            acadamicSelect.options.add(new Option("Select"));
+            acadamicSelect.options.add(new Option("BA"));
+            acadamicSelect.options.add(new Option("BSc"));
+            acadamicSelect.options.add(new Option("BFA"));
+            acadamicSelect.options.add(new Option("BAS"));
+            acadamicSelect.options.add(new Option("MA"));
+            acadamicSelect.options.add(new Option("MSc"));
+            acadamicSelect.options.add(new Option("MFA"));
+            acadamicSelect.options.add(new Option("Ph.D"));
+            acadamicSelect.options.add(new Option("Ed.D"));
+            acadamicSelect.options.add(new Option("M.D"));
+        }
+        if(selectedLevel === "select" || selectedLevel === "high") {
+            acadamicSelect.disabled = true;
+        }
+        }
+        
+        departmentSelect.addEventListener("change", updateAcedamicOption);
+        updateAcedamicOption();
+        
+        // Form validation and popup message
+        const form = document.querySelector("form"); // Assuming your form has a tag
+        form.addEventListener("submit", (event) => {
+        if (educationLevelSelect.value === "select" || departmentSelect.value === "" || departmentSelect.value === "Department") {
+            event.preventDefault(); // Prevent form submission
+        
+            alert("Please select a valid Level of Education, Department, and Academic Degree."); // Display popup message
+        }
+        });
     
             
     
