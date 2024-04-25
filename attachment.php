@@ -19,11 +19,15 @@
         <div class="attach">
             <?php
                 $username = $_SESSION['email'];
+                $department = $_SESSION['department'];
+                $academic = $_SESSION['academic'];
             ?>
             <h1>Please upload listed documents</h1>
             <form action="php/teacherDoc.php" method="POST" enctype="multipart/form-data">
 
                 <input type="text" name="username" value="<?php echo $username?>"/>
+                <input type="text" name="depart" value="<?php echo $department?>"/>
+                <input type="text" name="aca" value="<?php echo $academic?>"/>
                 <ul>
                     <li>
                         <input type="file" id="uploadDoc" required name="EDd" onchange="updateFileName(this)">

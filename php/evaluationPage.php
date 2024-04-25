@@ -22,6 +22,8 @@
         </h2>
         <?php
           $username = $_SESSION['email'];
+          $department = $_SESSION['department'];
+          $academic = $_SESSION['academic'];
         ?>
         <form action="result.php" method="POST">
           <ul>
@@ -29,7 +31,6 @@
               <input type="text" name="email" value="<?php echo $username?>"/>
             </li>
             <?php
-                $dep = "Mathematics";
                 $order_number = 1;
                 $sql = "SELECT * FROM evaluationque";
 
@@ -44,28 +45,40 @@
                     $b = $row["B"];
                     $c = $row["C"];
                     $d = $row["D"];
-                    $department = $row["departQ"];
+                    $departQ = $row["departQ"];
                     $answer = $row["answer"];
-                    if ($dep == $department) {
+
+                    // Arrange questions for all department
+                    if ($department == $departQ && in_array($academic, array("MA", "MSc", "MFA"))) {
                       echo "
-                      <li class='head'>
-                      ".$order_number.". ". $question ."
-                      </li>
-                      <li>
-                      <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$a."
-                      </li>
-                      <li>
-                      <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$b."
-                      </li>
-                      <li>
-                      <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$c."
-                      </li>
-                      <li>
-                      <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$d."
-                      </li>
+                          <h3>Upload your tesis</h3>
                       ";
-                      $order_number++;
-                    }
+                      } elseif ($department == $departQ && in_array($academic, array("Ph.D", "Ed.D", "M.D"))) {
+                          echo "
+                              <h3>Upload your published paper</h3>
+                          ";
+                      } elseif ($department == $departQ) {
+                          echo "
+                              <li class='head'>
+                              ".$order_number.". ". $question ."
+                              </li>
+                              <li>
+                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$a."
+                              </li>
+                              <li>
+                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$b."
+                              </li>
+                              <li>
+                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$c."
+                              </li>
+                              <li>
+                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$d."
+                              </li>
+                          ";
+                          $order_number++;
+                  }
+                  
+                  
                   }
                   } else {
                       echo "0 results";

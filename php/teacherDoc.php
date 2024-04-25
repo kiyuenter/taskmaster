@@ -23,13 +23,16 @@ function uploadAndSaveFile($fileKey, $columnName, $username, $conn, &$successFla
 }
 
 $username = $_POST['username'];
-echo $username . "<br>";
+$department = $_POST['depart'];
+$academic = $_POST['aca'];
 
 $successFlag = false;
 uploadAndSaveFile("EDd", "EdPath", $username, $conn, $successFlag);
 uploadAndSaveFile("CRv", "CvPath", $username, $conn, $successFlag);
 
 $_SESSION['email'] = $username;
+$_SESSION['department'] = $department;
+$_SESSION['academic'] = $academic;
 
 if ($successFlag) {
     echo "All files have been uploaded successfully.";
