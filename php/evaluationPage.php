@@ -88,7 +88,7 @@
         <form action="result.php" method="POST">
           <ul>
             <li>
-              <input style="display: none;" type="text" name="email" value="<?php echo $username?>"/>
+              <input type="text" name="email" value="<?php echo $username?>"/>
             </li>
             <?php
                 $order_number = 1;
@@ -141,6 +141,9 @@
                               </li>
                               <li>
                               <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$d."
+                              </li>
+                              <li>
+                              <input type='text' name='answer' value='$answer'/>
                               </li>
                           ";
                           $order_number++;
