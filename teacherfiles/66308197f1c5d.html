@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  <link rel="stylesheet" href="style.css"> <style>
+    /* Example CSS styling for stars (replace with your chosen styling) */
+    .rating {
+      display: flex;
+      align-items: center;
+    }
+
+    .rating input[type="radio"] {
+      display: none;
+    }
+
+    .rating label {
+      margin-right: 10px;
+    }
+
+    .rating label:before {
+      content: "\f005"; /* Font Awesome star icon */
+      font-family: FontAwesome;
+      color: gray;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .rating input[type="radio"]:checked ~ label:before {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <form id="feedback-form" method="post" action="process_feedback.php"> <h3>Feedback Form</h3>
+    <div class="rating">
+      <label for="star-1">1 Star</label>
+      <input type="radio" id="star-1" name="rating" value="1">
+      <label for="star-2">2 Stars</label>
+      <input type="radio" id="star-2" name="rating" value="2">
+      <label for="star-3">3 Stars</label>
+      <input type="radio" id="star-3" name="rating" value="3">
+      <label for="star-4">4 Stars</label>
+      <input type="radio" id="star-4" name="rating" value="4">
+      <label for="star-5">5 Stars</label>
+      <input type="radio" id="star-5" name="rating" value="5">
+    </div>
+    <div class="feedback">
+      <label for="feedback-text">Feedback (Optional):</label>
+      <textarea id="feedback-text" name="feedback" rows="5"></textarea>
+    </div>
+    <button type="submit">Submit Feedback</button>
+  </form>
+
+  <script>
+    // Example using vanilla JavaScript (can be improved with libraries like jQuery)
+    const starLabels = document.querySelectorAll('.rating label');
+
+    starLabels.forEach(label => {
+      label.addEventListener('mouseover', () => {
+        const rating = label.previousElementSibling.value;
+        const stars = document.querySelectorAll('.rating label:before');
+        for (let i = 0; i < stars.length; i++) {
+          stars[i].style.color = i < rating ? 'gold' : 'gray';
+        }
+      });
+
+      label.addEventListener('mouseout', () => {
+        const selectedStar = document.querySelector('.rating input[type="radio"]:checked');
+        const rating = selectedStar ? selectedStar.value : 0;
+        const stars = document.querySelectorAll('.rating label:before');
+        for (let i = 0; i < stars.length; i++) {
+          stars[i].style.color = i < rating ? 'gold' : 'gray';
+        }
+      });
+    });
+
+    const feedbackForm = document.getElementById('feedback-form');
+    feedbackForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent default form submission
+    });
+  </script>
+</body>
+</html>

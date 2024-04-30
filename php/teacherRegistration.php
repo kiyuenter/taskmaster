@@ -12,6 +12,7 @@ $country = $_POST['country'];
 $edulevel = $_POST['edu'];
 $depa = $_POST['department'];
 $academic = $_POST['academic'];
+$status = "Disable";
 
 // Check if the email already exists
 $emailCheckQuery = "SELECT * FROM teacheraccount WHERE emailAdd = '$email'";
@@ -24,8 +25,18 @@ if ($emailCheckResult->num_rows > 0) {
     exit();
 } else {
     // Email doesn't exist, proceed with the insertion
-    $insert = "INSERT INTO teacheraccount(FName, LName, emailAdd, tPassword, Gender, dob, country, eduLevel, department, academic) VALUES('$FName','$LName','$email','$uPassword','$gender','$dob','$country','$edulevel','$depa','$academic')";
+    $insert = "INSERT INTO teacheraccount(FName, LName, emailAdd, tPassword, Gender, dob, country, eduLevel, department, academic, statusActivity) VALUES('$FName','$LName','$email','$uPassword','$gender','$dob','$country','$edulevel','$depa','$academic','$status')";
     $conn->query($insert);
+
+    // arrage ID automatically
+    $increment = "SET  @num := 0;";
+    $increment2 = "update teacheraccount set ID = @num := (@num+1);";
+    $increment3 = "alter table teacheraccount AUTO_INCREMENT =1;";
+    $conn -> query($increment);
+    $conn -> query($increment2);
+    $conn -> query($increment3);
+    // end of arrangment
+
     $_SESSION['department'] = $depa;
     $_SESSION['academic'] = $academic;
     $_SESSION['email'] = $email;

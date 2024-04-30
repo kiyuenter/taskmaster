@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2024 at 03:29 PM
+-- Generation Time: Apr 30, 2024 at 04:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -197,27 +197,16 @@ CREATE TABLE `teacheraccount` (
   `department` varchar(30) NOT NULL,
   `academic` varchar(30) NOT NULL,
   `EdPath` varchar(255) NOT NULL,
-  `CvPath` varchar(255) NOT NULL
+  `CvPath` varchar(255) NOT NULL,
+  `statusActivity` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacheraccount`
 --
 
-INSERT INTO `teacheraccount` (`ID`, `FName`, `LName`, `emailAdd`, `tPassword`, `Gender`, `dob`, `country`, `eduLevel`, `department`, `academic`, `EdPath`, `CvPath`) VALUES
-(72, 'Kidus', 'Seleshi', 'kilalidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33', 'Male', '2024-04-11', 'Austria', 'college', 'Computer Engineering', 'MFA', '661cf26d4008c.jfif', '661cf26d41986.jpg'),
-(73, 'Amanuel', 'Samuel', 'aman@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2013-06-18', 'Ethiopia', 'high', 'English', '', '', ''),
-(74, 'Zerubabel', 'Bekele', 'zeru@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-16', 'Bangladesh', 'high', 'Amharic', '', '662a61b73b023.pptx', '662a61b73c073.pptx'),
-(75, 'Zerubabel', 'Bekele', 'zermu@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-16', 'Bangladesh', 'college', 'Human Resources Management', 'Ph.D', '662a66671c9b9.pptx', '662a66671d9d1.pptx'),
-(76, 'Hewan', 'Seleshi', 'mbuke@kid.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-22', 'Austria', 'college', 'Accounting and Finance', 'MSc', '662a66920e442.pptx', '662a66920f2fa.pptx'),
-(77, 'Hewan', 'Seleshi', 'kilaljjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Engineering', 'Ph.D', '662a699ba8256.pptx', '662a699ba90a8.pptx'),
-(78, 'Hewan', 'Seleshi', 'kiljaljjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Human Resources Management', 'Ph.D', '662b2fb12f2cc.pdf', '662b2fb13040e.pdf'),
-(79, 'Hewan', 'Seleshi', 'kilkjaljjidus@gmail.com', '6f6d15a7323dc53ffc504ecdfac206de', 'Female', '2024-04-17', 'Austria', 'high', 'Amharic', '', '662b31c2b04b8.pptx', '662b31c2b187c.pdf'),
-(80, 'Hewan', 'Seleshi', 'kilkjalnjjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Management', 'MSc', '662b4185ad8c3.pdf', '662b4185af052.pdf'),
-(81, 'Hewan', 'Seleshi', 'kilkjalnghjjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Marketing', 'MFA', '662b41dd0c699.pdf', '662b41dd0e2e9.torrent'),
-(82, 'Hewan', 'Seleshi', 'kilkjaglnghjjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Computer Science', 'Ed.D', '662b60dc42c58.pptx', '662b60dc43f1e.pdf'),
-(83, 'Hewan', 'Seleshi', 'kilgkjaglnghjjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'high', 'Amharic', '', '662b610596f0f.pptx', '662b6105981c4.pdf'),
-(84, 'Hewan', 'Seleshi', 'kilgkjbaglnghjjidus@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Female', '2024-04-17', 'Austria', 'college', 'Computer Science', 'BSc', '662b612f2a6f6.pptx', '662b612f2b81d.pdf');
+INSERT INTO `teacheraccount` (`ID`, `FName`, `LName`, `emailAdd`, `tPassword`, `Gender`, `dob`, `country`, `eduLevel`, `department`, `academic`, `EdPath`, `CvPath`, `statusActivity`) VALUES
+(1, 'Kidus', 'Seleshi', 'kidusseleshi19@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-10', 'Bahamas', 'high', 'Mathematics', '', '6630f743cc318.pdf', '6630f743cd327.pdf', 'Disable');
 
 -- --------------------------------------------------------
 
@@ -239,6 +228,34 @@ CREATE TABLE `teacherevaanswer` (
   `q9` varchar(500) NOT NULL,
   `q10` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teacherevaanswer`
+--
+
+INSERT INTO `teacherevaanswer` (`ID`, `teachEmail`, `q1`, `q2`, `q3`, `q4`, `q5`, `q6`, `q7`, `q8`, `q9`, `q10`) VALUES
+(13, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Asking pre-determined questions in a specific order.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Improved organizational performance.'),
+(14, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Asking pre-determined questions in a specific order.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(15, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(16, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(17, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(18, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Offering the candidate refreshments throughout the interview.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Difficulty in attracting qualified candidates.'),
+(19, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Offering the candidate refreshments throughout the interview.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Decreased employee morale and motivation.'),
+(20, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Offering the candidate refreshments throughout the interview.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Improved organizational performance.'),
+(21, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To design effective training programs.', 'Recruitment', 'Offering the candidate refreshments throughout the interview.', 'Improved employee performance', 'To identify areas for improvement and development.', 'Health insurance, paid time off, and retirement plans.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Improved organizational performance.'),
+(22, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Providing opportunities for growth and career advancement.', 'Enforcing strict company policies without explanation.', 'Improved organizational performance.'),
+(23, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Providing opportunities for growth and career advancement.', 'Enforcing strict company policies without explanation.', 'Improved organizational performance.'),
+(24, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Providing opportunities for growth and career advancement.', 'Keeping employee concerns confidential from management.', 'Improved organizational performance.'),
+(25, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Providing opportunities for growth and career advancement.', 'Discouraging open communication and feedback from employees.', 'Improved organizational performance.'),
+(26, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Compensation planning', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Providing opportunities for growth and career advancement.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(27, 'betlhem@gmail.com', 'Focus solely on recruiting and hiring new employees.', 'To improve employee morale.', 'Recruitment', 'Asking pre-determined questions in a specific order.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Offering limited recognition for achievements.', 'Maintaining clear communication channels between employees and management.', 'Improved organizational performance.'),
+(28, 'betlhem@gmail.com', 'Focus solely on recruiting and hiring new employees.', 'To improve employee morale.', 'Recruitment', 'Asking pre-determined questions in a specific order.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Difficulty in attracting qualified candidates.'),
+(29, 'betlhem@gmail.com', 'Focus solely on recruiting and hiring new employees.', 'To improve employee morale.', 'Recruitment', 'Asking pre-determined questions in a specific order.', 'Reduced communication between departments', 'To determine an employees eligibility for a raise.', 'Company car and free gym membership only.', 'Offering limited recognition for achievements.', 'Enforcing strict company policies without explanation.', 'Difficulty in attracting qualified candidates.'),
+(30, 'betlhem@gmail.com', 'Manage all aspects of the employee life cycle within a company.', 'To improve employee morale.', 'Recruitment', 'Making the candidate feel uncomfortable to see how they handle pressure.', 'Reduced communication between departments', 'To punish employees for poor performance.', 'Health insurance, paid time off, and retirement plans.', 'Providing opportunities for growth and career advancement.', 'Keeping employee concerns confidential from management.', 'Difficulty in attracting qualified candidates.'),
+(31, 'kilalidjhjvhvhgjvhgvus@gmail.com', 'To increase production costs.', 'Price, Place, Packaging, Promotion', 'Provides inaccurate and outdated information.', 'Using a one-size-fits-all marketing approach.', 'Ignoring competitor offerings and market trends.', 'Setting the highest possible price to maximize profits.', 'Only social media marketing channels.', 'Market research, target market selection, and product positioning.', 'Focuses solely on increasing sales regardless of customer satisfaction.', 'Improves customer loyalty and retention.'),
+(32, 'kilalidjhjvhvhgjvhgvus@gmail.com', 'To increase production costs.', 'Price, Place, Packaging, Promotion', 'Provides inaccurate and outdated information.', 'Using a one-size-fits-all marketing approach.', 'Ignoring competitor offerings and market trends.', 'Setting the highest possible price to maximize profits.', 'Only social media marketing channels.', 'Market research, target market selection, and product positioning.', 'Focuses solely on increasing sales regardless of customer satisfaction.', 'Creates a transactional and impersonal relationship with customers.'),
+(33, 'kilalidjhjvhvhgjvhgvus@gmail.com', 'To increase production costs.', 'Price, Place, Packaging, Promotion', 'Provides inaccurate and outdated information.', 'Using a one-size-fits-all marketing approach.', 'Ignoring competitor offerings and market trends.', 'Setting the highest possible price to maximize profits.', 'Only social media marketing channels.', 'Market research, target market selection, and product positioning.', 'Focuses solely on increasing sales regardless of customer satisfaction.', 'Creates a transactional and impersonal relationship with customers.'),
+(34, 'kidusseleshi19@gmail.com', 'x^2 + x - 6', '-1 and 3', '8 cm', '25π cm²', '1/2', '6/15', 'sin^2(x)', 'Infinity', '1/2', 'sec²(θ)');
 
 --
 -- Indexes for dumped tables
@@ -289,13 +306,13 @@ ALTER TABLE `studentaccount`
 -- AUTO_INCREMENT for table `teacheraccount`
 --
 ALTER TABLE `teacheraccount`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `teacherevaanswer`
 --
 ALTER TABLE `teacherevaanswer`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

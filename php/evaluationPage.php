@@ -15,6 +15,24 @@
     <link rel="stylesheet" href="../css/evaluation.css" />
     <title>TMAH | Evaluation Page</title>
     <style>
+      #myForm {
+        /* Default styles for the form */
+      }
+
+      #myForm.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      #submitButton {
+        /* Default styles for the submit button */
+      }
+
+      #submitButton.disabled {
+        background-color: #ccc;
+        cursor: default;
+      }
+
       .custom-file-input{
         font-size: 16px;
         border-radius: 0px 15px 15px 0px;
@@ -85,7 +103,7 @@
           }
         ?>
         
-        <form action="result.php" method="POST">
+        <form id="myForm" onsubmit="return disableForm()" action="result.php" method="POST" enctype="multipart/form-data">
           <ul>
             <li>
               <input type="text" name="email" value="<?php echo $username?>"/>
@@ -112,38 +130,41 @@
                     if ($department == $departQ && in_array($academic, array("MA", "MSc", "MFA"))) {
                       echo "
                           <div class='custom-file'>
+                            <input type='hidden' name='eduType' value='masters'/>
                             <label class='custom-file-label' for='customFile'>Choose file</label>
-                            <input type='file' class='custom-file-input' id='customFile'>
+                            <input type='file' name='uploadFile' class='custom-file-input' id='customFile'>
                           </div>
                       ";
                       break;
                       } elseif ($department == $departQ && in_array($academic, array("Ph.D", "Ed.D", "M.D"))) {
                           echo "
                           <div class='custom-file'>
+                            <input type='hidden' name='eduType' value='phd'/>
                             <label class='custom-file-label' for='customFile'>Choose file</label>
-                            <input type='file' class='custom-file-input' id='customFile'>
+                            <input type='file' name='uploadFile' class='custom-file-input' id='customFile'>
                           </div>
                           ";
                       break;
                       } elseif ($department == $departQ && $academic !== "Ph.D" && $academic !== "Ed.D" && $academic !== "M.D" && $academic !== "MA" && $academic !== "MSc" && $academic !== "MFA") {
                         echo "
+                              <input type='hidden' name='eduType' value='degree'/>
                               <li class='head'>
                               ".$order_number.". ". $question ."
                               </li>
                               <li>
-                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$a."
+                              <input name='ques".$order_number."' class='little' type='radio' value='$a' required/>"."&nbsp&nbsp&nbsp".$a."
                               </li>
                               <li>
-                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$b."
+                              <input name='ques".$order_number."' class='little' type='radio' value='$b' required/>"."&nbsp&nbsp&nbsp".$b."
                               </li>
                               <li>
-                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$c."
+                              <input name='ques".$order_number."' class='little' type='radio' value='$c' required/>"."&nbsp&nbsp&nbsp".$c."
                               </li>
                               <li>
-                              <input name='ques1' class='little' type='radio' value='Excellent' required/>"."&nbsp&nbsp&nbsp".$d."
+                              <input name='ques".$order_number."' class='little' type='radio' value='$d' required/>"."&nbsp&nbsp&nbsp".$d."
                               </li>
                               <li>
-                              <input type='text' name='answer' value='$answer'/>
+                              <input type='text' name='answer".$order_number."' value='$answer'/>
                               </li>
                           ";
                           $order_number++;
@@ -157,7 +178,7 @@
             ?>
           </ul>
           <div class="buttondiv">
-            <button type="submit">SUBMIT</button>
+            <button type="submit" id="submitButton">SUBMIT</button>
           </div>
         </form>
       </div>
