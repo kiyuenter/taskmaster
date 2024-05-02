@@ -39,7 +39,7 @@ if ($successFlag) {
     header("Location:evaluationPage.php");
 } else {
     echo "No files were uploaded successfully.";
-    header("Location:attachment.php.php");
+    header("Location:attachment.php");
 }
 
 ?>
