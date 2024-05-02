@@ -1,6 +1,13 @@
 <?php
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
+
+include 'connection.php';
+
+$sendto = $_POST['sendto'];
+$nameofre = $_POST['nameofre'];
+$subject = $_POST['subject'];
+$body = $_POST['body'];
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -24,17 +31,19 @@ try {
 
     // Recipients
     $mail->setFrom('taskmaster.helper.info@gmail.com', 'Taskmaster Helper');
-    $mail->addAddress('kidusseleshi19@gmail.com', 'Kidus Seleshi');  // Add a recipient
+    $mail->addAddress($sendto, $nameofre);  // Add a recipient
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Taskmaster Verification';
-    $mail->Body    = 'Welcome to <b>Taskmaster!</b>';
-    $mail->AltBody = 'My client :-)';
+    $mail->Subject = $subject;
+    $mail->Body    = $body;
+    $mail->AltBody = 'With best regards,';
 
     $mail->send();
     echo 'Message has been sent';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+
+header('Location: ../admin-panel/sendResult.php')
 ?>

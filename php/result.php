@@ -90,10 +90,10 @@ $total = $grade1 + $grade2 + $grade3 + $grade4 + $grade5 + $grade6 + $grade7 + $
 
 // Output total score
 if ($total > 8) {
-    echo "You are successfully passed.<br> Your score is $total/10.<br> Welcome to teacher partner.";
+    echo "You are successfully passed.<br> Your score is $total/10.<br> After 24 hours we will send a comfirmation email and a document result with your email address";
 
 } else {
-    echo "I am sorry you are not eligable to receive teacher partner. Your score is $total/10.";
+    echo "I am sorry, you are not eligable to receive teacher partner. Your score is $total/10.";
 }
 
 } elseif ($type == 'masters') {    
