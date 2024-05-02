@@ -1,83 +1,52 @@
 <?php
+$target_date = strtotime("2024-05-10 10:00:00"); // Set your target date/time
+$current_time = time();
+$difference = $target_date - $current_time;
 
-// Function to identify MSc subfield (replace with your logic)
-function identifySubfield($userInput) {
-  // Implement logic to identify subfield based on user input or additional information
-  // Here's a basic example using user input
-  $keywords = [
-    "computer science" => ["computer science", "algorithms", "programming"],
-    "biology" => ["biology", "genetics", "ecology"],
-    "physics" => ["physics", "mechanics", "quantum mechanics"],
-  ];
+$days = floor($difference / (60*60*24));
+$hours = floor(($difference % (60*60*24)) / (60*60));
+$minutes = floor(($difference % (60*60)) / 60);
+$seconds = $difference % 60;
+?>
 
-  $userWords = explode(" ", strtolower($userInput)); // Convert to lowercase and split into words
-  $bestMatch = "";
-  $maxMatchCount = 0;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <h1>Countdown to Event</h1>
+  <p id="countdown"></p>
+  <script>
+    var days = <?= $days; ?>;
+    var hours = <?= $hours; ?>;
+    var minutes = <?= $minutes; ?>;
+    var seconds = <?= $seconds; ?>;
 
-  foreach ($keywords as $subfield => $subfieldWords) {
-    $matchCount = 0;
-    foreach ($userWords as $word) {
-      if (in_array($word, $subfieldWords)) {
-        $matchCount++;
+    function updateCountdown() {
+      seconds--;
+      if (seconds < 0) {
+        seconds = 59;
+        minutes--;
+      }
+      if (minutes < 0) {
+        minutes = 59;
+        hours--;
+      }
+      if (hours < 0) {
+        hours = 23;
+        days--;
+      }
+
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innerHTML = "Event Started!";
       }
     }
-    if ($matchCount > $maxMatchCount) {
-      $bestMatch = $subfield;
-      $maxMatchCount = $matchCount;
-    }
-  }
 
-  return $bestMatch;
-}
-
-// User input (replace with actual way you capture user input)
-$chosenDepartment = $_GET["department"]; // Assuming department is passed through GET
-
-if ($chosenDepartment === "MSc") {
-  // Identify MSc subfield based on user input
-  $subfield = identifySubfield($chosenDepartment);
-  
-  // Option 1: Generate Questions (replace with your question database)
-  $questions = [
-    "computer science" => [
-      "What is the difference between supervised and unsupervised learning?",
-      "Explain the concept of Big O notation.",
-      "Describe the function of a compiler in computer science."
-    ],
-    "biology" => [
-      "Explain the process of cellular respiration.",
-      "What are the different types of DNA mutations?",
-      "Describe the theory of evolution by natural selection."
-    ],
-    "physics" => [
-      "What are the fundamental forces in nature?",
-      "Explain the concept of momentum and its conservation law.",
-      "Describe the photoelectric effect and its implications."
-    ],
-  ];
-
-  // Option 2: Provide Links (replace with your search logic)
-  $mscResources = [
-    "A website with practice questions for various MSc programs: https://www.example.com/msc-practice-questions",
-    "A university portal with past exam papers for MSc programs: https://www.university.edu/past-papers/msc"
-  ];
-
-  // Choose response method based on user preference (optional)
-  $useGeneratedQuestions = isset($_GET["useQuestions"]) && $_GET["useQuestions"] == "true";
-
-  if ($useGeneratedQuestions && isset($questions[$subfield])) {
-    echo "<h3>MSc $subfield Questions:</h3>";
-    foreach ($questions[$subfield] as $question) {
-      echo "<p>$question</p>";
-    }
-  } else {
-    echo "<h3>MSc Resources:</h3>";
-    foreach ($mscResources as $resource) {
-      echo "<a href='$resource'>$resource</a><br>";
-    }
-  }
-} else {
-  echo "Please choose a department.";
-}
-
-?>
+    var countdownInterval = setInterval(updateCountdown, 1000); // Update every second
+  </script>
+</body>
+</html>

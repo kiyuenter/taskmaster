@@ -29,6 +29,7 @@ $academic = $_POST['aca'];
 $successFlag = false;
 uploadAndSaveFile("EDd", "EdPath", $username, $conn, $successFlag);
 uploadAndSaveFile("CRv", "CvPath", $username, $conn, $successFlag);
+uploadAndSaveFile("pp", "profilePicture", $username, $conn, $successFlag);
 
 $_SESSION['email'] = $username;
 $_SESSION['department'] = $department;

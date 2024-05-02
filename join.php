@@ -50,6 +50,16 @@
                     echo $_SESSION['error'];
                     unset($_SESSION['error']);
                 }
+                if(isset($_SESSION['status']))
+                {
+                    echo $_SESSION['status'];
+                    unset($_SESSION['status']);
+                }
+                if (isset($_SESSION['disable'])) {
+                    echo '<script>alert("' . htmlspecialchars($_SESSION['disable']) . '");</script>';
+                    unset($_SESSION['disable']);
+                  }
+                  
             ?>
                 <h1>Sign In</h1>
                 <hr style="width: 100%; margin: 10px; border: 2px solid #6f16aa;">

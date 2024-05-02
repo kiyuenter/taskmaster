@@ -1,0 +1,32 @@
+body {
+    background-color: rgba(84, 157, 241, 0.144) !important;
+}
+.main {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.profile img {
+    border-radius: 50%;
+    border: 3px solid rgb(16, 143, 194);
+    width: 50px;
+    height: 50px;
+}
+
+.profile {
+    margin-top: 4px;
+}
+
+.profile p{
+    margin-top: -10px;
+}
+
+.pp {
+    margin-top: 34px;
+}
+
+.notification {
+    margin-top: 34px;
+    margin-right: 15px;
+    cursor: pointer;
+}

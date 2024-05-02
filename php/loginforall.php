@@ -17,12 +17,9 @@ if (isset($_POST['submit'])) {
   $selectStudent = "SELECT FName FROM studentaccount WHERE emailAdd='$userEmail' AND sPassword = '$userPass'";
   $sResult = mysqli_query($conn, $selectStudent);
 
-  $selectTeacher = "SELECT FName FROM teacheraccount WHERE emailAdd='$userEmail' AND tPassword = '$userPass'";
+  $selectTeacher = "SELECT * FROM teacheraccount WHERE emailAdd='$userEmail' AND tPassword = '$userPass'";
   $tResult = mysqli_query($conn, $selectTeacher);
 
-  // Debugging: Print retrieved email and password for verification
-  echo "Email: " . $userEmail . "<br>";
-  echo "Password (hashed): " . $userPass . "<br>";
 
   
   if (mysqli_num_rows($sResult) > 0) {
@@ -34,11 +31,19 @@ if (isset($_POST['submit'])) {
     header("Location: ../index.php");
   } else if (mysqli_num_rows($tResult) > 0) {
     $row = $tResult->fetch_assoc();
+    $st = $row["statusActivity"];
+
+    if ($st == "Disable")
+    {
+      $_SESSION['disable'] = "Your account is disabled, please contact the admin.";
+
+      header("Location: ../join.php");
+    } else {
     $_SESSION['status'] = "Welcomeback!";
     $_SESSION['username'] = $row["FName"]; 
-
     echo "Login successful!";
-    header("Location: ../index.php");
+    header("Location: ../teacher-panel/dashboard.html");
+  }
   } else {
     $_SESSION['status'] = "<p style='background-color: #f5d167; border-radius: 10px; padding: 5px; text-align: center; margin-bottom: -30px;'>Invalid email or password.<p>";
     header("Location: ../join.php");

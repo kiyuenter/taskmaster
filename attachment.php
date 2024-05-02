@@ -29,6 +29,13 @@
                 <input type="text" name="depart" value="<?php echo $department?>"/>
                 <input type="text" name="aca" value="<?php echo $academic?>"/>
                 <ul>
+
+                <p class="text-center">Your profile picture is must be your photo</p>
+                    <li>
+                        <input type="file" id="photoInput" accept="image/*" required name="pp" onchange="updateFileName(this)">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <label for="photoInput">Profile Picture</label>
+                    </li>
                     <li>
                         <input type="file" id="uploadDoc" required name="EDd" onchange="updateFileName(this)">
                         <i class="bi bi-file-earmark-arrow-up"></i>
@@ -59,6 +66,20 @@
             var label = input.parentElement.querySelector("label");
             label.textContent = fileName;
         }
+    </script>
+    <script>
+        const photoInput = document.getElementById('photoInput');
+
+        photoInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+
+            if (!file.type.startsWith('image/')) {
+                alert("Please select a photo file (jpg, jpeg, png)");
+                photoInput.value = "";
+                return;
+            }
+        });
+
     </script>
 </body>
 </html>
