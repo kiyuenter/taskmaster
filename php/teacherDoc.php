@@ -42,5 +42,5 @@ if ($successFlag) {
     echo "No files were uploaded successfully.";
     header("Location:attachment.php");
 }
-
 ?>
+
