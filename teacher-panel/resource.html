@@ -10,56 +10,7 @@
     <link rel="stylesheet" href="css/dashboard.css" />
     <title>Taskmaster | Teacher Dashboard</title>
 
-    <!-- Pie Chart for data visualization -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Total Question',     4920],
-          ['Solved',      720],
-          ['Unsolved',  4200],
-          ['You Answered', 200],
-        ]);
-
-        var options = {
-          title: 'Web question activities with chart',
-          pieHole: 0.4,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-    </script>
-
-    <!-- Line chart to view registered teachers -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Register Teachers'],
-          ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030]
-        ]);
-
-        var options = {
-          title: 'Yearly registered teachers with graph',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
+    
 </head>
 
 <body>
@@ -165,19 +116,18 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
-                            <img src="../photo/book-store.jpg" style="border-radius: 20px;" class="card-img-top" alt="...">
+                            <img src="../resource/book-sample.jpg" style="border-radius: 20px; height: 450px;" class="card-img-top" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">Book Title</h5>
+                            <p class="card-text">Discription for book</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
+
+                            <li class="list-group-item">Field of study</li>
+                            <li class="list-group-item">Page count</li>
                             </ul>
-                            <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                            <div class="card-body justify-content-center align-items-center d-flex">
+                            <button class="btn btn-primary">Download</button>
                             </div>
                         </div>
                     </div>
