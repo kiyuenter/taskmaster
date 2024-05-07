@@ -33,14 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // ... (Prepare SQL statement)
 
   // Update to include both coverImg and uploadedFileName
-  $sql = "INSERT INTO resources (coverimg, resourcefile, title, description, category, pagecount) VALUES (?, ?, ?, ?, ?, ?)";
-  $stmt = mysqli_prepare($conn, $sql);
-  // ... (Prepare statement and bind parameters)
-
-  // Bind both coverImg and uploadedFileName parameters
-  $stmt->bind_param("ssssss", $coverImg, $title, $description, $category, $pageCount, $uploadedFileName);
-
-  // ... (Execute statement and handle success/error)
+  $sql = "INSERT INTO resources (coverimg, resourcefile, title, descr, category, page_count) VALUES ('$coverImg','$uploadedFileName','$title','$description','$category','$pageCount')";
+  $conn -> query($sql);
 
 }
 
