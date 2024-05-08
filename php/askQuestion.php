@@ -1,23 +1,28 @@
 <?php
 
-// Process form data
-$subject = $_POST['subject'];
-$course = $_POST['course'];
-$otherCourse = $_POST['other_course'];
-$question = $_POST['question'];
+  include "connection.php";
 
-// Validate and sanitize data (important!)
-// ... (omitted for brevity)
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-// Handle file upload (optional)
-if (isset($_FILES['attachment'])) {
-  // ... (file upload logic omitted)
-}
+      $subject = $_POST["subject"];
+      $course = $_POST["course"];
+      $degree = $_POST["degType"];
+      $courseC = $_POST["course_code"];
+      $question = $_POST["question"];
 
-// Send notification or store question in database
-// ... (omitted for brevity)
+      if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === 0) {
+        $target_dir = "../askedQuestions_attachment/";
+        $target_file = $target_dir . basename($_FILES["attachment"]["name"]);
+        $attach = $target_file;
+        move_uploaded_file($_FILES["attachment"]["tmp_name"], $target_file);
 
-// Show success or error message
-echo "Thank you for your question! We will get back to you soon.";
+       $sql = "INSERT INTO askedquestions(subjects, course, degree, course_code, question, attachment) VALUES('$subject','$course','$degree','$courseC','$question','$attach')";
+        $conn -> query($sql);
+       echo "Successfully uploaded";
+      } else {
+        echo "Error uploading cover image.";
+      }
+  }
+
 
 ?>

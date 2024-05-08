@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 04:20 PM
+-- Generation Time: May 08, 2024 at 04:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `taskmaster`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `askedquestions`
+--
+
+CREATE TABLE `askedquestions` (
+  `AID` int(11) NOT NULL,
+  `subjects` varchar(30) NOT NULL,
+  `course` varchar(30) NOT NULL,
+  `degree` varchar(30) NOT NULL,
+  `course_code` varchar(30) NOT NULL,
+  `question` varchar(2000) NOT NULL,
+  `attachment` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `askedquestions`
+--
+
+INSERT INTO `askedquestions` (`AID`, `subjects`, `course`, `degree`, `course_code`, `question`, `attachment`) VALUES
+(1, 'jjhjhhjhj', 'Amharic', 'Ed.D', 'hjjhhj', 'hjhjhjjh', '../askedQuestions_attachment/eBook.pdf'),
+(2, 'jjhjhhjhj', 'Amharic', 'Ed.D', 'hjjhhj', 'hjhjhjjh', '../askedQuestions_attachment/eBook.pdf');
 
 -- --------------------------------------------------------
 
@@ -157,6 +181,30 @@ INSERT INTO `evaluationque` (`QID`, `evaDetail`, `A`, `B`, `C`, `D`, `departQ`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `resources`
+--
+
+CREATE TABLE `resources` (
+  `RID` int(11) NOT NULL,
+  `coverimg` varchar(255) NOT NULL,
+  `resourcefile` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `descr` varchar(255) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `page_count` varchar(10) NOT NULL,
+  `timestamp` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resources`
+--
+
+INSERT INTO `resources` (`RID`, `coverimg`, `resourcefile`, `title`, `descr`, `category`, `page_count`, `timestamp`) VALUES
+(2, '../resource/covers/ass.PNG', '../resource/Database, ullman_the_complete_book.pdf', 'sdf', 'sffd', 'book', '6565', '2024-05-07 04:43:15.726187');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `studentaccount`
 --
 
@@ -196,17 +244,19 @@ CREATE TABLE `teacheraccount` (
   `eduLevel` varchar(30) NOT NULL,
   `department` varchar(30) NOT NULL,
   `academic` varchar(30) NOT NULL,
+  `profilePicture` varchar(500) NOT NULL,
   `EdPath` varchar(255) NOT NULL,
   `CvPath` varchar(255) NOT NULL,
-  `statusActivity` varchar(32) NOT NULL
+  `statusActivity` varchar(32) NOT NULL,
+  `timeStamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacheraccount`
 --
 
-INSERT INTO `teacheraccount` (`ID`, `FName`, `LName`, `emailAdd`, `tPassword`, `Gender`, `dob`, `country`, `eduLevel`, `department`, `academic`, `EdPath`, `CvPath`, `statusActivity`) VALUES
-(1, 'Kidus', 'Seleshi', 'kidusseleshi19@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-10', 'Bahamas', 'high', 'Mathematics', '', '6630f743cc318.pdf', '6630f743cd327.pdf', 'Disable');
+INSERT INTO `teacheraccount` (`ID`, `FName`, `LName`, `emailAdd`, `tPassword`, `Gender`, `dob`, `country`, `eduLevel`, `department`, `academic`, `profilePicture`, `EdPath`, `CvPath`, `statusActivity`, `timeStamp`) VALUES
+(1, 'Kidus', 'Seleshi', 'kidusseleshi19@gmail.com', '7440879e3c34fd6a8fa61e53308a33f9', 'Male', '2024-04-10', 'Bahamas', 'high', 'Mathematics', '', '66334e9ae7135.jpg', '66334e9ae42f5.pdf', '66334e9ae6155.pdf', 'Disable', '2024-05-02 12:55:50');
 
 -- --------------------------------------------------------
 
@@ -262,11 +312,23 @@ INSERT INTO `teacherevaanswer` (`ID`, `teachEmail`, `q1`, `q2`, `q3`, `q4`, `q5`
 --
 
 --
+-- Indexes for table `askedquestions`
+--
+ALTER TABLE `askedquestions`
+  ADD PRIMARY KEY (`AID`);
+
+--
 -- Indexes for table `evaluationque`
 --
 ALTER TABLE `evaluationque`
   ADD PRIMARY KEY (`QID`),
   ADD KEY `QID` (`QID`);
+
+--
+-- Indexes for table `resources`
+--
+ALTER TABLE `resources`
+  ADD PRIMARY KEY (`RID`);
 
 --
 -- Indexes for table `studentaccount`
@@ -291,10 +353,22 @@ ALTER TABLE `teacherevaanswer`
 --
 
 --
+-- AUTO_INCREMENT for table `askedquestions`
+--
+ALTER TABLE `askedquestions`
+  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `evaluationque`
 --
 ALTER TABLE `evaluationque`
   MODIFY `QID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+
+--
+-- AUTO_INCREMENT for table `resources`
+--
+ALTER TABLE `resources`
+  MODIFY `RID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `studentaccount`
