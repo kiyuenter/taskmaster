@@ -8,6 +8,7 @@
       $course = $_POST["course"];
       $degree = $_POST["degType"];
       $courseC = $_POST["course_code"];
+      $deadline = $_POST["deadline"];
       $question = $_POST["question"];
 
       if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === 0) {
@@ -16,7 +17,7 @@
         $attach = $target_file;
         move_uploaded_file($_FILES["attachment"]["tmp_name"], $target_file);
 
-       $sql = "INSERT INTO askedquestions(subjects, course, degree, course_code, question, attachment) VALUES('$subject','$course','$degree','$courseC','$question','$attach')";
+       $sql = "INSERT INTO askedquestions(subjects, course, degree, course_code, question, deadln, attachment) VALUES('$subject','$course','$degree','$courseC','$question','$deadline','$attach')";
         $conn -> query($sql);
        echo "Successfully uploaded";
       } else {

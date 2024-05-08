@@ -1,3 +1,10 @@
+<?php
+    include '../php/connection.php';
+
+    $sql = "SELECT * FROM askedquestions";
+    $result = $conn -> query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,35 +138,27 @@
                         <th scope="col">Give Solution</th>
                       </tr>
                     </thead>
+                    <?php
+                            if ($result -> num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                  echo '
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><input type="submit" value="S O L V E" class="btn btn-success"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><input type="submit" value="S O L V E" class="btn btn-success"></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>'.$row["subjects"].'</td>
+                        <td>'.$row["course"].'</td>
+                        <td>'.$row["degree"].'</td>
+                        <td>'.$row["course_code"].'</td>
+                        <td>'.$row["question"].'</td>
+                        <td>'.$row["attachment"].'</td>
+                        <td>'.$row["deadln"].'</td>
                         <td><input type="submit" value="S O L V E" class="btn btn-success"></td>
                       </tr>
                     </tbody>
+                    ';
+                                }
+                              }
+                              ?>
                   </table>
             </div>
         </div>
@@ -177,5 +176,4 @@
         };
     </script>
 </body>
-
 </html>
