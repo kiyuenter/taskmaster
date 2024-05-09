@@ -130,13 +130,17 @@
                         <option value="Ed.D">Ed.D</option>
                         <option value="M.D">M.D</option>
                     </select>
-                    <input title="For high-school questions you can use 0" type="text" class="form-control w-25" name="course_code" placeholder="Course Code">
-                    <input id="deadline" name="deadline" type="datetime" title="Assign Deadline" pla class="form-control">
-                    <label for="deadline" class="text-success">Deadline</label>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <input title="For high-school questions you can use 0" type="text" class="form-control w-25" name="course_code" placeholder="Course Code">
+                      <div>
+                        <input id="deadline" name="deadline" type="date" title="Assign Deadline" pla class="form-control">
+                        <label for="deadline" class="text-success">Deadline</label>
+                      </div>
+                   </div>
                     <textarea placeholder="Type your question..." class="form-control" id="question" name="question" rows="10" required></textarea>
                     <input class="form-control" type="file" id="attachment" name="attachment" accept=".jpg,.jpeg,.png,.pdf">
                     <label for="attachment" class="text-success">Attachment (Optional)</label>
-                    
+                    <input class="form-control" value="unsolved" type="hidden" name="statuss">
                     <div class="col-md-12 d-flex justify-content-center align-items-center pt-3">
                         <button class="btn submit-btn" type="submit">Ask Question</button>
                     </div>

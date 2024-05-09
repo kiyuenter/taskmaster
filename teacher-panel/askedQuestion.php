@@ -3,6 +3,7 @@
 
     $sql = "SELECT * FROM askedquestions";
     $result = $conn -> query($sql);
+    $status = "unsolved";
 ?>
 
 <!DOCTYPE html>
@@ -15,58 +16,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Taskmaster | Teacher Dashboard</title>
-
-    <!-- Pie Chart for data visualization -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Total Question',     4920],
-          ['Solved',      720],
-          ['Unsolved',  4200],
-          ['You Answered', 200],
-        ]);
-
-        var options = {
-          title: 'Web question activities with chart',
-          pieHole: 0.4,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
-    </script>
-
-    <!-- Line chart to view registered teachers -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Register Teachers'],
-          ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030]
-        ]);
-
-        var options = {
-          title: 'Yearly registered teachers with graph',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
 </head>
 
 <body>
@@ -129,44 +81,96 @@
                 <table class="table table-hover">
                     <thead class="table-dark">
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Course Title</th>
                         <th scope="col">Department</th>
                         <th scope="col">Level of Education</th>
-                        <th scope="col">Question Details</th>
-                        <th scope="col">Deadline date</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">Attachment</th>
+                        <th scope="col">Deadline</th>
                         <th scope="col">Give Solution</th>
                       </tr>
                     </thead>
                     <?php
-                            if ($result -> num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                  echo '
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>'.$row["subjects"].'</td>
-                        <td>'.$row["course"].'</td>
-                        <td>'.$row["degree"].'</td>
-                        <td>'.$row["course_code"].'</td>
-                        <td>'.$row["question"].'</td>
-                        <td>'.$row["attachment"].'</td>
-                        <td>'.$row["deadln"].'</td>
-                        <td><input type="submit" value="S O L V E" class="btn btn-success"></td>
-                      </tr>
-                    </tbody>
-                    ';
-                                }
-                              }
-                              ?>
+                        $i = 1;
+                        if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            if ($status == $row["statuss"]) {
+                            echo '<tbody>';
+                            echo '<tr>';
+                            echo '<th>'.$i.'</th>';
+                            echo '<td>' . $row["subjects"] . '</td>';
+                            echo '<td>' . $row["course"] . '</td>';
+                            echo '<td>' . $row["degree"] . '</td>';
+                            echo '<td>' . $row["course_code"] . '</td>';
+                            echo '<td>' . $row["question"] . '</td>';
+                            $_SESSION['details'] = $row["question"];
+                            echo '<td>';
+
+                            
+                            if ($row["attachment"] != "") {
+                                echo '<a class="btn btn-success" target="_blank" href="' . htmlspecialchars($row["attachment"]) . '">Download</a>';
+                            } else {
+                                echo '<p class="text-center">No attached file</p>';
+                            }
+
+                            echo '</td>';
+                            echo '<td>' . $row["deadln"] . '</td>';
+                            echo '<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Insert solution</button></td>';
+                            echo '</tr>';
+                            echo '</tbody>';
+                            $i++;
+                            }
+                        }
+                        }
+                        ?>
+
                   </table>
+
+<!-- Modal start -->
+<form action="../php/solution_answers.php" method="POST">  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Give the solution</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+          <input type="hidden" name="question" value="<?php echo $_SESSION["details"]?>">
+          <div class="mb-3">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="Kidus" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input title="" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="kidus@gmail.com" disabled>
+            <div id="emailHelp" class="form-text">Insert the correct answer</div>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" name="solution_a" style="min-height: 280px" id="message" rows="3" required placeholder="Type here . . ."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<!-- Modal end -->
             </div>
         </div>
     </div>
+
     <!-- /#page-content-wrapper -->
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
@@ -174,6 +178,12 @@
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+    </script>
+
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+        })
     </script>
 </body>
 </html>
