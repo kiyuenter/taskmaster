@@ -1,3 +1,31 @@
+<?php
+    include '../php/connection.php';
+
+    $sql = "SELECT DATE(registration_date) AS registration_date, COUNT(*) AS registrations
+        FROM teacheraccount
+        GROUP BY DATE(registration_date)
+        ORDER BY registration_date ASC";
+
+        $result = $conn->query($sql);
+
+        // Prepare data for the chart (consider error handling)
+        $data = array();
+        $data[] = array('Date', 'Registrations');
+        if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = array(date('Y-m-d', strtotime($row['registration_date'])), (int) $row['registrations']);
+        }
+        } else {
+        // Handle the case of no registrations
+        $data[] = array('No registrations found', 0);
+        }
+
+        // Close connection
+        $conn->close();
+
+        // Encode data as JSON for JavaScript (consider security for real applications)
+        $data_json = json_encode($data);
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,29 +65,24 @@
     <!-- Line chart to view registered teachers -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+  // Access the encoded data from PHP using JavaScript
+  var data = <?= $data_json ?>;
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Register Teachers'],
-          ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030]
-        ]);
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
 
-        var options = {
-          title: 'Yearly registered teachers with graph',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+  function drawChart() {
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    var options = {
+      title: 'Daily Registered Users',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
 
-        chart.draw(data, options);
-      }
-    </script>
+    chart.draw(google.visualization.arrayToDataTable(data), options);
+  }
+</script>
 </head>
 
 <body>

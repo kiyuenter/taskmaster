@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
     include '../php/connection.php';
 
     $sql = "SELECT * FROM askedquestions";
@@ -19,6 +22,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Taskmaster | Teacher Dashboard</title>
+    <?php
+        if(isset($_SESSION['answers']))
+        {
+            echo $_SESSION['answers'];
+            unset($_SESSION['answers']);
+        }
+    ?>
 </head>
 
 <body>
@@ -78,92 +88,90 @@
             </nav>
 
             <div class="container-fluid px-4 mt-4">
-                <table class="table table-hover">
-                    <thead class="table-dark">
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Course Title</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Level of Education</th>
-                        <th scope="col">Course Code</th>
-                        <th scope="col">Question</th>
-                        <th scope="col">Attachment</th>
-                        <th scope="col">Deadline</th>
-                        <th scope="col">Give Solution</th>
-                      </tr>
-                    </thead>
-                    <?php
-                        $i = 1;
-                        if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            if ($status == $row["statuss"]) {
-                            echo '<tbody>';
-                            echo '<tr>';
-                            echo '<th>'.$i.'</th>';
-                            echo '<td>' . $row["subjects"] . '</td>';
-                            echo '<td>' . $row["course"] . '</td>';
-                            echo '<td>' . $row["degree"] . '</td>';
-                            echo '<td>' . $row["course_code"] . '</td>';
-                            echo '<td>' . $row["question"] . '</td>';
-                            $_SESSION['details'] = $row["question"];
-                            echo '<td>';
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Course Title</th>
+                <th scope="col">Department</th>
+                <th scope="col">Level of Education</th>
+                <th scope="col">Course Code</th>
+                <th scope="col">Question</th>
+                <th scope="col">Attachment</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Give Solution</th>
+            </tr>
+        </thead>
+        <?php
+        $i = 1;
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($status == $row["statuss"]) {
+                    echo '<tbody>';
+                    echo '<tr>';
+                    echo '<th>'.$i.'</th>';
+                    echo '<td>' . $row["subjects"] . '</td>';
+                    echo '<td>' . $row["course"] . '</td>';
+                    echo '<td>' . $row["degree"] . '</td>';
+                    echo '<td>' . $row["course_code"] . '</td>';
+                    echo '<td>' . $row["question"] . '</td>';
+                    echo '<td>';
 
-                            
-                            if ($row["attachment"] != "") {
-                                echo '<a class="btn btn-success" target="_blank" href="' . htmlspecialchars($row["attachment"]) . '">Download</a>';
-                            } else {
-                                echo '<p class="text-center">No attached file</p>';
-                            }
+                    if ($row["attachment"] != "") {
+                        echo '<a class="btn btn-success" target="_blank" href="' . htmlspecialchars($row["attachment"]) . '">Download</a>';
+                    } else {
+                        echo '<p class="text-center">No attached file</p>';
+                    }
 
-                            echo '</td>';
-                            echo '<td>' . $row["deadln"] . '</td>';
-                            echo '<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Insert solution</button></td>';
-                            echo '</tr>';
-                            echo '</tbody>';
-                            $i++;
-                            }
-                        }
-                        }
-                        ?>
+                    echo '</td>';
+                    echo '<td>' . $row["deadln"] . '</td>';
+                    echo '<td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal'.$i.'">Insert solution</button></td>';
+                    echo '</tr>';
+                    echo '</tbody>';
 
-                  </table>
+                    echo '
+                    <!-- Modal start -->
+                    <form action="../php/solution_answers.php" method="POST">
+                        <div class="modal fade" id="exampleModal'.$i.'" tabindex="-1" aria-labelledby="exampleModalLabel'.$i.'" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel'.$i.'">Give the solution</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="question" value="'.$row["question"].'">
+                                        <div class="mb-3">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" value="Kidus">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email address</label>
+                                            <input title="" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="kidus@gmail.com">
+                                            <div id="emailHelp" class="form-text">Insert the correct answer here</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" name="solution_a" style="min-height: 280px" id="message" rows="3" required placeholder="Type here . . ."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Modal end -->
+                    ';
+                    $i++;
+                }
+            }
+        }
+        ?>
+    </table>
+</div>
 
-<!-- Modal start -->
-<form action="../php/solution_answers.php" method="POST">  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Give the solution</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            
-          <input type="hidden" name="question" value="<?php echo $_SESSION["details"]?>">
-          <div class="mb-3">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" value="Kidus" disabled>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input title="" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="kidus@gmail.com" disabled>
-            <div id="emailHelp" class="form-text">Insert the correct answer</div>
-          </div>
-          <div class="mb-3">
-            <textarea class="form-control" name="solution_a" style="min-height: 280px" id="message" rows="3" required placeholder="Type here . . ."></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-
-
-
-<!-- Modal end -->
             </div>
         </div>
     </div>
