@@ -106,6 +106,8 @@
             <div class="container">
                 <form action="../php/askQuestion.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
+                        <input type="text" name="askerEmail" value="kiyuenterprise@gmail.com" class="form-control">
+                        <input type="text" name="askerName" value="Kidus Seleshi" class="form-control">
                         <input class="form-control" type="text" id="subject" name="subject" placeholder="Course" required>
                         <select title="Select_Course" class="form-control" id="course" name="course" required>
                             <option value="">Field of study</option>

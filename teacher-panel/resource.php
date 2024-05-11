@@ -30,15 +30,13 @@
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="askedQuestion.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-hand-paper me-2"></i>Asked Questions</a>
-                <a href="analytics.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Analytics</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paint-brush me-2"></i>CV Maker</a>
                 <a href="resource.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-paperclip me-2"></i>Resource</a>
                 <a href="feedback.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment me-2"></i>Feedback</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                <a href="../php/logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>

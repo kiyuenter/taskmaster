@@ -20,6 +20,16 @@
         $data[] = array('No registrations found', 0);
         }
 
+        $sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'";
+        $result_solved = mysqli_query($conn, $sql_solved);
+        $row_solved = mysqli_fetch_assoc($result_solved);
+        $solved_count = $row_solved['solved_count'];
+
+        $sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'";
+        $result_unsolved = mysqli_query($conn, $sql_unsolved);
+        $row_unsolved = mysqli_fetch_assoc($result_unsolved);
+        $unsolved_count = $row_unsolved['unsolved_count'];
+
         // Close connection
         $conn->close();
 
@@ -46,10 +56,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Total Question',     4920],
-          ['Solved',      720],
-          ['Unsolved',  4200],
-          ['You Answered', 200],
+          ['Solved', <?php echo $solved_count ?>],
+          ['Unsolved', <?php echo $unsolved_count ?>],
         ]);
 
         var options = {
@@ -65,24 +73,24 @@
     <!-- Line chart to view registered teachers -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-  // Access the encoded data from PHP using JavaScript
-  var data = <?= $data_json ?>;
+        // Access the encoded data from PHP using JavaScript
+        var data = <?= $data_json ?>;
 
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
 
-  function drawChart() {
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        function drawChart() {
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-    var options = {
-      title: 'Daily Registered Users',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
+            var options = {
+            title: 'Daily Registered Teacher Partners',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+            };
 
-    chart.draw(google.visualization.arrayToDataTable(data), options);
-  }
-</script>
+            chart.draw(google.visualization.arrayToDataTable(data), options);
+        }
+    </script>
 </head>
 
 <body>
@@ -96,16 +104,13 @@
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="askedQuestion.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-hand-paper me-2"></i>Asked Questions</a>
-                <a href="analytics.php"
-                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Analytics</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paint-brush me-2"></i>CV Maker</a>
                 <a href="resource.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Resource</a>
                 <a href="feedback.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment me-2"></i>Feedback</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                <a href="../php/logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
