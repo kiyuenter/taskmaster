@@ -78,6 +78,11 @@
     font-weight: bold;
     border: none;
   }
+
+  .q-hv:hover {
+    background-color: #63009d;
+    border: #009d63;
+  }
   
   @media (min-width: 768px) {
     #sidebar-wrapper {

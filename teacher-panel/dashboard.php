@@ -92,17 +92,18 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <img src="../photo/logo.png" class="pe-2" style="border-radius: 50%; width: 50px;" alt="">TASKMASTER</div>
             <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="askedQuestion.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="askedQuestion.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-hand-paper me-2"></i>Asked Questions</a>
-                <a href="analytics.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="analytics.php"
+                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Analytics</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paint-brush me-2"></i>CV Maker</a>
-                <a href="resource.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="resource.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Resource</a>
-                <a href="feedback.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="feedback.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment me-2"></i>Feedback</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
@@ -143,10 +144,16 @@
 
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
-                    <div class="col-md-3">
+                    <div class="col-md-3 q-hv">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">720</h3>
+                                <?php
+                                include '../php/connection.php';
+                                    $sql = ("SELECT * FROM askedquestions");
+                                    $result = mysqli_query($conn, $sql);
+                                    $row_count = mysqli_num_rows($result);
+                                ?>
+                                <h3 class="fs-2"><?php echo $row_count ?></h3>
                                 <p class="fs-5">Total Questions</p>
                             </div>
                             <i class="fas fa-question-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -156,7 +163,14 @@
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">4920</h3>
+                                <?php
+                                    include '../php/connection.php';
+                                    $sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'"; // Replace 'status' and 'solved' with your actual column and value
+                                    $result_solved = mysqli_query($conn, $sql_solved);
+                                    $row_solved = mysqli_fetch_assoc($result_solved);
+                                    $solved_count = $row_solved['solved_count'];
+                                ?>
+                                <h3 class="fs-2"><?php echo $solved_count ?></h3>
                                 <p class="fs-5">Solved</p>
                             </div>
                             
@@ -167,7 +181,14 @@
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">3899</h3>
+                            <?php
+                                    include '../php/connection.php';
+                                    $sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'"; // Replace 'status' and 'solved' with your actual column and value
+                                    $result_unsolved = mysqli_query($conn, $sql_unsolved);
+                                    $row_solved = mysqli_fetch_assoc($result_unsolved);
+                                    $unsolved_count = $row_solved['unsolved_count'];
+                                ?>
+                                <h3 class="fs-2"><?php echo $unsolved_count ?></h3>
                                 <p class="fs-5">Unsolved</p>
                             </div>
                             <i class="fas fa-exclamation-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>

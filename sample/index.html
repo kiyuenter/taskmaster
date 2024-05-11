@@ -3,43 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask a Question</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .form-group {
-            margin-bottom: 1rem;
-        }
-    </style>
+    <title>Sample Candle Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Ask Your Question</div>
-                    <div class="card-body">
-                        <form id="questionForm">
-                            <div class="form-group">
-                                <label for="questionTitle">Question Title:</label>
-                                <input type="text" class="form-control" id="questionTitle" name="questionTitle" placeholder="Enter your question title">
-                            </div>
-                            <div class="form-group">
-                                <label for="questionBody">Question Details:</label>
-                                <textarea class="form-control" id="questionBody" name="questionBody" rows="5" placeholder="Describe your question in detail"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="course">Course (Optional):</label>
-                                <input type="text" class="form-control" id="course" name="course" placeholder="Enter the course name (if applicable)">
-                            </div>
-                            <button type="submit" class="btn btn-primary float-end">Submit Question</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'candlestick',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Stock Price',
+                    backgroundColor: function(context) {
+                        var color = 'gray';
+                        if (context.dataset.data[context.dataIndex].high > context.dataset.data[context.dataIndex].close) {
+                            color = 'green';
+                        } else if (context.dataset.data[context.dataIndex].high < context.dataset.data[context.dataIndex].close) {
+                            color = 'red';
+                        }
+                        return color;
+                    },
+                    borderColor: function(context) {
+                        var color = 'black';
+                        if (context.dataset.data[context.dataIndex].high > context.dataset.data[context.dataIndex].close) {
+                            color = 'green';
+                        } else if (context.dataset.data[context.dataIndex].high < context.dataset.data[context.dataIndex].close) {
+                            color = 'red';
+                        }
+                        return color;
+                    },
+                    data: [
+                        { open: 100, high: 120, low: 90, close: 110 },
+                        { open: 110, high: 130, low: 100, close: 125 },
+                        { open: 125, high: 140, low: 115, close: 130 },
+                        { open: 130, high: 150, low: 120, close: 140 },
+                        { open: 140, high: 160, low: 130, close: 150 }
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </body>
 </html>

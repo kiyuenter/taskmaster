@@ -38,17 +38,17 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <img src="../photo/logo.png" class="pe-2" style="border-radius: 50%; width: 50px;" alt="">TASKMASTER</div>
             <div class="list-group list-group-flush my-3">
-                <a href="dashboard.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="dashboard.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                <a href="askedQuestion.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-hand-paper me-2"></i>Asked Questions</a>
-                <a href="analytics.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="analytics.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Analytics</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paint-brush me-2"></i>CV Maker</a>
-                <a href="resource.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="resource.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Resource</a>
-                <a href="feedback.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="feedback.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment me-2"></i>Feedback</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
