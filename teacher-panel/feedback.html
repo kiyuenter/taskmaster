@@ -90,7 +90,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Dashboard</h2>
+                    <h2 class="fs-2 m-0">Feedback</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -117,62 +117,24 @@
             </nav>
 
             <div class="container-fluid px-4">
-                <div class="row g-3 my-2">
-                    <div class="col-md-3">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">720</h3>
-                                <p class="fs-5">Total Questions</p>
-                            </div>
-                            <i class="fas fa-question-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </div>
-                    </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
+                                <img src="../photo/feedbacker-photo.webp" style="border-radius: 20px; height: 300px;" class="card-img-top" alt="'.$row["title"].'">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kidus Seleshi</h5>
+                                    <h6><p class="card-text">Feedback</p></h6>
+                                    <p class="card-text">Ooooo, you are awesome. I get full mark from my homework. Thank you so much</p>
+                                </div>
+                                <div class="card-body justify-content-center align-items-center d-flex flex-column">
+                                    <div id="countdown-container"></div>
+                                </div>
 
-                    <div class="col-md-3">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">4920</h3>
-                                <p class="fs-5">Solved</p>
                             </div>
-                            
-                            <i class="fas fa-pencil fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">3899</h3>
-                                <p class="fs-5">Unsolved</p>
-                            </div>
-                            <i class="fas fa-exclamation-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">%25</h3>
-                                <p class="fs-5">You answered</p>
-                            </div>
-                            <i class="fas fa-thumbs-up fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
                     </div>
                 </div>
-
-                <div class="row my-5">
-                    <h3 class="fs-4 mb-3">Activities</h3>
-                    <div class="row w-100 d-flex align-items-center justify-content-center">
-                        <div class="col-md-6 d-flex align-items-center justify-content-center">
-                            <div id="donutchart" style="width: 500px; height: 250px;"></div>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-center justify-content-center">
-                            <div id="curve_chart" style="width: 500px; height: 250px"></div>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
         </div>
     </div>
