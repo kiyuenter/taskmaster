@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pie Chart Example</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    canvas {
+      /* Ensure the chart is responsive */
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Create canvas for the pie chart -->
+  <canvas id="myPieChart"></canvas>
+
+  <script>
+    // Sample data for the pie chart
+    const kidus = {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(153, 102, 255)',
+          'rgb(255, 159, 64)'
+        ],
+        hoverOffset: 4 // Distance between the hovered data point and the chart
+      }]
+    };
+
+    // Create the pie chart
+    var ctxt = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctxt, {
+      type: 'pie',
+      data: kidus,
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom', // Change the position of the legend
+          },
+          title: {
+            display: true,
+            text: 'My Pie Chart'
+          }
+        }
+      }
+    });
+  </script>
+  </script>
+</body>
+</html>

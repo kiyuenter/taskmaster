@@ -1,11 +1,323 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskmaster | Admin Dashboard</title>
+    <title>Sidebar With Bootstrap</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <img src="../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#">Taskmaster</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+            <li class="sidebar-item">
+    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
+        <i class="lni lni-user"></i>
+        <span>User Management</span>
+    </a>
+                    <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Student Account</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                                data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
+                            <ul id="teacheraccount" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">New Registrations</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Existing Accounts</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Student Feedback</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+<!-- Evaluation -->
+                <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                                data-bs-target="#evaluation" aria-expanded="false" aria-controls="evaluation">
+                                <i class="lni lni-flag"></i>
+                                <span>Evaluation</span>
+                            </a>
+                                <ul id="evaluation" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#evaluation">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Questions</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Teachers Answer</a>
+                                </li>
+                            </ul>
+                    </a>
+                </li>
+                <!-- Assignment -->
+                <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                                data-bs-target="#assignment" aria-expanded="false" aria-controls="assignment">
+                                <i class="lni lni-pencil-alt"></i>
+                                <span>Assignment</span>
+                            </a>
+                                <ul id="assignment" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#assignment">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Solved Assignment</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Unsolved Assignment</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">All Assignment</a>
+                                </li>
+                            </ul>
+                    </a>
+                </li>
+            <!-- Resource -->
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-upload"></i>
+                        <span>Resource</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-alarm"></i>
+                        <span>Notification</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="lni lni-files"></i>
+                        <span>Report</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-4 py-2">
+                <h3 class="fw-bold fs-4 mb-3 mt-3">Admin Dashboard</h3>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="account.png" class="avatar img-fluid" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="content px-3 py-4">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <div class="card border-0 info">
+                                    <div class="card-body py-4">
+                                        <h5 class="mb-2 fw-bold">
+                                            Total Registered Teacher
+                                        </h5>
+                                        <p class="mb-2 fw-bold">
+                                            $72,540
+                                        </p>
+                                        <div class="mb-0">
+                                            <span class="badge text-success me-2">
+                                                +9.0%
+                                            </span>
+                                            <span class=" fw-bold">
+                                                Since Last Month
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 ">
+                                <div class="card  border-0 info">
+                                    <div class="card-body py-4">
+                                        <h5 class="mb-2 fw-bold">
+                                            Total Registered Student
+                                        </h5>
+                                        <p class="mb-2 fw-bold">
+                                            $72,540
+                                        </p>
+                                        <div class="mb-0">
+                                            <span class="badge text-success me-2">
+                                                +9.0%
+                                            </span>
+                                            <span class="fw-bold">
+                                                Since Last Month
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 ">
+                                <div class="card border-0 info">
+                                    <div class="card-body py-4">
+                                        <h5 class="mb-2 fw-bold">
+                                            Total Asked Questions
+                                        </h5>
+                                        <p class="mb-2 fw-bold">
+                                            $72,540
+                                        </p>
+                                        <div class="mb-0">
+                                            <span class="badge text-success me-2">
+                                                +9.0%
+                                            </span>
+                                            <span class="fw-bold">
+                                                Since Last Month
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid mt-5">
+                            <div class="row">
+                                <div class="col-md-6 str">
+                                    <canvas id="myChart" width="100px" height="100px"></canvas>
+                                </div>
+                                <div class="col-md-6 str">
+                                    <canvas id="myPieChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-body-secondary">
+                        <div class="col-6 text-start ">
+                            <a class="text-body-secondary" href=" #">
+                                <strong>CodzSwod</strong>
+                            </a>
+                        </div>
+                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a class="text-body-secondary" href="#">Contact</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-body-secondary" href="#">About Us</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <!-- Chart Script -->
+    <script>
+        // Define data
+        const data = {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          datasets: [{
+            label: 'Sales',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2,
+            data: [100, 10, 150, 110, 30, 30],
+          },
+      {
+        label: 'Expenses',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 2,
+        data: [100, 150, 170, 140, 200, 250] // Expenses data
+      }]
+        };
     
+        // Define options
+        const options = {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        };
+    
+        // Create chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: options
+        });
+      </script>
+
+      <!-- Create script for pie chart -->
+      <script>
+        // Sample data for the pie chart
+        const kidus = {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(153, 102, 255)',
+          'rgb(255, 159, 64)'
+        ],
+        hoverOffset: 4 // Distance between the hovered data point and the chart
+      }]
+    };
+
+    // Create the pie chart
+    var ctxt = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctxt, {
+      type: 'pie',
+      data: kidus,
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom', // Change the position of the legend
+          },
+          title: {
+            display: true,
+            text: 'My Pie Chart'
+          }
+        }
+      }
+    });
+  </script>
+      </script>
 </body>
+
 </html>
