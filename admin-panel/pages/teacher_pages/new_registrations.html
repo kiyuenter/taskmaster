@@ -10,7 +10,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                    <img src="../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
+                    <img src="../../../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">Taskmaster</a>
@@ -26,35 +26,35 @@
             </div>
             <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <li class="sidebar-item some">
-                    <a href="dashboard.php" class="sidebar-link">
+                <li class="sidebar-item">
+                    <a href="../../dashboard.php" class="sidebar-link">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                </li>
+                <li class="sidebar-item">
+               <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                     data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
                     <i class="lni lni-user"></i>
                     <span>User Management</span>
                 </a>
-            </li>
-                    <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#usermanagement">
-                        <li class="sidebar-item"> 
-                            <a href="pages/student_account.html" class="sidebar-link ms-2">Student Account</a>
+                </li>
+                    <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="../student_account.html" class="sidebar-link ms-2">Student Account</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link collapsed has-dropdown ms-2" data-bs-toggle="collapse"
                                 data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
-                            <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#teacheraccount">
-                                <li class="sidebar-item">
+                            <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
+                                <li class="sidebar-item some">
                                     <a href="#" class="sidebar-link">New Registrations</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Existing Accounts</a>
+                                    <a href="existing_accounts.html" class="sidebar-link">Existing Accounts</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Student Feedback</a>
+                                    <a href="student_feedback.html" class="sidebar-link">Student Feedback</a>
                                 </li>
                             </ul>
                         </li>
@@ -126,7 +126,7 @@
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand px-4 py-2">
-                <h3 class="fw-bold fs-4 mb-3 mt-3">Admin Dashboard</h3>
+                <h3 class="fw-bold fs-4 mb-3 mt-3">New Teachers</h3>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
@@ -141,7 +141,7 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-6">
                                 <div class="card border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
@@ -161,31 +161,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 ">
+                            <div class="col-12 col-md-6 ">
                                 <div class="card  border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
-                                            Total Registered Student
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Asked Questions
+                                            Today Registered Teachers
                                         </h5>
                                         <p class="mb-2 fw-bold">
                                             $72,540
@@ -203,15 +183,119 @@
                             </div>
                         </div>
                         <div class="container-fluid mt-5">
-                            <div class="row">
-                                <div class="col-md-6 str">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-md-6 d-flex justify-content-center align-items-center str">
                                     <canvas id="myChart" width="100px" height="100px"></canvas>
-                                </div>
-                                <div class="col-md-6 str">
-                                    <canvas id="myPieChart"></canvas>
                                 </div>
                             </div>
                         </div>
+                        <div class="bg-dark rounded m-5" style="height: 50px;"></div>
+                          <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-4 mt-2">
+                                    <div class="card" style="width: 24rem;">
+                                        <img src="..." class="card-img-top" alt="profile">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Full Name</h5>
+                                            <p class="card-text">Gender</p>
+                                            <p class="card-text">DOB</p>
+                                            <p class="card-text">Country</p>
+                                            <p class="card-text">Education Level</p>
+                                            <p class="card-text">Department</p>
+                                            <p class="card-text">Academic</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                              <p class="card-text">Educational Document</p>
+                                              <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2 align-items-center">
+                                            <p class="card-text">CV Document</p>
+                                            <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <p class="card-text">Registration Date</p>
+                                            <div>
+                                                <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                                  </div>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="#" class="btn btn-primary me-3">Accept</a>
+                                                <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-4 mt-2">
+                                    <div class="card" style="width: 24rem;">
+                                        <img src="..." class="card-img-top" alt="profile">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Full Name</h5>
+                                          <p class="card-text">Gender</p>
+                                          <p class="card-text">DOB</p>
+                                          <p class="card-text">Country</p>
+                                          <p class="card-text">Education Level</p>
+                                          <p class="card-text">Department</p>
+                                          <p class="card-text">Academic</p>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="card-text">Educational Document</p>
+                                            <a href="#" class="btn btn-success">Download</a>
+                                          </div>
+                                          <div class="d-flex justify-content-between mt-2 align-items-center">
+                                          <p class="card-text">CV Document</p>
+                                          <a href="#" class="btn btn-success">Download</a>
+                                          </div>
+                                          <p class="card-text">Registration Date</p>
+                                          <div>
+                                            <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                            <div class="alert alert-danger" role="alert">
+                                                <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                              </div>
+                                            <p></p>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a href="#" class="btn btn-primary me-3">Accept</a>
+                                            <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                        </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-4 mt-2">
+                                    <div class="card" style="width: 24rem;">
+                                        <img src="..." class="card-img-top" alt="profile">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Full Name</h5>
+                                            <p class="card-text">Gender</p>
+                                            <p class="card-text">DOB</p>
+                                            <p class="card-text">Country</p>
+                                            <p class="card-text">Education Level</p>
+                                            <p class="card-text">Department</p>
+                                            <p class="card-text">Academic</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                              <p class="card-text">Educational Document</p>
+                                              <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2 align-items-center">
+                                            <p class="card-text">CV Document</p>
+                                            <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <p class="card-text">Registration Date</p>
+                                            <div>
+                                                <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                                  </div>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="#" class="btn btn-primary me-3">Accept</a>
+                                                <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </main>
@@ -245,7 +329,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
     <!-- Chart Script -->
     <script>
         // Define data

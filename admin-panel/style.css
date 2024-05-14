@@ -184,6 +184,9 @@ a.sidebar-link:hover {
     height: 350px;
 }
 
+.some {
+    background-color: #3f4e5f;
+}
 
 
 @media (min-width: 768px) {}

@@ -31,22 +31,20 @@
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                    data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
-                    <i class="lni lni-user"></i>
-                    <span>User Management</span>
-                </a>
-            </li>
-                    <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#usermanagement">
-                        <li class="sidebar-item"> 
-                            <a href="pages/student_account.html" class="sidebar-link ms-2">Student Account</a>
+                </li>
+    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
+        <i class="lni lni-user"></i>
+        <span>User Management</span>
+    </a>
+                    <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link ms-2">Student Account</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link collapsed has-dropdown ms-2" data-bs-toggle="collapse"
                                 data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
-                            <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#teacheraccount">
+                            <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
                                 <li class="sidebar-item">
                                     <a href="#" class="sidebar-link">New Registrations</a>
                                 </li>
