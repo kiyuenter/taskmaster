@@ -10,7 +10,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -124,7 +124,7 @@
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand px-4 py-2">
-                <h3 class="fw-bold fs-4 mb-3 mt-3">Admin Dashboard</h3>
+                <h3 class="fw-bold fs-4 mb-3 mt-3">Generate Report</h3>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
@@ -137,80 +137,36 @@
             </nav>
             <main class="content px-3 py-4">
                 <div class="container-fluid">
-                    <div class="mb-3">
-                        <div class="row">
-                            <div class="col-12 col-md-4">
-                                <div class="card border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Registered Teacher
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card  border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Registered Student
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Asked Questions
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container-fluid mt-5">
-                            <div class="row">
-                                <div class="col-md-6 str">
-                                    <canvas id="myChart" width="100px" height="100px"></canvas>
-                                </div>
-                                <div class="col-md-6 str">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="container mt-3">
+    <h1>Report Generator</h1>
+    <form method="post" action="generate_report.php">
+      <div class="mb-3">
+        <label for="product" class="form-label">Select Report Type:</label>
+        <select name="product_id" id="product" class="form-select">
+          <option value="">Select</option>
+          <option value="">Registered Students</option>
+          <option value="">Registered Teachers</option>
+          <option value="">Student Feedback</option>
+          <option value="">Evaluation Questions</option>
+          <option value="">Evaluated Teachers Answers</option>
+          <option value="">Asked Questions</option>
+          <option value="">Uploaded Resources</option>
+          <option value="">All Data</option>
+        </select>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <label for="date_from" class="form-label">Date From:</label>
+          <input type="date" name="date_from" id="date_from" class="form-control">
+        </div>
+        <div class="col">
+          <label for="date_to" class="form-label">Date To:</label>
+          <input type="date" name="date_to" id="date_to" class="form-control">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+  </div>
                 </div>
             </main>
             <footer class="footer">
@@ -243,87 +199,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <!-- Chart Script -->
-    <script>
-        // Define data
-        const data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-            label: 'Sales',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2,
-            data: [100, 10, 150, 110, 30, 30],
-          },
-      {
-        label: 'Expenses',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 2,
-        data: [100, 150, 170, 140, 200, 250] // Expenses data
-      }]
-        };
-    
-        // Define options
-        const options = {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        };
-    
-        // Create chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: options
-        });
-      </script>
-
-      <!-- Create script for pie chart -->
-      <script>
-        // Sample data for the pie chart
-        const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
-
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'My Pie Chart'
-          }
-        }
-      }
-    });
-  </script>
-      </script>
+    <script src="../script.js"></script>
 </body>
 
 </html>
