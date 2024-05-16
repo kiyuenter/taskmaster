@@ -20,15 +20,23 @@ if (isset($_POST['submit'])) {
   $selectTeacher = "SELECT * FROM teacheraccount WHERE emailAdd='$userEmail' AND tPassword = '$userPass'";
   $tResult = mysqli_query($conn, $selectTeacher);
 
-
+  $selectAdmin = "SELECT * FROM admin_account WHERE email='$userEmail' AND APassword = '$userPass'";
+  $aResult = mysqli_query($conn, $selectAdmin);
   
   if (mysqli_num_rows($sResult) > 0) {
     $row = $sResult->fetch_assoc(); 
-    $_SESSION['status'] = "Welcomeback!";
+    $_SESSION['status'] = "Welcome back!";
     $_SESSION['username'] = $row["FName"];
 
     echo "Login successful!";
     header("Location: ../index.php");
+  } else if(mysqli_num_rows($aResult) > 0) {
+    $row = $aResult -> fetch_assoc();
+    $_SESSION['status'] = "Welcome back!";
+    $_SESSION['username'] = $row["username"];
+    $_SESSION['emailA'] = $row["email"];
+    header("Location: ../admin-panel/dashboard.php");
+
   } else if (mysqli_num_rows($tResult) > 0) {
     $row = $tResult->fetch_assoc();
     $st = $row["statusActivity"];

@@ -10,15 +10,15 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar">
+    <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                    <img src="../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
+                    <img src="../../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
                 </button>
                 <div class="sidebar-logo">
                     <a href="#">Taskmaster</a>
@@ -26,33 +26,44 @@
             </div>
             <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <li class="sidebar-item some">
-                    <a href="dashboard.php" class="sidebar-link">
+                <li class="sidebar-item">
+                    <a href="../dashboard.php" class="sidebar-link">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
-        <i class="lni lni-user"></i>
-        <span>User Management</span>
-    </a>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
+                        <i class="lni lni-user"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <?php
+                            $realAdmin = 'kidusseleshi19@gmail.com';
+                            if($_SESSION['emailA'] == $realAdmin){
+                            echo '
+                            <li class="sidebar-item some"> 
+                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                            </li>';
+                            }
+                        ?>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link ms-2">Student Account</a>
+                            <a href="student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link collapsed has-dropdown ms-2" data-bs-toggle="collapse"
                                 data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
                             <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">New Registrations</a>
+                                    <a href="teacher_pages/new_registrations.php" class="sidebar-link">New Registrations</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Existing Accounts</a>
+                                    <a href="teacher_pages/existing_accounts.php" class="sidebar-link">Existing Accounts</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Student Feedback</a>
+                                    <a href="teacher_pages/student_feedback.php" class="sidebar-link">Student Feedback</a>
                                 </li>
                             </ul>
                         </li>
@@ -67,56 +78,43 @@
                             </a>
                                 <ul id="evaluation" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#evaluation">
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Questions</a>
+                                    <a href="evaluations_pages/questions.php" class="sidebar-link ms-2">Evaluation Questions</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Teachers Answer</a>
+                                    <a href="evaluations_pages/teachers_answers.php" class="sidebar-link ms-2">Teachers Answer</a>
                                 </li>
                             </ul>
                     </a>
                 </li>
                 <!-- Assignment -->
                 <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                                data-bs-target="#assignment" aria-expanded="false" aria-controls="assignment">
-                                <i class="lni lni-pencil-alt"></i>
-                                <span>Assignment</span>
-                            </a>
-                                <ul id="assignment" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#assignment">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Solved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Unsolved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">All Assignment</a>
-                                </li>
-                            </ul>
+                    <a href="assignment.php" class="sidebar-link">
+                        <i class="lni lni-pencil-alt"></i>
+                        <span>Asked Questions</span>
                     </a>
                 </li>
             <!-- Resource -->
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item some">
+                    <a href="resource.php" class="sidebar-link">
                         <i class="lni lni-upload"></i>
                         <span>Resource</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="notification.php" class="sidebar-link">
                         <i class="lni lni-alarm"></i>
                         <span>Notification</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="report.php" class="sidebar-link">
                         <i class="lni lni-files"></i>
                         <span>Report</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="../../php/logout.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
@@ -124,14 +122,25 @@
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand px-4 py-2">
-                <h3 class="fw-bold fs-4 mb-3 mt-3">Admin Dashboard</h3>
+                <h3 class="fw-bold fs-4 mb-3 mt-3">Resource</h3>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="account.png" class="avatar img-fluid" alt="">
-                            </a>
-                        </li>
+                    <?php
+                        if(isset($_SESSION['msg']))
+                        {
+                            echo '
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                </ul>
+                                </li>
+                            ';
+                        }
+                    ?>
                     </ul>
                 </div>
             </nav>
@@ -201,16 +210,87 @@
                             </div>
                         </div>
                         <div class="container-fluid mt-5">
-                            <div class="row">
-                                <div class="col-md-6 str">
-                                    <canvas id="myChart" width="100px" height="100px"></canvas>
+                            <div class="container mt-3">
+                                <div class="form-container">
+                                  <h1>Resource Uploader</h1>
+                                  <form action="../receive-upload-resource.php" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                      <label for="coverImage" class="form-label">Cover Image</label><br>
+                                      <input class="form-control" type="file" id="coverImage" name="coverImage" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="resourceFile" class="form-label">Resource File</label><br>
+                                        <input class="form-control" type="file" id="resourceFile" name="resourceFile" required>
+                                      </div>          
+                                    <div class="mb-3">
+                                      <label for="title" class="form-label">Title</label>
+                                      <input type="text" class="form-control" id="title" name="title" required>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="description" class="form-label">Description</label>
+                                      <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="category" class="form-label">Category</label>
+                                      <select id="myDropdown" class="form-select" id="category" name="category" required>
+                                        <option value="">Select Department</option>
+                                        <option value="accounting and finance">Accounting and Finance</option>
+                                        <option value="Management">Management</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Software Engineering">Software Engineering</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Medecine">Medecine</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="other">Other</option>
+                                      </select>
+                                      <input type="text" id="otherInput" class="form-control mt-2" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="pageCount" class="form-label">Page Count (if applicable)</label>
+                                      <input type="number" class="form-control" id="pageCount" name="pageCount">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><i class="lni lni-upload me-2"></i>Upload Resource</button>
+                                  </form>
                                 </div>
-                                <div class="col-md-6 str">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                            </div>
+                              </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="container-fluid">
+                    <!-- resource list -->
+              <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
+
+                        <?php
+                            if ($result -> num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo '
+                            <img src="'.$row["coverimg"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
+                            <div class="card-body">
+                            <h5 class="card-title">'.$row["title"].'</h5>
+                            <p class="card-text">'.$row["descr"].'</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">'.$row["category"].'</li>
+                            <li class="list-group-item">'.$row["page_count"].'</li>
+                            <li class="list-group-item" style="display: none;">'.$row["timestamp"].'</li>
+                            </ul>
+                            <div class="card-body justify-content-center align-items-center d-flex">
+                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
+                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
+                            </div>
+                            ';
+                        }
+                    }
+                ?>
+                        </div>
+                    </div>
+                </div>
+                </div>
                 </div>
             </main>
             <footer class="footer">
@@ -243,87 +323,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <!-- Chart Script -->
+    <script src="../script.js"></script>
+
+
+    <!-- To enable input -->
     <script>
-        // Define data
-        const data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-            label: 'Sales',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2,
-            data: [100, 10, 150, 110, 30, 30],
-          },
-      {
-        label: 'Expenses',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 2,
-        data: [100, 150, 170, 140, 200, 250] // Expenses data
-      }]
-        };
-    
-        // Define options
-        const options = {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        };
-    
-        // Create chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: options
-        });
-      </script>
+        const dropdown = document.getElementById("myDropdown");
 
-      <!-- Create script for pie chart -->
-      <script>
-        // Sample data for the pie chart
-        const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
+        dropdown.addEventListener("change", function() {
+        const selectedOption = this.value;
+        const otherInput = document.getElementById("otherInput");
 
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'My Pie Chart'
-          }
+        if (selectedOption === "other") {
+            otherInput.disabled = false;
+        } else {
+            otherInput.disabled = true;
         }
-      }
-    });
-  </script>
-      </script>
+        });
+    </script>
+    
 </body>
 
 </html>

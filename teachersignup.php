@@ -85,26 +85,26 @@
 
     <script>
         // FName and LName input tag accept only text
-    const firstNameInput = document.getElementById('fName');
-    const lastNameInput = document.getElementById('lName');
+        const firstNameInput = document.getElementById('fName');
+        const lastNameInput = document.getElementById('lName');
     
-    firstNameInput.addEventListener('keypress', (event) => {
-      const char = String.fromCharCode(event.charCode); // Get the character typed
-      const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+        firstNameInput.addEventListener('keypress', (event) => {
+        const char = String.fromCharCode(event.charCode); // Get the character typed
+        const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+        
+        if (!pattern.test(char)) {
+            event.preventDefault(); // Prevent character insertion if not a letter or space
+        }
+        });
     
-      if (!pattern.test(char)) {
-        event.preventDefault(); // Prevent character insertion if not a letter or space
-      }
-    });
-    
-    lastNameInput.addEventListener('keypress', (event) => {
-      const char = String.fromCharCode(event.charCode); // Get the character typed
-      const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
-    
-      if (!pattern.test(char)) {
-        event.preventDefault(); // Prevent character insertion if not a letter or space
-      }
-    });
+        lastNameInput.addEventListener('keypress', (event) => {
+        const char = String.fromCharCode(event.charCode); // Get the character typed
+        const pattern = /^[A-Za-z\s]+$/; // Regular expression for letters and spaces
+        
+        if (!pattern.test(char)) {
+            event.preventDefault(); // Prevent character insertion if not a letter or space
+        }
+        });
     
     </script>
     

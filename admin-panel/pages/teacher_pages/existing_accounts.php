@@ -15,7 +15,7 @@
 
 <body>
     <div class="wrapper">
-        <aside id="sidebar">
+    <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
                     <img src="../../../photo/logo.png" style="height: 30px; border-radius: 50%;" alt="">
@@ -27,34 +27,34 @@
             <ul class="sidebar-nav">
             <li class="sidebar-item">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link">
+                    <a href="../../dashboard.php" class="sidebar-link">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
-                        <i class="lni lni-user"></i>
-                        <span>User Management</span>
-                    </a>
+                <li class="sidebar-item some">
+               <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
+                    <i class="lni lni-user"></i>
+                    <span>User Management</span>
+                </a>
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link ms-2">Student Account</a>
+                            <a href="../student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed has-dropdown ms-2" data-bs-toggle="collapse"
+                            <a href="#" class="sidebar-link collapsed has-dropdown ms-2 some" data-bs-toggle="collapse"
                                 data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
                             <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
                                 <li class="sidebar-item">
-                                    <a href="new_registrations.html" class="sidebar-link">New Registrations</a>
+                                    <a href="new_registrations.php" class="sidebar-link">New Registrations</a>
                                 </li>
                                 <li class="sidebar-item some">
-                                    <a href="#" class="sidebar-link">Existing Accounts</a>
+                                    <a href="existing_accounts.php" class="sidebar-link">Existing Accounts</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="student_feedback.html" class="sidebar-link">Student Feedback</a>
+                                    <a href="student_feedback.php" class="sidebar-link">Student Feedback</a>
                                 </li>
                             </ul>
                         </li>
@@ -69,56 +69,43 @@
                             </a>
                                 <ul id="evaluation" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#evaluation">
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Questions</a>
+                                    <a href="../evaluations_pages/questions.php" class="sidebar-link ms-2">Evaluation Questions</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Teachers Answer</a>
+                                    <a href="../evaluations_pages/teachers_answers.php" class="sidebar-link ms-2">Teachers Answer</a>
                                 </li>
                             </ul>
                     </a>
                 </li>
                 <!-- Assignment -->
                 <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                                data-bs-target="#assignment" aria-expanded="false" aria-controls="assignment">
-                                <i class="lni lni-pencil-alt"></i>
-                                <span>Assignment</span>
-                            </a>
-                                <ul id="assignment" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#assignment">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Solved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Unsolved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">All Assignment</a>
-                                </li>
-                            </ul>
+                    <a href="../assignment.php" class="sidebar-link">
+                        <i class="lni lni-pencil-alt"></i>
+                        <span>Asked Questions</span>
                     </a>
                 </li>
             <!-- Resource -->
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../resource.php" class="sidebar-link">
                         <i class="lni lni-upload"></i>
                         <span>Resource</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification.php" class="sidebar-link">
                         <i class="lni lni-alarm"></i>
                         <span>Notification</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../report.php" class="sidebar-link">
                         <i class="lni lni-files"></i>
                         <span>Report</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="../../../php/logout.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>

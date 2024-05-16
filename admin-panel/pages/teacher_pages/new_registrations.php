@@ -27,34 +27,34 @@
             <ul class="sidebar-nav">
             <li class="sidebar-item">
                 <li class="sidebar-item">
-                    <a href="dashboard.php" class="sidebar-link">
+                    <a href="../../dashboard.php" class="sidebar-link">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
-                        <i class="lni lni-user"></i>
-                        <span>User Management</span>
-                    </a>
+                <li class="sidebar-item some">
+               <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#usermanagement" aria-expanded="false" aria-controls="usermanagement">
+                    <i class="lni lni-user"></i>
+                    <span>User Management</span>
+                </a>
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link ms-2">Student Account</a>
+                            <a href="../student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed has-dropdown ms-2" data-bs-toggle="collapse"
+                            <a href="#" class="sidebar-link collapsed has-dropdown ms-2 some" data-bs-toggle="collapse"
                                 data-bs-target="#teacheraccount" aria-expanded="false" aria-controls="teacheraccount">Teacher Account</a>
                             <ul id="teacheraccount" class="ms-4 sidebar-dropdown list-unstyled collapse" data-bs-parent="#usermanagement">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">New Registrations</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Existing Accounts</a>
-                                </li>
                                 <li class="sidebar-item some">
-                                    <a href="#" class="sidebar-link">Student Feedback</a>
+                                    <a href="new_registrations.php" class="sidebar-link">New Registrations</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="existing_accounts.php" class="sidebar-link">Existing Accounts</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="student_feedback.php" class="sidebar-link">Student Feedback</a>
                                 </li>
                             </ul>
                         </li>
@@ -69,56 +69,43 @@
                             </a>
                                 <ul id="evaluation" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#evaluation">
                                 <li class="sidebar-item">
-                                    <a href="../evaluations_pages/questions.html" class="sidebar-link ms-2">Questions</a>
+                                    <a href="../evaluations_pages/questions.php" class="sidebar-link ms-2">Evaluation Questions</a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Teachers Answer</a>
+                                    <a href="../evaluations_pages/teachers_answers.php" class="sidebar-link ms-2">Teachers Answer</a>
                                 </li>
                             </ul>
                     </a>
                 </li>
                 <!-- Assignment -->
                 <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                                data-bs-target="#assignment" aria-expanded="false" aria-controls="assignment">
-                                <i class="lni lni-pencil-alt"></i>
-                                <span>Assignment</span>
-                            </a>
-                                <ul id="assignment" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#assignment">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Solved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">Unsolved Assignment</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link ms-2">All Assignment</a>
-                                </li>
-                            </ul>
+                    <a href="../assignment.php" class="sidebar-link">
+                        <i class="lni lni-pencil-alt"></i>
+                        <span>Asked Questions</span>
                     </a>
                 </li>
             <!-- Resource -->
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../resource.php" class="sidebar-link">
                         <i class="lni lni-upload"></i>
                         <span>Resource</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../notification.php" class="sidebar-link">
                         <i class="lni lni-alarm"></i>
                         <span>Notification</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="../report.php" class="sidebar-link">
                         <i class="lni lni-files"></i>
                         <span>Report</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="../../../php/logout.php" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
@@ -126,12 +113,12 @@
         </aside>
         <div class="main">
             <nav class="navbar navbar-expand px-4 py-2">
-                <h3 class="fw-bold fs-4 mb-3 mt-3">Student Feedback</h3>
+                <h3 class="fw-bold fs-4 mb-3 mt-3">New Teachers</h3>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="../account.png" class="avatar img-fluid" alt="">
+                                <img src="account.png" class="avatar img-fluid" alt="">
                             </a>
                         </li>
                     </ul>
@@ -141,11 +128,11 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-6">
                                 <div class="card border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
-                                            Total Feedbacks
+                                            Total Registered Teacher
                                         </h5>
                                         <p class="mb-2 fw-bold">
                                             $72,540
@@ -161,31 +148,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 ">
+                            <div class="col-12 col-md-6 ">
                                 <div class="card  border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
-                                            Total teacher feedback for teacher
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total feedback for system
+                                            Today Registered Teachers
                                         </h5>
                                         <p class="mb-2 fw-bold">
                                             $72,540
@@ -203,16 +170,14 @@
                             </div>
                         </div>
                         <div class="container-fluid mt-5">
-                            <div class="row">
-                                <div class="col-md-6 str">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-md-6 d-flex justify-content-center align-items-center str">
                                     <canvas id="myChart" width="100px" height="100px"></canvas>
-                                </div>
-                                <div class="col-md-6 str">
-                                    <canvas id="myPieChart"></canvas>
                                 </div>
                             </div>
                         </div>
-                        <div class="container-fluid">
+                        <div class="bg-dark rounded m-5" style="height: 50px;"></div>
+                          <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-4 mt-2">
                                     <div class="card" style="width: 24rem;">
@@ -225,7 +190,6 @@
                                             <p class="card-text">Education Level</p>
                                             <p class="card-text">Department</p>
                                             <p class="card-text">Academic</p>
-                                            <p class="card-text">Solved Questions</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                               <p class="card-text">Educational Document</p>
                                               <a href="#" class="btn btn-success">Download</a>
@@ -237,15 +201,88 @@
                                             <p class="card-text">Registration Date</p>
                                             <div>
                                                 <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                                  </div>
+                                                <p></p>
                                             </div>
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="#" class="btn btn-danger ms-3">Remove from partnership</a>
+                                                <a href="#" class="btn btn-primary me-3">Accept</a>
+                                                <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-4 mt-2">
+                                    <div class="card" style="width: 24rem;">
+                                        <img src="..." class="card-img-top" alt="profile">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Full Name</h5>
+                                          <p class="card-text">Gender</p>
+                                          <p class="card-text">DOB</p>
+                                          <p class="card-text">Country</p>
+                                          <p class="card-text">Education Level</p>
+                                          <p class="card-text">Department</p>
+                                          <p class="card-text">Academic</p>
+                                          <div class="d-flex justify-content-between align-items-center">
+                                            <p class="card-text">Educational Document</p>
+                                            <a href="#" class="btn btn-success">Download</a>
+                                          </div>
+                                          <div class="d-flex justify-content-between mt-2 align-items-center">
+                                          <p class="card-text">CV Document</p>
+                                          <a href="#" class="btn btn-success">Download</a>
+                                          </div>
+                                          <p class="card-text">Registration Date</p>
+                                          <div>
+                                            <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                            <div class="alert alert-danger" role="alert">
+                                                <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                              </div>
+                                            <p></p>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a href="#" class="btn btn-primary me-3">Accept</a>
+                                            <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                        </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-4 mt-2">
+                                    <div class="card" style="width: 24rem;">
+                                        <img src="..." class="card-img-top" alt="profile">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Full Name</h5>
+                                            <p class="card-text">Gender</p>
+                                            <p class="card-text">DOB</p>
+                                            <p class="card-text">Country</p>
+                                            <p class="card-text">Education Level</p>
+                                            <p class="card-text">Department</p>
+                                            <p class="card-text">Academic</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                              <p class="card-text">Educational Document</p>
+                                              <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2 align-items-center">
+                                            <p class="card-text">CV Document</p>
+                                            <a href="#" class="btn btn-success">Download</a>
+                                            </div>
+                                            <p class="card-text">Registration Date</p>
+                                            <div>
+                                                <h5 class="card-title text-center"><u><b>Status</b></u></h5>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <p class="text-center" style="font-size: 12px !important;">Before click the buttons please make sure the document iis perfectly checked!</p>
+                                                  </div>
+                                                <p></p>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="#" class="btn btn-primary me-3">Accept</a>
+                                                <a href="#" class="btn btn-danger ms-3">Reject</a>
                                             </div>
                                           </div>
                                       </div>
                                 </div>
                             </div>
-                        </div>
+                          </div>
                     </div>
                 </div>
             </main>
