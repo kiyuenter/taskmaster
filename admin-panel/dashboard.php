@@ -279,30 +279,65 @@
             </footer>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <!-- Chart Script -->
     <script>
-        // Define data
+        <?php
+        include '../php/connection.php';
+
+        $sql = "SELECT DATE(registration_date) AS registered_date, COUNT(*) AS daily_users FROM teacheraccount WHERE YEAR(registration_date) = YEAR(CURDATE()) GROUP BY registered_date";
+        $result = $conn->query($sql);
+
+        $daily_users = [];
+        $labels = [];
+        $user_data = [];
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $daily_users[$row['registered_date']] = $row['daily_users'];
+                $labels[] = $row['registered_date']; // Assuming date format works for chart labels
+                $user_data[] = $daily_users[$row['registered_date']];
+            }
+        } else {
+            echo "No data found";
+        }
+
+        $sql_students = "SELECT DATE(registration_date) AS registered_date, COUNT(*) AS student_count FROM studentaccount WHERE YEAR(registration_date) = YEAR(CURDATE()) GROUP BY registered_date";
+        $result_students = $conn->query($sql_students);
+
+        $student_data = []; // Array to store student registration counts
+
+        if ($result_students->num_rows > 0) {
+            while($row = $result_students->fetch_assoc()) {
+                $student_data[$row['registered_date']] = $row['student_count'];
+            }
+        } else {
+            echo "No student data found";
+        }
+        $conn->close();
+    ?>
+
+        // Define chart data
         const data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: <?php echo json_encode($labels); ?>,
           datasets: [{
-            label: 'Students',
+            label: 'Daily Registrations',
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 2,
-            data: [100, 10, 150, 110, 30, 30],
+            data: <?php echo json_encode($user_data); ?>,
           },
-      {
-        label: 'Teachers',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 2,
-        data: [100, 150, 170, 140, 200, 250] // Expenses data
-      }]
+          {
+          label: 'Student Registrations', // Change label as needed
+          backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 2,
+          data: <?php echo json_encode($student_data); ?>,
+        }
+        ]
         };
     
         // Define options
@@ -326,43 +361,54 @@
       </script>
 
       <!-- Create script for pie chart -->
-      <script>
-        // Sample data for the pie chart
-        const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'Questions Status',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
+      <?php
+// Include connection details and database operations from a separate file
+include '../php/connection.php';
 
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'Questions Status'
+$sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'";
+$result_solved = mysqli_query($conn, $sql_solved);
+$row_solved = mysqli_fetch_assoc($result_solved);
+$solved_count = $row_solved['solved_count'];
+
+$sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'";
+$result_unsolved = mysqli_query($conn, $sql_unsolved);
+$row_unsolved = mysqli_fetch_assoc($result_unsolved);
+$unsolved_count = $row_unsolved['unsolved_count'];
+
+
+?>
+      <script>
+        // Define chart data based on fetched counts
+        const kidus = {
+          labels: ['Solved', 'Unsolved'],
+          datasets: [{
+            label: 'Questions Status',
+            data: [<?php echo $solved_count; ?>, <?php echo $unsolved_count; ?>], // Use fetched counts
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.5)', // Light blue (solved)
+              'rgba(255, 99, 132, 0.5)', // Light red (unsolved)
+            ],
+            hoverOffset: 4 // Distance between hovered point and chart
+          }]
+        };
+
+        // Create the pie chart
+        var ctxt = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctxt, {
+          type: 'pie',
+          data: kidus,
+          options: {
+            plugins: {
+              legend: {
+                position: 'bottom' // Change the position of the legend
+              },
+              title: {
+                display: true,
+                text: 'Questions Status'
+              }
+            }
           }
-        }
-      }
-    });
-  </script>
+        });
       </script>
 </body>
 

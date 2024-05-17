@@ -148,34 +148,23 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card  border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
                                             Total Registered Student
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card  border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Today Registered Student
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allStudent FROM studentaccount";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allStudent'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
                                         <div class="mb-0">
                                             <span class="badge text-success me-2">
@@ -254,84 +243,60 @@
     <script src="../script.js"></script>
     <!-- Chart Script -->
     <script>
-        // Define data
-        const data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-            label: 'Sales',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2,
-            data: [100, 10, 150, 110, 30, 30],
-          },
-      {
-        label: 'Expenses',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 2,
-        data: [100, 150, 170, 140, 200, 250] // Expenses data
-      }]
-        };
-    
-        // Define options
-        const options = {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        };
-    
-        // Create chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: options
-        });
-      </script>
+  <?php
+      // Include connection details and database operations from a separate file
+      require 'db_connection.php';
 
-      <!-- Create script for pie chart -->
-      <script>
-        // Sample data for the pie chart
-        const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
+      $sql_students = "SELECT DATE(registration_date) AS registered_date, COUNT(*) AS student_count FROM studentaccount WHERE YEAR(registration_date) = YEAR(CURDATE()) GROUP BY registered_date";
+      $result_students = $conn->query($sql_students);
 
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'My Pie Chart'
+      $student_data = []; // Array to store student registration counts
+
+      if ($result_students->num_rows > 0) {
+          while($row = $result_students->fetch_assoc()) {
+              $student_data[] = $row['student_count']; // Add student count directly to array
           }
-        }
+      } else {
+          echo "No student data found";
       }
-    });
-  </script>
-      </script>
+      $conn->close();
+  ?>
+
+  // Define chart data (directly in Javascript)
+  const student_labels = <?php echo json_encode($labels); ?>; // Assuming labels were defined elsewhere
+  const student_data = <?php echo json_encode($student_data); ?>; // Fetched student counts
+
+  const data = {
+    labels: student_labels,
+    datasets: [{
+      label: 'Student Registrations',
+      backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 2,
+      data: student_data
+    }]
+  };
+
+  // Define options
+  const options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+
+  // Create chart
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+</script>
+
 </body>
 
 </html>

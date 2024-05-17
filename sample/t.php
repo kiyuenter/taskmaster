@@ -1,52 +1,63 @@
 <?php
-$target_date = strtotime("2024-05-10 10:00:00"); // Set your target date/time
-$current_time = time();
-$difference = $target_date - $current_time;
+// Include connection details and database operations from a separate file
+include '../php/connection.php';
 
-$days = floor($difference / (60*60*24));
-$hours = floor(($difference % (60*60*24)) / (60*60));
-$minutes = floor(($difference % (60*60)) / 60);
-$seconds = $difference % 60;
+$sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'";
+$result_solved = mysqli_query($conn, $sql_solved);
+$row_solved = mysqli_fetch_assoc($result_solved);
+$solved_count = $row_solved['solved_count'];
+
+$sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'";
+$result_unsolved = mysqli_query($conn, $sql_unsolved);
+$row_unsolved = mysqli_fetch_assoc($result_unsolved);
+$unsolved_count = $row_unsolved['unsolved_count'];
+
+// Close connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Countdown Timer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Status</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 </head>
 <body>
-  <h1>Countdown to Event</h1>
-  <p id="countdown"></p>
-  <script>
-    var days = <?= $days; ?>;
-    var hours = <?= $hours; ?>;
-    var minutes = <?= $minutes; ?>;
-    var seconds = <?= $seconds; ?>;
+  <div style="width: 200px; height: 200px;">
+    <canvas id="myPieChart" style="width: 200px; height: 200px;"></canvas></div>  <script>
+        // Define chart data based on fetched counts
+        const data = {
+          labels: ['Solved', 'Unsolved'],
+          datasets: [{
+            label: 'Questions Status',
+            data: [<?php echo $solved_count; ?>, <?php echo $unsolved_count; ?>], // Use fetched counts
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.2)', // Light blue (solved)
+              'rgba(255, 99, 132, 0.2)', // Light red (unsolved)
+            ],
+            hoverOffset: 4 // Distance between hovered point and chart
+          }]
+        };
 
-    function updateCountdown() {
-      seconds--;
-      if (seconds < 0) {
-        seconds = 59;
-        minutes--;
-      }
-      if (minutes < 0) {
-        minutes = 59;
-        hours--;
-      }
-      if (hours < 0) {
-        hours = 23;
-        days--;
-      }
-
-      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "Event Started!";
-      }
-    }
-
-    var countdownInterval = setInterval(updateCountdown, 1000); // Update every second
-  </script>
+        // Create the pie chart
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+          type: 'pie',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                position: 'bottom' // Change the position of the legend
+              },
+              title: {
+                display: true,
+                text: 'Questions Status'
+              }
+            }
+          }
+        });
+      </script>
 </body>
 </html>

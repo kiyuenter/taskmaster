@@ -1,61 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pie Chart Example</title>
-  <!-- Include Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    canvas {
-      /* Ensure the chart is responsive */
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidus Seleshi - Personal Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #000;
+        }
+        header {
+            background-color: #4682b4;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        h1, h2 {
+            color: #4169e1;
+        }
+        a {
+            color: #4682b4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .projects ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .projects li {
+            background-color: #e6f0fa;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <!-- Create canvas for the pie chart -->
-  <canvas id="myPieChart"></canvas>
 
-  <script>
-    // Sample data for the pie chart
-    const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
+    <header>
+        <h1>Kidus Seleshi</h1>
+        <p>Computer Science Graduate Student</p>
+    </header>
 
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'My Pie Chart'
-          }
-        }
-      }
-    });
-  </script>
-  </script>
+    <div class="container">
+        <section class="section about">
+            <h2>About Me</h2>
+            <p>Hello! I'm Kidus Seleshi, a recent Computer Science graduate (2024). I have a strong passion for developing innovative software solutions and have completed several projects showcasing my skills and knowledge.</p>
+        </section>
+
+        <section class="section projects">
+            <h2>Projects</h2>
+            <p>Here are some of the projects I've developed. You can find more details on my <a href="https://github.com/kidusseleshi">GitHub profile</a>.</p>
+            <ul>
+                <li>Project 1: Description of project 1.</li>
+                <li>Project 2: Description of project 2.</li>
+                <li>Project 3: Description of project 3.</li>
+                <li>Project 4: Description of project 4.</li>
+                <li>Project 5: Description of project 5.</li>
+                <li>Project 6: Description of project 6.</li>
+                <li>Project 7: Description of project 7.</li>
+            </ul>
+        </section>
+
+        <section class="section contact">
+            <h2>Contact</h2>
+            <p>If you would like to get in touch, feel free to email me at <a href="mailto:kidusseleshi19@gmail.com">kidusseleshi19@gmail.com</a>.</p>
+        </section>
+    </div>
+
 </body>
 </html>
