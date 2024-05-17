@@ -159,7 +159,16 @@
                                             Total Registered Teacher
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                            <?php
+                                                include '../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allTeachers FROM teacheraccount";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allTeachers'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
                                         <div class="mb-0">
                                             <span class="badge text-success me-2">
@@ -179,7 +188,16 @@
                                             Total Registered Student
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allStudent FROM studentaccount";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allStudent'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
                                         <div class="mb-0">
                                             <span class="badge text-success me-2">
@@ -199,7 +217,16 @@
                                             Total Asked Questions
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allAsked FROM askedquestions";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allAsked'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
                                         <div class="mb-0">
                                             <span class="badge text-success me-2">
