@@ -41,14 +41,14 @@
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item some"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -126,16 +126,17 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                     <?php
-                        if(isset($_SESSION['msg']))
+                        if(isset($_SESSION['username']))
                         {
                             echo '
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
@@ -155,16 +156,17 @@
                                             Total Asked Questions
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS ask FROM askedquestions";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['ask'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -175,16 +177,17 @@
                                             Total Solved Questions
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS asolve FROM askedquestions WHERE statuss = 'solved'";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['asolve'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -195,100 +198,70 @@
                                             Total Unsolved Questions
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS usolve FROM askedquestions WHERE statuss = 'unsolved'";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['usolve'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container-fluid mt-5 d-flex justify-content-center">
                             <div class="row">
-                                <div class="col-md-4 mt-2">
-                                    <div class="card" style="width: 20rem;">
-                                        <div class="card-body">
-                                          <h5 class="card-title">Asker Name: </h5>
-                                          <p class="card-text">Asker Email: </p>
-                                          <p class="card-text">Subject</p>
-                                          <p class="card-text">Course</p>
-                                          <p class="card-text">Degree Level</p>
-                                          <p class="card-text">Course code</p>
-                                          <p class="card-text">Deadline</p>
-                                          <p class="card-text">Question</p>
-                                          <p class="card-text">Solution</p>
-                                          <div class="d-flex justify-content-between mt-2 align-items-center">
-                                          <p class="card-text">Attachment</p>
-                                          <a href="#" class="btn btn-success">Download</a>
-                                          </div>
-                                          <p class="card-text">Status: </p>
-                                          <div>
-                                            <div class="alert alert-danger" role="alert">
-                                                <p class="" style="font-size: 14px !important;">Solver Email: </p>
-                                                <p class="" style="font-size: 14px !important;">Solver Name: </p>
-                                              </div>
-                                        </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col-md-4 mt-2">
-                                    <div class="card" style="width: 20rem;">
-                                        <div class="card-body">
-                                          <h5 class="card-title">Asker Name: </h5>
-                                          <p class="card-text">Asker Email: </p>
-                                          <p class="card-text">Subject</p>
-                                          <p class="card-text">Course</p>
-                                          <p class="card-text">Degree Level</p>
-                                          <p class="card-text">Course code</p>
-                                          <p class="card-text">Deadline</p>
-                                          <p class="card-text">Question</p>
-                                          <p class="card-text">Solution</p>
-                                          <div class="d-flex justify-content-between mt-2 align-items-center">
-                                          <p class="card-text">Attachment</p>
-                                          <a href="#" class="btn btn-success">Download</a>
-                                          </div>
-                                          <p class="card-text">Status: </p>
-                                          <div>
-                                            <div class="alert alert-danger" role="alert">
-                                                <p class="" style="font-size: 14px !important;">Solver Email: </p>
-                                                <p class="" style="font-size: 14px !important;">Solver Name: </p>
-                                              </div>
+                                <?php
+                                include "../../php/connection.php";
+
+                                $sql = "SELECT * FROM askedquestions";
+                                $result = $conn -> query($sql);
+
+                                if($result -> num_rows > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        echo '
+                                            <div class="col-md-4 mt-2">
+                                                <div class="card" style="width: 20rem;">
+                                                    <div class="card-body">
+                                                    <h5 class="card-title">Asker Name: '.$row["askerName"].'</h5>
+                                                    <p class="card-text">Asker Email: '.$row["askerEmail"].'</p>
+                                                    <p class="card-text">Subject: '.$row["subjects"].'</p>
+                                                    <p class="card-text">Course: '.$row["course"].'</p>
+                                                    <p class="card-text">Degree Level: '.$row["degree"].'</p>
+                                                    <p class="card-text">Course code: '.$row["course_code"].'</p>
+                                                    <p class="card-text">Deadline: '.$row["deadln"].'</p>
+                                                    <p class="card-text">Question:</p>
+                                                    <p class="card-text">'.$row["question"].'</p>
+                                                    <p class="card-text">Solution</p>
+                                                    <p class="card-text">'.$row["solution_answer"].'</p>
+                                                    <div class="d-flex justify-content-between mt-2 align-items-center">
+                                                    <p class="card-text">Attachment</p>';
+
+                                                    if ($row["attachment"] != "") {
+                                                        echo '<a class="btn btn-success" target="_blank" href="' . htmlspecialchars($row["attachment"]) . '">Download</a>';
+                                                    } else {
+                                                        echo '<p class="text-center">No attached file</p>';
+                                                    }
+                                                    echo '
+                                                    </div>
+                                                    <p class="card-text">Status: </p>
+                                                    <div>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="" style="font-size: 14px !important;">Solver Name: '.$row["solverUsername"].'</p>
+                                                            <p class="" style="font-size: 14px !important;">Solver Email: '.$row["solverEmail"].'</p>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col-md-4 mt-2">
-                                    <div class="card" style="width: 20rem;">
-                                        <div class="card-body">
-                                          <h5 class="card-title">Asker Name: </h5>
-                                          <p class="card-text">Asker Email: </p>
-                                          <p class="card-text">Subject</p>
-                                          <p class="card-text">Course</p>
-                                          <p class="card-text">Degree Level</p>
-                                          <p class="card-text">Course code</p>
-                                          <p class="card-text">Deadline</p>
-                                          <p class="card-text">Question</p>
-                                          <p class="card-text">Solution</p>
-                                          <div class="d-flex justify-content-between mt-2 align-items-center">
-                                          <p class="card-text">Attachment</p>
-                                          <a href="#" class="btn btn-success">Download</a>
-                                          </div>
-                                          <p class="card-text">Status: </p>
-                                          <div>
-                                            <div class="alert alert-danger" role="alert">
-                                                <p class="" style="font-size: 14px !important;">Solver Email: </p>
-                                                <p class="" style="font-size: 14px !important;">Solver Name: </p>
-                                              </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                </div>
+                                            ';
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

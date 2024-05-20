@@ -215,26 +215,87 @@
                     <table class="table table-dark table-hover">
                         <thead>
                           <tr>
-                            <th scope="col">Profile</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
                             <th scope="col">Email Address</th>
-                            <th scope="col">Education</th>
-                            <th scope="col">Department</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                           </tr>
                         </thead>
                         <tbody>
+
+                    <?php
+                    include '../../php/connection.php';
+                    $sql = "SELECT * FROM admin_account";
+                    $result = $conn -> query($sql);
+                    $i = 1;
+                    if($result -> num_rows > 0)
+                    {
+                        while($row = $result->fetch_assoc()){
+
+                            echo '
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                            <th scope="row">'.$i.'</th>
+                            <td>'.$row["username"].'</td>
+                            <td>'.$row["email"].'</td>
+                            <td><button  type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button></td>
+                            <td><button class="btn btn-danger"><i class="lni lni-trash-can"></i></button></td>
                           </tr>
-                        </tbody>
+                          '.$i++.'
+                        
+                      ';
+                        }
+                    }
+                      ?>
+                      </tbody>
                       </table>
                 </div>
+                <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Question</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <input class="w-100 m-2 form-control" type="text" value="Question">
+                                  <div class="d-flex align-items-center">
+                                    <p class="m-2">A.</p>
+                                    <input class="w-100 m-2 form-control" type="text" value="Question">
+                                  </div>
+                                  <div class="d-flex align-items-center">
+                                    <p class="m-2">B.</p>
+                                    <input class="w-100 m-2 form-control" type="text" value="Question">
+                                  </div>
+                                  <div class="d-flex align-items-center">
+                                    <p class="m-2">C.</p>
+                                    <input class="w-100 m-2 form-control" type="text" value="Question">
+                                  </div>
+                                  <div class="d-flex align-items-center">
+                                    <p class="m-2">D.</p>
+                                    <input class="w-100 m-2 form-control" type="text" value="Question">
+                                  </div>
+                                  <select class="form-control">
+                                    <option value="Select">Select</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="English">English</option>
+                                    <option value="Amharic">Amharic</option>
+                                    <option value="Science">Science</option>
+                                    <option value="Accounting and Finance">Accounting and Finance</option>
+                                    <option value="Human Resources Management">Human Resources Management</option>
+                                    <option value="Management">Management</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                  </select>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
             </main>
             <footer class="footer">
                 <div class="container-fluid">

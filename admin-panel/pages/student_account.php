@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Taskmaster | Student Account</title>
+    <link rel="icon" href="../../photo/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -195,16 +196,32 @@
                             <th scope="col">Email Address</th>
                             <th scope="col">Education</th>
                             <th scope="col">Department</th>
+                            <th scope="col">registration Date</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                            <?php
+                                $sql = "SELECT * FROM studentaccount";
+                                $result = $conn -> query($sql);
+                                $i = 1;
+                                if($result -> num_rows > 0) {
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        echo '
+                                        <tr>
+                                    <th scope="row">'.$i.'</th>
+                                    <td>'.$row['FName'].'</td>
+                                    <td>'.$row['LName'].'</td>
+                                    <td>'.$row['emailAdd'].'</td>
+                                    <td>'.$row['levelEdu'].'</td>
+                                    <td>'.$row['department'].'</td>
+                                    <td>'.$row['registration_date'].'</td>
+                                    </tr>
+                                    ';
+                                    }
+
+                                }
+                            ?>
                           </tr>
                         </tbody>
                       </table>
@@ -243,60 +260,63 @@
     <script src="../script.js"></script>
     <!-- Chart Script -->
     <script>
-  <?php
-      // Include connection details and database operations from a separate file
-      require 'db_connection.php';
+        <?php
+        include '../../php/connection.php';
 
-      $sql_students = "SELECT DATE(registration_date) AS registered_date, COUNT(*) AS student_count FROM studentaccount WHERE YEAR(registration_date) = YEAR(CURDATE()) GROUP BY registered_date";
-      $result_students = $conn->query($sql_students);
+        $sql = "SELECT DATE(registration_date) AS registered_date, COUNT(*) AS daily_users FROM studentaccount WHERE YEAR(registration_date) = YEAR(CURDATE()) GROUP BY registered_date";
+        $result = $conn->query($sql);
 
-      $student_data = []; // Array to store student registration counts
+        $daily_users = [];
+        $labels = [];
+        $user_data = [];
 
-      if ($result_students->num_rows > 0) {
-          while($row = $result_students->fetch_assoc()) {
-              $student_data[] = $row['student_count']; // Add student count directly to array
-          }
-      } else {
-          echo "No student data found";
-      }
-      $conn->close();
-  ?>
-
-  // Define chart data (directly in Javascript)
-  const student_labels = <?php echo json_encode($labels); ?>; // Assuming labels were defined elsewhere
-  const student_data = <?php echo json_encode($student_data); ?>; // Fetched student counts
-
-  const data = {
-    labels: student_labels,
-    datasets: [{
-      label: 'Student Registrations',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 2,
-      data: student_data
-    }]
-  };
-
-  // Define options
-  const options = {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $daily_users[$row['registered_date']] = $row['daily_users'];
+                $labels[] = $row['registered_date']; // Assuming date format works for chart labels
+                $user_data[] = $daily_users[$row['registered_date']];
+            }
+        } else {
+            echo "No data found";
         }
-      }]
-    }
-  };
 
-  // Create chart
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-  });
-</script>
+        
+        $conn->close();
+    ?>
 
+        // Define chart data
+        const data = {
+          labels: <?php echo json_encode($labels); ?>,
+          datasets: [{
+            label: 'Registered Students',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2,
+            data: <?php echo json_encode($user_data); ?>,
+          },
+          
+        ]
+        };
+    
+        // Define options
+        const options = {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        };
+    
+        // Create chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: options
+        });
+      </script>
 </body>
 
 </html>

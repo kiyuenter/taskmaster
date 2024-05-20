@@ -46,7 +46,7 @@
                         <?php
                             if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
                                 echo '
-                                  <li class="sidebar-item some"> 
+                                  <li class="sidebar-item"> 
                                     <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
                                   </li>
                                 ';
@@ -324,14 +324,14 @@
         const data = {
           labels: <?php echo json_encode($labels); ?>,
           datasets: [{
-            label: 'Daily Registrations',
+            label: 'Teacher Registered',
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 2,
             data: <?php echo json_encode($user_data); ?>,
           },
           {
-          label: 'Student Registrations', // Change label as needed
+          label: 'Student Registered', // Change label as needed
           backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 2,

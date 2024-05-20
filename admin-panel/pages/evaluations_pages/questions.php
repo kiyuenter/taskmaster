@@ -8,8 +8,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Taskmaster | Evaluation Questions</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="../../../photo/logo.png">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -44,14 +45,14 @@
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#usermanagement">
                         <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item some"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="../student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -135,7 +136,7 @@
                                 <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
                                 <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
                                     <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
@@ -152,48 +153,27 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-12">
                                 <div class="card border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
                                             Total Questions
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                            <?php
+                                                include '../../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allQue FROM evaluationque";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allQue'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 ">
-                                <div class="card  border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Study Fields
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                         <div class="container-fluid bg-light ask d-flex justify-content-center align-items-center">
                             <div class="w-50">
@@ -240,26 +220,46 @@
                                 <th scope="col">Choose D</th>
                                 <th scope="col">Answer</th>
                                 <th scope="col">Department</th>
-                                <th scope="col" class="text-center">Edit | Delete</th>
+                                <th scope="col" class="text-center">Edit</th>
+                                <th scope="col" class="text-center">Delete</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>
-                                  <div class="d-flex align-items-center justify-content-center">
-                                    <button  type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button>
-                                    <button class="btn btn-danger"><i class="lni lni-trash-can"></i></button>
-                                  </div>
-                                </td>
-                              </tr>
+                                <?php
+                                    include '../../../php/connection.php';
+                                    $sql = "SELECT * FROM evaluationque";
+                                    $result = $conn -> query($sql);
+                                    $i = 1;
+                                    if($result -> num_rows > 0){
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            echo '
+                                                <tr>
+                                                    <th scope="row">'.$i.'</th>
+                                                    <td>'.$row["evaDetail"].'</td>
+                                                    <td>'.$row["A"].'</td>
+                                                    <td>'.$row["B"].'</td>
+                                                    <td>'.$row["C"].'</td>
+                                                    <td>'.$row["D"].'</td>
+                                                    <td>'.$row["departQ"].'</td>
+                                                    <td>'.$row["answer"].'</td>
+                                                    <td>
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <button  type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button>
+                                                    </div>
+                                                    </td>
+                                                    <td>
+                                                    <div class="d-flex align-items-center justify-content-center">
+
+                                                    <button class="btn btn-danger"><i class="lni lni-trash-can"></i></button>
+                                                    </div>
+                                                    </td>
+                                                </tr>
+
+                                                ';
+                                                $i++;
+                                        }
+                                    }
+                              ?>
                             </tbody>
                           </table>
 <!-- Modal Form -->

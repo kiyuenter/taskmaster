@@ -41,14 +41,14 @@
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#usermanagement">
                         <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item some"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="../student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -126,16 +126,17 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                     <?php
-                        if(isset($_SESSION['msg']))
+                        if(isset($_SESSION['username']))
                         {
                             echo '
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
@@ -145,9 +146,9 @@
                 </div>
             </nav>
             <main class="content px-3 py-4">
-                <div class="container-fluid">
+                <div class="container-fluid w-100">
                     <div class="mb-3">
-                        <div class="container mt-5">
+                        <div class="mt-5 w-100">
                             <table class="table table-dark table-hover">
                                 <thead>
                                   <tr>
@@ -166,20 +167,35 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                  </tr>
+                                    <?php
+                                        include "../../../php/connection.php";
+
+                                        $sql = "SELECT * FROM teacherevaanswer";
+                                        $result = $conn -> query($sql);
+                                        $i = 1;
+
+                                        if($result -> num_rows > 0){
+                                            while($row = mysqli_fetch_assoc($result)){
+                                                echo '
+                                                <tr>
+                                                    <th scope="row">'.$i.'</th>
+                                                    <td style="font-size: 12px !important;">'.$row["teachEmail"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q2"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q1"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q3"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q4"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q5"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q6"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q7"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q8"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q9"].'</td>
+                                                    <td style="font-size: 12px !important;">'.$row["q10"].'</td>
+                                                </tr>
+                                                ';
+                                                $i++;
+                                            }
+                                        }
+                                        ?>
                                 </tbody>
                               </table>
                         </div>

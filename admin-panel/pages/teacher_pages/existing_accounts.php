@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Taskmaster | Existing Accounts</title>
+    <link rel="icon" href="../../../photo/logo.png"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,6 +44,15 @@
                 </a>
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
+                        <?php
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="../student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -116,11 +129,23 @@
                 <h3 class="fw-bold fs-4 mb-3 mt-3">Existing Accounts</h3>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="account.png" class="avatar img-fluid" alt="">
-                            </a>
-                        </li>
+                    <?php
+                        if(isset($_SESSION['username']))
+                        {
+                            echo '
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
+                                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                </a>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
+                                </ul>
+                                </li>
+                            ';
+                        }
+                    ?>
                     </ul>
                 </div>
             </nav>
@@ -135,16 +160,17 @@
                                             Total Registered Teacher
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allTeachers FROM teacheraccount";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allTeachers'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -155,16 +181,17 @@
                                             Verified Teachers
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allTeachers FROM teacheraccount WHERE statusActivity != 'Disable'";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allTeachers'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -175,66 +202,75 @@
                                             Unverified Teachers
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
+                                        <?php
+                                                include '../../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allTeachers FROM teacheraccount WHERE statusActivity = 'Disable'";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allTeachers'];
+                                                echo $count_teach;
+                                            ?>
+                                        </p> 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="container-fluid mt-5">
+                    </div>
+                </div>
+                <h1 class="text-center m-4">Our Partners</h1>
+                          <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-6 str">
-                                    <canvas id="myChart" width="100px" height="100px"></canvas>
-                                </div>
-                                <div class="col-md-6 str">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
+                                <?php
+                                include '../../../php/connection.php';
+                                $sql = "SELECT * FROM teacheraccount WHERE statusActivity != 'Disable'";
+                                $result = $conn -> query($sql);
+
+                                if($result -> num_rows > 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        echo '
+                                            <div class="col-md-4 mt-2">
+                                                <div class="card" style="width: 24rem;">
+                                                    <div class="d-flex justify-content-center align-items-center m-4">
+                                                        <img style="border-radius: 50%; width: 150px; object-fit: fill;" src="../../../teacherfiles/'.$row["profilePicture"].'" class="card-img-top" alt="profile">
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Full Name:&nbsp'.$row["FName"].'&nbsp'.$row["LName"].'</h5>
+                                                        <p class="card-text">Gender:&nbsp'.$row["Gender"].'</p>
+                                                        <p class="card-text">DOB:&nbsp'.$row["dob"].'</p>
+                                                        <p class="card-text">Country:&nbsp'.$row["country"].'</p>
+                                                        <p class="card-text">Education Level:&nbsp'.$row["eduLevel"].'</p>
+                                                        <p class="card-text">Department:&nbsp'.$row["department"].'</p>
+                                                        <p class="card-text">Academic:&nbsp'.$row["academic"].'</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                        <p class="card-text">Educational Document</p>
+                                                        <a href="#" class="btn btn-success">Download</a>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between mt-2 align-items-center">
+                                                        <p class="card-text">CV Document</p>
+                                                        <a href="#" class="btn btn-success">Download</a>
+                                                        </div>
+                                                        <p class="card-text">Registration Date:&nbsp'.$row["registration_date"].'</p>
+                                                        <div>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <p class="text-center" style="font-size: 12px !important;">Before click please make sure the account is correct!</p>
+                                                            </div>
+                                                            <p></p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center align-items-center">
+                                                            <a href="#" class="btn btn-danger me-3">Remove from partnership</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            ';
+                                    }
+                                }
+                                ?>   
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4 mt-2">
-                            <div class="card" style="width: 24rem;">
-                                <img src="..." class="card-img-top" alt="profile">
-                                <div class="card-body">
-                                    <h5 class="card-title">Full Name</h5>
-                                    <p class="card-text">Gender</p>
-                                    <p class="card-text">DOB</p>
-                                    <p class="card-text">Country</p>
-                                    <p class="card-text">Education Level</p>
-                                    <p class="card-text">Department</p>
-                                    <p class="card-text">Academic</p>
-                                    <p class="card-text">Solved Questions</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                      <p class="card-text">Educational Document</p>
-                                      <a href="#" class="btn btn-success">Download</a>
-                                    </div>
-                                    <div class="d-flex justify-content-between mt-2 align-items-center">
-                                    <p class="card-text">CV Document</p>
-                                    <a href="#" class="btn btn-success">Download</a>
-                                    </div>
-                                    <p class="card-text">Registration Date</p>
-                                    <div>
-                                        <h5 class="card-title text-center"><u><b>Status</b></u></h5>
-                                    </div>
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <a href="#" class="btn btn-danger ms-3">Remove from partnership</a>
-                                    </div>
-                                  </div>
-                              </div>
-                        </div>
-                    </div>
-                </div>
+                          </div>
             </main>
             <footer class="footer">
                 <div class="container-fluid">
@@ -267,86 +303,6 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="../../script.js"></script>
-    <!-- Chart Script -->
-    <script>
-        // Define data
-        const data = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-            label: 'Sales',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 2,
-            data: [100, 10, 150, 110, 30, 30],
-          },
-      {
-        label: 'Expenses',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 2,
-        data: [100, 150, 170, 140, 200, 250] // Expenses data
-      }]
-        };
-    
-        // Define options
-        const options = {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        };
-    
-        // Create chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: options
-        });
-      </script>
-
-      <!-- Create script for pie chart -->
-      <script>
-        // Sample data for the pie chart
-        const kidus = {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)'
-        ],
-        hoverOffset: 4 // Distance between the hovered data point and the chart
-      }]
-    };
-
-    // Create the pie chart
-    var ctxt = document.getElementById('myPieChart').getContext('2d');
-    var myPieChart = new Chart(ctxt, {
-      type: 'pie',
-      data: kidus,
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom', // Change the position of the legend
-          },
-          title: {
-            display: true,
-            text: 'My Pie Chart'
-          }
-        }
-      }
-    });
-  </script>
-      </script>
 </body>
 
 </html>
