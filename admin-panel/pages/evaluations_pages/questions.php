@@ -136,7 +136,7 @@
                                 <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                    <img src="../../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
                                 <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
                                     <li><p>Welcome back<br>'.$_SESSION['username'].'</p>

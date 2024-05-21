@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -45,7 +48,7 @@
                             $realAdmin = 'kidusseleshi19@gmail.com';
                             if($_SESSION['emailA'] == $realAdmin){
                             echo '
-                            <li class="sidebar-item some"> 
+                            <li class="sidebar-item"> 
                                 <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
                             </li>';
                             }

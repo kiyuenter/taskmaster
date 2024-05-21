@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -41,14 +44,14 @@
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
                         <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item some"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -126,16 +129,17 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                     <?php
-                        if(isset($_SESSION['msg']))
+                        if(isset($_SESSION['username']))
                         {
                             echo '
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
@@ -147,35 +151,35 @@
             <main class="content px-3 py-4">
                 <div class="container-fluid">
                     <div class="container mt-3">
-    <h1>Report Generator</h1>
-    <form method="post" action="generate_report.php">
-      <div class="mb-3">
-        <label for="product" class="form-label">Select Report Type:</label>
-        <select name="product_id" id="product" class="form-select">
-          <option value="">Select</option>
-          <option value="">Registered Students</option>
-          <option value="">Registered Teachers</option>
-          <option value="">Student Feedback</option>
-          <option value="">Evaluation Questions</option>
-          <option value="">Evaluated Teachers Answers</option>
-          <option value="">Asked Questions</option>
-          <option value="">Uploaded Resources</option>
-          <option value="">All Data</option>
-        </select>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label for="date_from" class="form-label">Date From:</label>
-          <input type="date" name="date_from" id="date_from" class="form-control">
-        </div>
-        <div class="col">
-          <label for="date_to" class="form-label">Date To:</label>
-          <input type="date" name="date_to" id="date_to" class="form-control">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Generate Report</button>
-    </form>
-  </div>
+                        <h1>Report Generator</h1>
+                        <form method="post" action="../../php/generate_report.php">
+                            <div class="mb-3">
+                                <label for="product" class="form-label">Select Report Type:</label>
+                                <select name="product_id" id="product" class="form-select">
+                                <option value="">Select</option>
+                                <option value="">Registered Students</option>
+                                <option value="">Registered Teachers</option>
+                                <option value="">Student Feedback</option>
+                                <option value="">Evaluation Questions</option>
+                                <option value="">Evaluated Teachers Answers</option>
+                                <option value="">Asked Questions</option>
+                                <option value="">Uploaded Resources</option>
+                                <option value="">All Data</option>
+                                </select>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                <label for="date_from" class="form-label">Date From:</label>
+                                <input type="date" name="date_from" id="date_from" class="form-control">
+                                </div>
+                                <div class="col">
+                                <label for="date_to" class="form-label">Date To:</label>
+                                <input type="date" name="date_to" id="date_to" class="form-control">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Generate Report</button>
+                        </form>
+                    </div>
                 </div>
             </main>
             <footer class="footer">

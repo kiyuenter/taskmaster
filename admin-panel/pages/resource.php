@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Taskmaster | Resource</title>
+    <link rel="icon" href="../../photo/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,15 +44,15 @@
                     </a>
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                        <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item some"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                    <?php
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item">
                             <a href="student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -126,16 +130,17 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                     <?php
-                        if(isset($_SESSION['msg']))
+                        if(isset($_SESSION['username']))
                         {
                             echo '
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
@@ -148,63 +153,24 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-12">
                                 <div class="card border-0 info">
                                     <div class="card-body py-4">
                                         <h5 class="mb-2 fw-bold">
-                                            Total Registered Teacher
+                                            All uploaded resources
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS allQue FROM resources";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['allQue'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card  border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Registered Student
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 ">
-                                <div class="card border-0 info">
-                                    <div class="card-body py-4">
-                                        <h5 class="mb-2 fw-bold">
-                                            Total Asked Questions
-                                        </h5>
-                                        <p class="mb-2 fw-bold">
-                                            $72,540
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -212,6 +178,16 @@
                         <div class="container-fluid mt-5">
                             <div class="container mt-3">
                                 <div class="form-container">
+                                <?php
+                                    if (isset($_SESSION['msg'])) {
+                                        echo '
+                                            <div class="alert alert-danger" role="alert">
+                                                <p class="">'.htmlspecialchars($_SESSION["msg"]).'</p>
+                                            </div>
+                                        ';
+                                        unset($_SESSION['msg']);
+                                    }
+                                ?>
                                   <h1>Resource Uploader</h1>
                                   <form action="../receive-upload-resource.php" method="post" enctype="multipart/form-data">
                                     <div class="mb-3">
@@ -261,14 +237,16 @@
                     <!-- resource list -->
               <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
-
                         <?php
+                            include "../../php/connection.php";
+                            $sql = "SELECT * FROM resources";
+                            $result = $conn -> query($sql);
                             if ($result -> num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
+                                while($row = mysqli_fetch_assoc($result)) {
                                     echo '
-                            <img src="'.$row["coverimg"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
+                                    <div class="col-md-4">
+                                    <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
+                            <img src="../'.$row["coverimg"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
                             <div class="card-body">
                             <h5 class="card-title">'.$row["title"].'</h5>
                             <p class="card-text">'.$row["descr"].'</p>
@@ -280,15 +258,16 @@
                             <li class="list-group-item" style="display: none;">'.$row["timestamp"].'</li>
                             </ul>
                             <div class="card-body justify-content-center align-items-center d-flex">
-                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
+                                <p><a id="download-link" href="../'.$row["resourcefile"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
                                 <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
                             </div>
+                            </div>
+                    </div>
                             ';
                         }
                     }
                 ?>
-                        </div>
-                    </div>
+                        
                 </div>
                 </div>
                 </div>

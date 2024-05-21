@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "../php/connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,8 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Update to include both coverImg and uploadedFileName
   $sql = "INSERT INTO resources (coverimg, resourcefile, title, descr, category, page_count) VALUES ('$coverImg','$uploadedFileName','$title','$description','$category','$pageCount')";
-  $conn -> query($sql);
-
+  if($conn -> query($sql)){
+  $successFlag = true;
+  $_SESSION['msg'] = "The resource successfully uploaded";
+  header("Location: pages/resource.php");
+  }
 }
 
 ?>
