@@ -155,18 +155,18 @@
                         <form method="post" action="../../php/generate_report.php">
                             <div class="mb-3">
                                 <label for="product" class="form-label">Select Report Type:</label>
-                                <select name="product_id" id="product" class="form-select">
+                                <select name="report_type" id="product" class="form-select">
                                 <option value="">Select</option>
-                                <option value="">Registered Students</option>
-                                <option value="">Registered Teachers</option>
-                                <option value="">Student Feedback</option>
-                                <option value="">Evaluation Questions</option>
-                                <option value="">Evaluated Teachers Answers</option>
-                                <option value="">Asked Questions</option>
-                                <option value="">Uploaded Resources</option>
-                                <option value="">All Data</option>
+                                <option value="regStud">Registered Students</option>
+                                <option value="regTeach">Registered Teachers</option>
+                                <option value="evalQue">Evaluation Questions</option>
+                                <option value="evalTeachAn">Evaluated Teachers Answers</option>
+                                <option value="asQue">Asked Questions</option>
+                                <option value="upRes">Uploaded Resources</option>
+                                <option value="allD">All Data</option>
                                 </select>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col">
                                 <label for="date_from" class="form-label">Date From:</label>
@@ -176,6 +176,14 @@
                                 <label for="date_to" class="form-label">Date To:</label>
                                 <input type="date" name="date_to" id="date_to" class="form-control">
                                 </div>
+                                <div class="col">
+                                <label for="date_to" class="form-label">Report Format:</label>
+                                <select name="format-type" class="form-select" require>
+                                    <option>Select</option>
+                                    <option value="excel">Microsoft Excel</option>
+                                    <option value="pdf">PDF</option>
+                                </select>
+                            </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Generate Report</button>
                         </form>

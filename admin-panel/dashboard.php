@@ -328,6 +328,7 @@
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 2,
+            tension: 0.5,
             data: <?php echo json_encode($user_data); ?>,
           },
           {
@@ -335,6 +336,7 @@
           backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light red
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 2,
+          tension: 0.5,
           data: <?php echo json_encode($student_data); ?>,
         }
         ]
