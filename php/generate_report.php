@@ -1,8 +1,13 @@
 <?php
 session_start();
 require('../fpdf/fpdf.php');
+require '../vendor/autoload.php';
 include "connection.php"; // Ensure you have a valid database connection
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Style;
 // Fetch POST data
 $reportType = $_POST['report_type'];
 $date_from = $_POST['date_from'];
@@ -551,20 +556,568 @@ if ($type == "pdf") {
 } else {
     if ($reportType == "regStud") {
         // Handle Excel report for student registrations
+        $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Define border style array
+    $borderStyleArray = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['argb' => '000000'],
+            ],
+        ],
+    ];
+
+    // Define the columns to select, excluding sPassword
+    $columns = "ID, FName, LName, emailAdd, levelEdu, department, registration_date";
+
+    // Fetch data from the studentaccount table
+    $sql = "SELECT $columns FROM studentaccount WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+    $result = $conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+
+    // Add table name as a header
+    $sheet->setCellValue('A1', 'Table: studentaccount');
+    $rowNumber = 2;
+
+    // Add column headings
+    if (!empty($data)) {
+        $columnNames = array_keys($data[0]);
+        $columnIndex = 'A';
+        foreach ($columnNames as $colName) {
+            $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+            $columnIndex++;
+        }
+
+        // Apply border style to the header row
+        $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+
+        $rowNumber++;
+
+        // Add data rows
+        foreach ($data as $row) {
+            $columnIndex = 'A';
+            foreach ($row as $col) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                $columnIndex++;
+            }
+
+            // Apply border style to the data row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+            
+            $rowNumber++;
+        }
+    } else {
+        $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+    }
+
+    $conn->close();
+
+    // Set the writer to output the spreadsheet
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'StudentAccount_Report_' . date('Ymd') . '.xlsx';
+
+    // Set the header for downloading the file
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Write the file to the output
+    $writer->save('php://output');
+    exit;
     } elseif ($reportType == "regTeach") {
         // Handle Excel report for teacher registrations
-    } elseif ($reportType == "studFeed") {
-        // Handle Excel report for student feedback
+        $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Define border style array
+    $borderStyleArray = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['argb' => '000000'],
+            ],
+        ],
+    ];
+
+    // Define the columns to select, excluding sPassword
+    $columns = "ID, FName, LName, emailAdd, Gender, dob, country, eduLevel, department, academic, statusActivity, registration_date"; // Exclude tPassword
+
+    // Fetch data from the studentaccount table
+    $sql = "SELECT $columns FROM teacheraccount WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+    $result = $conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+
+    // Add table name as a header
+    $sheet->setCellValue('A1', 'Table: Teacher Account Report');
+    $rowNumber = 2;
+
+    // Add column headings
+    if (!empty($data)) {
+        $columnNames = array_keys($data[0]);
+        $columnIndex = 'A';
+        foreach ($columnNames as $colName) {
+            $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+            $columnIndex++;
+        }
+
+        // Apply border style to the header row
+        $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+
+        $rowNumber++;
+
+        // Add data rows
+        foreach ($data as $row) {
+            $columnIndex = 'A';
+            foreach ($row as $col) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                $columnIndex++;
+            }
+
+            // Apply border style to the data row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+            
+            $rowNumber++;
+        }
+    } else {
+        $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+    }
+
+    $conn->close();
+
+    // Set the writer to output the spreadsheet
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'TeacherAccount_Report_' . date('Ymd') . '.xlsx';
+
+    // Set the header for downloading the file
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Write the file to the output
+    $writer->save('php://output');
+    exit;
     } elseif ($reportType == "evalQue") {
         // Handle Excel report for evaluation questions
+        $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Define border style array
+    $borderStyleArray = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['argb' => '000000'],
+            ],
+        ],
+    ];
+
+    // Define the columns to select, excluding sPassword
+    $columns = "QID, evaDetail, A, B, C, D, departQ, answer, registration_date";
+
+    // Fetch data from the studentaccount table
+    $sql = "SELECT $columns FROM evaluationque WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+    $result = $conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+
+    // Add table name as a header
+    $sheet->setCellValue('A1', 'Table: Evaluation Question Report');
+    $rowNumber = 2;
+
+    // Add column headings
+    if (!empty($data)) {
+        $columnNames = array_keys($data[0]);
+        $columnIndex = 'A';
+        foreach ($columnNames as $colName) {
+            $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+            $columnIndex++;
+        }
+
+        // Apply border style to the header row
+        $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+
+        $rowNumber++;
+
+        // Add data rows
+        foreach ($data as $row) {
+            $columnIndex = 'A';
+            foreach ($row as $col) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                $columnIndex++;
+            }
+
+            // Apply border style to the data row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+            
+            $rowNumber++;
+        }
+    } else {
+        $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+    }
+
+    $conn->close();
+
+    // Set the writer to output the spreadsheet
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'Evaluation_Question_Report_' . date('Ymd') . '.xlsx';
+
+    // Set the header for downloading the file
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Write the file to the output
+    $writer->save('php://output');
+    exit;
     } elseif ($reportType == "evalTeachAn") {
         // Handle Excel report for evaluation teacher answers
+        $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // Define border style array
+    $borderStyleArray = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['argb' => '000000'],
+            ],
+        ],
+    ];
+
+    // Define the columns to select, excluding sPassword
+    $columns = "ID, teachEmail, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, registration_date";
+
+    // Fetch data from the studentaccount table
+    $sql = "SELECT $columns FROM teacherevaanswer WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+    $result = $conn->query($sql);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+
+    // Add table name as a header
+    $sheet->setCellValue('A1', 'Table: Evaluated Teachers Answers Report');
+    $rowNumber = 2;
+
+    // Add column headings
+    if (!empty($data)) {
+        $columnNames = array_keys($data[0]);
+        $columnIndex = 'A';
+        foreach ($columnNames as $colName) {
+            $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+            $columnIndex++;
+        }
+
+        // Apply border style to the header row
+        $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+
+        $rowNumber++;
+
+        // Add data rows
+        foreach ($data as $row) {
+            $columnIndex = 'A';
+            foreach ($row as $col) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                $columnIndex++;
+            }
+
+            // Apply border style to the data row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+            
+            $rowNumber++;
+        }
+    } else {
+        $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+    }
+
+    $conn->close();
+
+    // Set the writer to output the spreadsheet
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'Evaluated_Teachers_Answers_Report_' . date('Ymd') . '.xlsx';
+
+    // Set the header for downloading the file
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Write the file to the output
+    $writer->save('php://output');
+    exit;
     } elseif ($reportType == "asQue") {
         // Handle Excel report for assignment questions
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+    
+        // Define border style array
+        $borderStyleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ];
+    
+        // Define the columns to select, excluding sPassword
+        $columns = "AID, askerEmail, askerName, subjects, course, degree, course_code, deadln, question, statuss, solution_answer, solverEmail, solverUsername, studentFeedback, registration_date";
+    
+        // Fetch data from the studentaccount table
+        $sql = "SELECT $columns FROM askedquestions WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+        $result = $conn->query($sql);
+    
+        $data = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+    
+        // Add table name as a header
+        $sheet->setCellValue('A1', 'Table: Asked Question Report');
+        $rowNumber = 2;
+    
+        // Add column headings
+        if (!empty($data)) {
+            $columnNames = array_keys($data[0]);
+            $columnIndex = 'A';
+            foreach ($columnNames as $colName) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+                $columnIndex++;
+            }
+    
+            // Apply border style to the header row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+    
+            $rowNumber++;
+    
+            // Add data rows
+            foreach ($data as $row) {
+                $columnIndex = 'A';
+                foreach ($row as $col) {
+                    $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                    $columnIndex++;
+                }
+    
+                // Apply border style to the data row
+                $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+                
+                $rowNumber++;
+            }
+        } else {
+            $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+        }
+    
+        $conn->close();
+    
+        // Set the writer to output the spreadsheet
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'Asked_Question_Report_' . date('Ymd') . '.xlsx';
+    
+        // Set the header for downloading the file
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+    
+        // Write the file to the output
+        $writer->save('php://output');
+        exit;
     } elseif ($reportType == "upRes") {
         // Handle Excel report for uploaded resources
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+    
+        // Define border style array
+        $borderStyleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => '000000'],
+                ],
+            ],
+        ];
+    
+        // Define the columns to select, excluding sPassword
+        $columns = "RID, title, descr, category, page_count, registration_date";
+    
+        // Fetch data from the studentaccount table
+        $sql = "SELECT $columns FROM resources WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+        $result = $conn->query($sql);
+    
+        $data = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+    
+        // Add table name as a header
+        $sheet->setCellValue('A1', 'Table: Uploaded Resources Report');
+        $rowNumber = 2;
+    
+        // Add column headings
+        if (!empty($data)) {
+            $columnNames = array_keys($data[0]);
+            $columnIndex = 'A';
+            foreach ($columnNames as $colName) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+                $columnIndex++;
+            }
+    
+            // Apply border style to the header row
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+    
+            $rowNumber++;
+    
+            // Add data rows
+            foreach ($data as $row) {
+                $columnIndex = 'A';
+                foreach ($row as $col) {
+                    $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                    $columnIndex++;
+                }
+    
+                // Apply border style to the data row
+                $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+                
+                $rowNumber++;
+            }
+        } else {
+            $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+        }
+    
+        $conn->close();
+    
+        // Set the writer to output the spreadsheet
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'Uploaded_Resources_Report_' . date('Ymd') . '.xlsx';
+    
+        // Set the header for downloading the file
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+    
+        // Write the file to the output
+        $writer->save('php://output');
+        exit;
     } elseif ($reportType == "allD") {
-        // Handle Excel report for all data
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // List of specific table names
+    $tables = ['studentaccount', 'teacheraccount', 'evaluationque', 'teacherevaanswer', 'askedquestions', 'resources'];
+    $rowNumber = 1;
+
+    // Define border style array
+    $borderStyleArray = [
+        'borders' => [
+            'allBorders' => [
+                'borderStyle' => Border::BORDER_THIN,
+                'color' => ['argb' => '000000'],
+            ],
+        ],
+    ];
+
+    foreach ($tables as $tableName) {
+        // Define the columns to select, excluding password columns
+        $columns = "*";
+        if ($tableName == 'studentaccount') {
+            $columns = "ID, FName, LName, emailAdd, levelEdu, department, registration_date"; // Exclude sPassword
+        } elseif ($tableName == 'teacheraccount') {
+            $columns = "ID, FName, LName, emailAdd, Gender, dob, country, eduLevel, department, academic, statusActivity, registration_date"; // Exclude tPassword
+        } elseif ($tableName == 'evaluationque') {
+            $columns = "QID, evaDetail, A, B, C, D, departQ, answer, registration_date";
+        } elseif ($tableName == 'teacherevaanswer') {
+            $columns = "ID, teachEmail, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, registration_date";
+        } elseif ($tableName == 'askedquestions') {
+            $columns = "AID, askerEmail, askerName, subjects, course, degree, course_code, deadln, question, statuss, solution_answer, solverEmail, solverUsername, studentFeedback, registration_date";
+        } elseif ($tableName == 'resources') {
+            $columns = "RID, title, descr, category, page_count, registration_date";
+        }
+
+        // Fetch data from each table
+        $sql = "SELECT $columns FROM $tableName WHERE registration_date BETWEEN '$date_from' AND '$date_to'";
+        $result = $conn->query($sql);
+
+        $data = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                unset($row['sPassword']); // Ensure sPassword is excluded
+                unset($row['tPassword']); // Ensure tPassword is excluded
+                $data[] = $row;
+            }
+        }
+
+        // Add table name as a header
+        $sheet->setCellValue('A' . $rowNumber, 'Table: ' . $tableName);
+        $rowNumber++;
+
+        // Add column headings
+        if (!empty($data)) {
+            $columnNames = array_keys($data[0]);
+            $columnIndex = 'A';
+            foreach ($columnNames as $colName) {
+                $sheet->setCellValue($columnIndex . $rowNumber, $colName);
+                $columnIndex++;
+            }
+            $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+            $rowNumber++;
+
+            // Add data rows
+            foreach ($data as $row) {
+                $columnIndex = 'A';
+                foreach ($row as $col) {
+                    $sheet->setCellValue($columnIndex . $rowNumber, $col);
+                    $columnIndex++;
+                }
+                $sheet->getStyle('A' . $rowNumber . ':' . $columnIndex . $rowNumber)->applyFromArray($borderStyleArray);
+                $rowNumber++;
+            }
+        } else {
+            $sheet->setCellValue('A' . $rowNumber, 'No data found for the given date range.');
+            $rowNumber++;
+        }
+
+        // Add a blank row between tables
+        $rowNumber++;
+    }
+
+    $conn->close();
+
+    // Set the writer to output the spreadsheet
+    $writer = new Xlsx($spreadsheet);
+    $filename = 'All_Reports_' . date('Ymd') . '.xlsx';
+
+    // Set the header for downloading the file
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $filename . '"');
+    header('Cache-Control: max-age=0');
+
+    // Write the file to the output
+    $writer->save('php://output');
+    exit;
     }
 }
 ?>
