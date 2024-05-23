@@ -255,7 +255,7 @@ session_start();
 
                             <li class="list-group-item">'.$row["category"].'</li>
                             <li class="list-group-item">'.$row["page_count"].'</li>
-                            <li class="list-group-item" style="display: none;">'.$row["timestamp"].'</li>
+                            <li class="list-group-item" style="display: none;">'.$row["registration_date"].'</li>
                             </ul>
                             <div class="card-body justify-content-center align-items-center d-flex">
                                 <p><a id="download-link" href="../'.$row["resourcefile"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>

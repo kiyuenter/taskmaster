@@ -249,6 +249,21 @@
         </div>
     </div>
 
+    <script>
+        const beamsClient = new PusherPushNotifications.Client({
+            instanceId: 'edd14a53-c771-4cce-bfc2-48c0215f04f3',
+        });
+
+        beamsClient.start()
+            .then(() => beamsClient.addDeviceInterest('hello'))
+            .then(() => console.log('Successfully registered and subscribed!'))
+            .catch(console.error);
+    </script>
+    curl -H "Content-Type: application/json" \
+     -H "Authorization: Bearer BDB87E70CCE94B4E98B65E08FEE78146DFBC40648AA922DCEFEA515D1645EFD0" \
+     -X POST "https://edd14a53-c771-4cce-bfc2-48c0215f04f3.pushnotifications.pusher.com/publish_api/v1/instances/edd14a53-c771-4cce-bfc2-48c0215f04f3/publishes" \
+     -d '{"interests":["hello"],"web":{"notification":{"title":"Hello","body":"Hello, world!"}}}'
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

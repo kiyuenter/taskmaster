@@ -170,14 +170,6 @@
                                                 echo $count_teach;
                                             ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class=" fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -199,14 +191,6 @@
                                                 echo $count_teach;
                                             ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -228,14 +212,6 @@
                                                 echo $count_teach;
                                             ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -364,21 +340,21 @@
 
       <!-- Create script for pie chart -->
       <?php
-// Include connection details and database operations from a separate file
-include '../php/connection.php';
+            // Include connection details and database operations from a separate file
+            include '../php/connection.php';
 
-$sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'";
-$result_solved = mysqli_query($conn, $sql_solved);
-$row_solved = mysqli_fetch_assoc($result_solved);
-$solved_count = $row_solved['solved_count'];
+            $sql_solved = "SELECT COUNT(*) AS solved_count FROM askedquestions WHERE statuss = 'solved'";
+            $result_solved = mysqli_query($conn, $sql_solved);
+            $row_solved = mysqli_fetch_assoc($result_solved);
+            $solved_count = $row_solved['solved_count'];
 
-$sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'";
-$result_unsolved = mysqli_query($conn, $sql_unsolved);
-$row_unsolved = mysqli_fetch_assoc($result_unsolved);
-$unsolved_count = $row_unsolved['unsolved_count'];
+            $sql_unsolved = "SELECT COUNT(*) AS unsolved_count FROM askedquestions WHERE statuss = 'unsolved'";
+            $result_unsolved = mysqli_query($conn, $sql_unsolved);
+            $row_unsolved = mysqli_fetch_assoc($result_unsolved);
+            $unsolved_count = $row_unsolved['unsolved_count'];
 
 
-?>
+            ?>
       <script>
         // Define chart data based on fetched counts
         const kidus = {

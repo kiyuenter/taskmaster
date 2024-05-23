@@ -159,16 +159,17 @@
                                             Total Admin's
                                         </h5>
                                         <p class="mb-2 fw-bold">
-                                            $72,540
+                                        <?php
+                                                include '../../php/connection.php';
+
+                                                $sql = "SELECT COUNT(*) AS adminacc FROM admin_account";
+                                                $teach = mysqli_query($conn, $sql);
+                                                $rowteach = mysqli_fetch_assoc($teach);
+
+                                                $count_teach = $rowteach['adminacc'];
+                                                echo $count_teach;
+                                            ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

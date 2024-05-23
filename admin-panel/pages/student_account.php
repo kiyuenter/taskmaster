@@ -44,15 +44,15 @@ session_start();
                     </a>
                 </li>
                     <ul id="usermanagement" class="sidebar-dropdown list-unstyled collapse ms-4" data-bs-parent="#sidebar">
-                        <?php
-                            $realAdmin = 'kidusseleshi19@gmail.com';
-                            if($_SESSION['emailA'] == $realAdmin){
-                            echo '
-                            <li class="sidebar-item"> 
-                                <a href="pages/admin_account.php" class="sidebar-link ms-2">Admin Account</a>
-                            </li>';
-                            }
-                        ?>
+                    <?php
+                            if (isset($_SESSION['emailA']) && $_SESSION['emailA'] == "kidusseleshi19@gmail.com") {
+                                echo '
+                                  <li class="sidebar-item"> 
+                                    <a href="admin_account.php" class="sidebar-link ms-2">Admin Account</a>
+                                  </li>
+                                ';
+                              }
+                           ?>
                         <li class="sidebar-item some">
                             <a href="student_account.php" class="sidebar-link ms-2">Student Account</a>
                         </li>
@@ -170,14 +170,6 @@ session_start();
                                                 echo $count_teach;
                                             ?>
                                         </p>
-                                        <div class="mb-0">
-                                            <span class="badge text-success me-2">
-                                                +9.0%
-                                            </span>
-                                            <span class="fw-bold">
-                                                Since Last Month
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -295,6 +287,7 @@ session_start();
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 2,
+            tension: 0.5,
             data: <?php echo json_encode($user_data); ?>,
           },
           
