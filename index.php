@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="icon" href="photo/logo.png">
     <link rel="stylesheet" href="css/preloader.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Font icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -55,7 +56,7 @@ session_start();
     <div class="navigation">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-transparent fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand text-dark" href="index.html"><img style="border-radius: 20px; margin-right: 5px;"
+                <a class="navbar-brand text-dark" href=""><img style="border-radius: 20px; margin-right: 5px;"
                         src="photo/logo.gif" alt="" width="50px">Taskmaster</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,11 +66,11 @@ session_start();
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
                             <a class="nav-link active text-dark me-4 text-center w-100" aria-current="page"
-                                href="index.html">Home</a>
+                                href="">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light text-dark me-4 text-center w-100"
-                                href="pages/experts.html">Experts</a>
+                                href="pages/experts.php">Experts</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark me-4 text-center w-100 text-light" href="#"
@@ -77,20 +78,20 @@ session_start();
                                 Service
                             </a>
                             <ul class="dropdown-menu dr">
-                                <li><a class="dropdown-item text-dark" href="pages/askQuestion.html">Ask Question</a>
+                                <li><a class="dropdown-item text-dark" href="pages/askQuestion.php">Ask Question</a>
                                 </li>
-                                <li><a class="dropdown-item text-dark" href="pages/cvTemplate.html">CV Maker</a></li>
-                                <li><a class="dropdown-item text-dark" href="pages/resource.html">Resource</a></li>
-                                <li><a class="dropdown-item text-dark" href="pages/faq.html">FAQ</a></li>
+                                <li><a class="dropdown-item text-dark" href="pages/cvTemplate.php">CV Maker</a></li>
+                                <li><a class="dropdown-item text-dark" href="pages/resource.php">Resource</a></li>
+                                <li><a class="dropdown-item text-dark" href="pages/faq.php">FAQ</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light text-dark me-4 text-center w-100"
-                                href="pages/contactUs.html">Contact Us</a>
+                                href="pages/contactUs.php">Contact Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light text-dark me-4 text-center w-100"
-                                href="pages/aboutUs.html">About Us</a>
+                                href="pages/aboutUs.php">About Us</a>
                         </li>
                     </ul>
 
@@ -114,6 +115,7 @@ session_start();
                                     </ul>
                                     </li>
                                 </ul>';
+                                $_SESSION["success"] =  "success";
                                 } else {
                                 echo '
                                 <div class="d-flex" role="search">
@@ -133,7 +135,7 @@ session_start();
     <div class="container-fluid div-1">
         <div class="row div-1 banner align-items-center justify-content-center">
             <div class="col-md-6 text-center">
-                <img src="photo/taskmaster background.svg" alt="Taskmaster Background" class="img-fluid">
+                <img data-aos="zoom-out" data-aos-delay="200" src="photo/taskmaster background.svg" alt="Taskmaster Background" class="img-fluid">
             </div>
             <div class="col-md-6">
 
@@ -150,7 +152,7 @@ session_start();
     </div>
     <div class="container-fluid div-2 mt-5 d-flex flex-column align-items-center justify-content-center">
         <div class="container row w-100 m-2 d-flex align-items-center justify-content-center">
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-search"></i>
@@ -158,7 +160,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-bookmark-star"></i>
@@ -166,7 +168,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-browser-safari"></i>
@@ -174,7 +176,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-infinity"></i>
@@ -184,7 +186,7 @@ session_start();
             </div>
         </div>
         <div class="container row w-100 m-2 d-flex align-items-center justify-content-center">
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="500">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-star"></i>
@@ -192,7 +194,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="600">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-stopwatch"></i>
@@ -200,7 +202,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="700">
                 <div class="support-list">
                     <div class="search">
                         <i class="bi bi-bell"></i>
@@ -208,7 +210,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="800">
                 <div class="support-list">
                     <div class="search">
                         <i class='bx bx-support'></i>
@@ -225,48 +227,48 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-md-4 book-store d-flex justify-content-center align-items-center">
-                    <img src="photo/book-store.jpg" alt="">
+                    <img data-aos="zoom-in" data-aos-duration="3000" src="photo/book-store.jpg" alt="">
                 </div>
                 <div class="col-md-2 course-list">
                     <ul>
-                        <li>Marketing</li>
-                        <li>Business</li>
-                        <li>Economics</li>
-                        <li>CRM</li>
-                        <li>History</li>
-                        <li>Finance</li>
-                        <li>HR</li>
-                        <li>Accounting</li>
-                        <li>English</li>
-                        <li>Management</li>
+                        <li data-aos="zoom-out" data-aos-delay="100">Marketing</li>
+                        <li data-aos="zoom-out" data-aos-delay="200">Business</li>
+                        <li data-aos="zoom-out" data-aos-delay="300">Economics</li>
+                        <li data-aos="zoom-out" data-aos-delay="400">CRM</li>
+                        <li data-aos="zoom-out" data-aos-delay="500">History</li>
+                        <li data-aos="zoom-out" data-aos-delay="600">Finance</li>
+                        <li data-aos="zoom-out" data-aos-delay="700">HR</li>
+                        <li data-aos="zoom-out" data-aos-delay="800">Accounting</li>
+                        <li data-aos="zoom-out" data-aos-delay="900">English</li>
+                        <li data-aos="zoom-out" data-aos-delay="1000">Management</li>
                     </ul>
                 </div>
                 <div class="col-md-3 course-list">
                     <ul>
-                        <li>Computer Architecture</li>
-                        <li>Software Engineering</li>
-                        <li>Computer Science</li>
-                        <li>Information Technology</li>
-                        <li>Database</li>
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>Web Development</li>
-                        <li>C#</li>
+                        <li data-aos="zoom-out" data-aos-delay="1100">Computer Architecture</li>
+                        <li data-aos="zoom-out" data-aos-delay="1200">Software Engineering</li>
+                        <li data-aos="zoom-out" data-aos-delay="1300">Computer Science</li>
+                        <li data-aos="zoom-out" data-aos-delay="1400">Information Technology</li>
+                        <li data-aos="zoom-out" data-aos-delay="1500">Database</li>
+                        <li data-aos="zoom-out" data-aos-delay="1600">Java</li>
+                        <li data-aos="zoom-out" data-aos-delay="1700">Python</li>
+                        <li data-aos="zoom-out" data-aos-delay="1800">C++</li>
+                        <li data-aos="zoom-out" data-aos-delay="1900">Web Development</li>
+                        <li data-aos="zoom-out" data-aos-delay="2000">C#</li>
                     </ul>
                 </div>
                 <div class="col-md-3 course-list">
                     <ul>
-                        <li>MBA</li>
-                        <li>MSc</li>
-                        <li>Master of Applied Science</li>
-                        <li>Master of Engineering</li>
-                        <li>Business Enviroment</li>
-                        <li>Psychology</li>
-                        <li>Operation Management</li>
-                        <li>Public Economics</li>
-                        <li>Political Science</li>
-                        <li>Travel & Tourism</li>
+                        <li data-aos="zoom-out" data-aos-delay="2100">MBA</li>
+                        <li data-aos="zoom-out" data-aos-delay="2200">MSc</li>
+                        <li data-aos="zoom-out" data-aos-delay="2300">Master of Applied Science</li>
+                        <li data-aos="zoom-out" data-aos-delay="2400">Master of Engineering</li>
+                        <li data-aos="zoom-out" data-aos-delay="2500">Business Enviroment</li>
+                        <li data-aos="zoom-out" data-aos-delay="2600">Psychology</li>
+                        <li data-aos="zoom-out" data-aos-delay="2700">Operation Management</li>
+                        <li data-aos="zoom-out" data-aos-delay="2800">Public Economics</li>
+                        <li data-aos="zoom-out" data-aos-delay="2900">Political Science</li>
+                        <li data-aos="zoom-out" data-aos-delay="3000">Travel & Tourism</li>
                     </ul>
                 </div>
             </div>
@@ -277,7 +279,7 @@ session_start();
     <div class="container-1 container-fluid d-flex justify-content-center align-items-center">
         <div class="front-content row">
             <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
-                <img src="photo/assignment helper (1).jpg" alt="">
+                <img data-aos="fade-up" data-aos-anchor-placement="top-center" src="photo/assignment helper (1).jpg" alt="">
             </div>
             <div class="paragraph col-md-6 w-50 mt-5">
                 <div class="mt-5 d-flex justify-content-center align-items-center">
@@ -305,14 +307,14 @@ session_start();
                 </div>
             </div>
             <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
-                <img src="photo/cvmaker-promotion.jpg" alt="">
+                <img data-aos="fade-up" data-aos-anchor-placement="top-center" src="photo/cvmaker-promotion.jpg" alt="">
             </div>
         </div>
     </div>
     <div class="container-1 container-fluid d-flex justify-content-center align-items-center div-promotion-2 py-5">
         <div class="front-content row">
             <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
-                <img src="photo/taskmaster-promotion.jpg" alt="">
+                <img data-aos="fade-up" data-aos-anchor-placement="top-center" src="photo/taskmaster-promotion.jpg" alt="">
             </div>
             <div class="paragraph col-md-6 w-50 mt-5">
                 <div class="mt-5 d-flex justify-content-center align-items-center">
@@ -340,7 +342,7 @@ session_start();
             </div>
 
             <div class="img-1 col-md-6 w-50 d-flex justify-content-center">
-                <img src="photo/cvmaker-promotion-2.jpg" alt="">
+                <img data-aos="fade-up" data-aos-anchor-placement="top-center" src="photo/cvmaker-promotion-2.jpg" alt="">
             </div>
         </div>
     </div>
@@ -497,19 +499,19 @@ session_start();
 
             <!-- Right -->
             <div>
-                <a href="" class="me-4 text-reset">
+                <a href="https://facebook.com" class="me-4 text-reset">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://x.com" class="me-4 text-reset">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://gmail.com" class="me-4 text-reset">
                     <i class="fab fa-google"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://instagram.com" class="me-4 text-reset">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://linkedin.com" class="me-4 text-reset">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
@@ -542,16 +544,16 @@ session_start();
                             Service
                         </h6>
                         <p>
-                            <a href="pages/askQuestion.html" class="text-reset">Ask Question</a>
+                            <a href="pages/askQuestion.php" class="text-reset">Ask Question</a>
                         </p>
                         <p>
-                            <a href="pages/cvTemplate.html" class="text-reset">CV Maker</a>
+                            <a href="pages/cvTemplate.php" class="text-reset">CV Maker</a>
                         </p>
                         <p>
-                            <a href="pages/resource.html" class="text-reset">Resource</a>
+                            <a href="pages/resource.php" class="text-reset">Resource</a>
                         </p>
                         <p>
-                            <a href="pages/faq.html" class="text-reset">FAQ</a>
+                            <a href="pages/faq.php" class="text-reset">FAQ</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -563,16 +565,16 @@ session_start();
                             Useful links
                         </h6>
                         <p>
-                            <a href="index.html" class="text-reset">Home</a>
+                            <a href="" class="text-reset">Home</a>
                         </p>
                         <p>
-                            <a href="pages/aboutUs.html" class="text-reset">About Us</a>
+                            <a href="pages/aboutUs.php" class="text-reset">About Us</a>
                         </p>
                         <p>
-                            <a href="pages/experts.html" class="text-reset">Experts</a>
+                            <a href="pages/experts.php" class="text-reset">Experts</a>
                         </p>
                         <p>
-                            <a href="pages/help.html" class="text-reset">Help</a>
+                            <a href="pages/help.php" class="text-reset">Help</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -662,6 +664,10 @@ session_start();
 
         return direction;
     }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>   
+    <script>
+        AOS.init();
     </script>
 </body>
 
