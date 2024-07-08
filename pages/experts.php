@@ -4,6 +4,7 @@
   session_start();
   include 'include/header.php';
  ?>
+    <title>Taskmaster | Experts</title>
 <body>
     <?php
       include 'include/navigation.php';
@@ -85,26 +86,60 @@
       </div>
 
       <div class="container-fluid pt-5 pb-5">
-        <h2 class="text-center">OUR EXPERTS</h2>
-        <div class="container d-flex justify-content-center align-items-center">
+    <h2 class="text-center">OUR EXPERTS</h2>
+    <div class="container d-flex justify-content-center align-items-center">
         <div class="row w-100">
-          <div class="col-md-4 mt-2">
-            <div class="card" style="width: 18rem;">
-              <img src="../teacherfiles/profile-photo/teacher-1.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <div class="feedback d-flex justify-content-center align-items-center">
-                  <i class="bi bi-star-fill text-warning p-1"></i>
-                  <i class="bi bi-star-fill text-warning p-1"></i>
-                  <i class="bi bi-star-fill text-warning p-1"></i>
-                  <i class="bi bi-star-fill text-warning p-1"></i>
-                  <i class="bi bi-star-fill text-warning p-1"></i>
+            <?php
+
+            include '../php/connection.php';
+
+            $sql = "SELECT teacher_email, AVG(rating) as avg_rating FROM ratings GROUP BY teacher_email ORDER BY avg_rating DESC LIMIT 6";
+            $result = $conn->query($sql);
+            $ratings = [];
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $ratings[$row['teacher_email']] = round($row['avg_rating'], 1);
+                }
+            }
+            $teachers = [
+              ["email" => "kidus@gmail.com", "name" => "Kidus Seleshi", "image" => "../teacherfiles/profile-photo/teacher-1.png"]
+              // Add more teachers here
+          ];
+            foreach ($teachers as $teacher) {
+                $teacher_email = $teacher['email'];
+                $avg_rating = isset($ratings[$teacher_email]) ? $ratings[$teacher_email] : 'No ratings yet';
+                // Generate stars
+                $full_stars = floor($avg_rating);
+                $half_star = $avg_rating - $full_stars >= 0.5 ? 1 : 0;
+                $empty_stars = 5 - $full_stars - $half_star;
+
+                $stars = str_repeat('<i class="fas fa-star text-warning"></i>', $full_stars);
+                if ($half_star) {
+                    $stars .= '<i class="fas fa-star-half-alt text-warning"></i>';
+                }
+                $stars .= str_repeat('<i class="far fa-star text-warning"></i>', $empty_stars);
+
+                echo '
+                
+                <div class="col-md-4 mt-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="'.$teacher['image'].'" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="feedback d-flex justify-content-center align-items-center">
+                                '.$stars.'
+                            </div>
+                            <h5 class="card-title">'.$teacher['name'].'</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>
+                            <a href="#" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
                 </div>
-                <h5 class="card-title">Kidus Seleshi</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Explore</a>
-              </div>
-            </div>
-          </div>
+                ';
+            }
+
+            $conn->close();
+            ?>
           <div class="col-md-4 mt-2">
             <div class="card" style="width: 18rem;">
               <img src="../teacherfiles/profile-photo/teacher-2.webp" class="card-img-top" alt="...">
@@ -245,5 +280,6 @@
           return direction;
         }
       </script>
+    <script src="../js/loader.js"></script>
 </body>
 </html>

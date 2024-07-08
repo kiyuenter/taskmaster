@@ -2,8 +2,18 @@
 <html lang="en">
 <?php
   session_start();
+
+  function checkAuth() {
+    if (!isset($_SESSION['status'])) {
+      header('Location: ../join.php');
+      exit();
+    }
+  }
+
+  checkAuth();
   include 'include/header.php';
 ?>
+    <title>Taskmaster | Ask Question</title>
 <body>
     <?php
       include 'include/navigation.php';
@@ -33,8 +43,24 @@
             <div class="container">
                 <form action="../php/askQuestion.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <input type="text" name="askerEmail" value="kiyuenterprise@gmail.com" class="form-control">
-                        <input type="text" name="askerName" value="Kidus Seleshi" class="form-control">
+                    <?php
+                      include '../php/connection.php';
+
+                      $email = $_SESSION['emailA'];
+                      $sql = "SELECT FName, emailAdd, LName FROM studentaccount";
+                      $result  = mysqli_query($conn, $sql);
+
+                      if ($result && mysqli_num_rows($result) > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // Check if the email from the database matches the session email
+                            if ($row["emailAdd"] === $email) {
+                                echo '
+                                <input type="text" name="askerEmail" value="'.$row["emailAdd"].'" class="form-control">
+                                <input type="text" name="askerName" value="'.$row["FName"].' '.$row["LName"].'" class="form-control">';
+                            }
+                        }
+                    }
+                      ?>
                         <input class="form-control" type="text" id="subject" name="subject" placeholder="Course" required>
                         <select title="Select_Course" class="form-control" id="course" name="course" required>
                             <option value="">Field of study</option>
@@ -158,5 +184,6 @@
           }
         });
     </script>
+    <script src="../js/loader.js"></script>
 </body>
 </html>
