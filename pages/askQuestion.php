@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+  include '../php/connection.php';
   session_start();
 
   function checkAuth() {
@@ -37,28 +38,43 @@
             </div>
         </div>
       </div>
+
+      <?php
+        if(isset($_SESSION["msg"]) && $_SESSION["msg"] == true){
+          $msg = $_SESSION["msg"];
+          echo '
+            <script>
+              alert("'.$msg.'");
+            </script>
+          ';
+          unset($_SESSION["msg"]);
+        }
+      ?>
+
+
       <div class="container-fluid askForm p-5">
         <div class="container p-5 w-75">
             <h1 class="text-center">Ask a Question</h1>
             <div class="container">
                 <form action="../php/askQuestion.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
-                    <?php
-                      include '../php/connection.php';
+                    <?php                 
+                      if(isset($_SESSION["status"]) && $_SESSION["status"] == true ) {
+                        $sql = "SELECT FName, emailAdd, LName FROM studentaccount";
+                        $result  = mysqli_query($conn, $sql);
+       
+                        if ($result) {
+                          if (mysqli_num_rows($result) > 0) {
+                              while ($row = $result->fetch_assoc()) {
 
-                      $email = $_SESSION['emailA'];
-                      $sql = "SELECT FName, emailAdd, LName FROM studentaccount";
-                      $result  = mysqli_query($conn, $sql);
-
-                      if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            // Check if the email from the database matches the session email
-                            if ($row["emailAdd"] === $email) {
-                                echo '
-                                <input type="text" name="askerEmail" value="'.$row["emailAdd"].'" class="form-control">
-                                <input type="text" name="askerName" value="'.$row["FName"].' '.$row["LName"].'" class="form-control">';
+                                  if ($_SESSION["emailA"] === $row["emailAdd"]) {
+                                      echo '
+                                      <input type="text" name="askerEmail" value="' . $row["emailAdd"] . '" class="form-control" hidden>
+                                      <input type="text" name="askerName" value="' . $row["FName"] . ' ' . $row["LName"] . '" class="form-control" hidden>';
+                                  }
+                              }
                             }
-                        }
+                          }
                     }
                       ?>
                         <input class="form-control" type="text" id="subject" name="subject" placeholder="Course" required>

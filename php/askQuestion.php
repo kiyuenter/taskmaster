@@ -1,7 +1,7 @@
 <?php
-
   include "connection.php";
 
+  session_start();
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       $subject = $_POST["subject"];
@@ -21,11 +21,13 @@
 
        $sql = "INSERT INTO askedquestions(askerEmail, askerName, subjects, course, degree, course_code, question, deadln, attachment, statuss) VALUES('$askerEmail','$askerName','$subject','$course','$degree','$courseC','$question','$deadline','$attach','$statuss')";
         $conn -> query($sql);
-       echo "Successfully asked";
+        $_SESSION["msg"] = "Your question has been submitted. We will notify you of the answer via email. Thank you for choosing us!";
+        header("Location: ../pages/askQuestion.php");
       } else {
         $sql = "INSERT INTO askedquestions(askerEmail, askerName, subjects, course, degree, course_code, question, deadln, statuss) VALUES('$askerEmail','$askerName','$subject','$course','$degree','$courseC','$question','$deadline','$statuss')";
         $conn -> query($sql);
-        echo "Successfully asked2";
+        $_SESSION["msg"] = "Your question has been submitted. We will notify you of the answer via email. Thank you for choosing us!";
+        header("Location: ../pages/askQuestion.php");
       }
   }
 

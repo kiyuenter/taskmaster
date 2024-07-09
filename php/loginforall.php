@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     exit;
   }
 
-  $selectStudent = "SELECT FName FROM studentaccount WHERE emailAdd='$userEmail' AND sPassword = '$userPass'";
+  $selectStudent = "SELECT * FROM studentaccount WHERE emailAdd='$userEmail' AND sPassword = '$userPass'";
   $sResult = mysqli_query($conn, $selectStudent);
 
   $selectTeacher = "SELECT * FROM teacheraccount WHERE emailAdd='$userEmail' AND tPassword = '$userPass'";
@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) {
     $row = $sResult->fetch_assoc(); 
     $_SESSION['status'] = "Welcome back!";
     $_SESSION['username'] = $row["FName"];
+    $_SESSION['emailA'] = $row["emailAdd"];
 
     echo "Login successful!";
     header("Location: ../index.php");

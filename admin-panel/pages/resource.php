@@ -188,55 +188,70 @@ session_start();
                                         unset($_SESSION['msg']);
                                     }
                                 ?>
-                                  <h1>Resource Uploader</h1>
-                                  <form action="../receive-upload-resource.php" method="post" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                      <label for="coverImage" class="form-label">Cover Image</label><br>
-                                      <input class="form-control" type="file" id="coverImage" name="coverImage" required>
+                                  <h1>Uploader Files</h1>
+                                  <div class="container d-flex">
+                                        <div class="container">
+                                            <form action="../receive-upload-resource.php" method="post" enctype="multipart/form-data">
+                                                <div class="mb-3">
+                                                <label for="coverImage" class="form-label">Cover Image</label><br>
+                                                <input class="form-control" type="file" id="coverImage" name="coverImage" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="resourceFile" class="form-label">Resource File</label><br>
+                                                    <input class="form-control" type="file" id="resourceFile" name="resourceFile" required>
+                                                </div>          
+                                                <div class="mb-3">
+                                                <label for="title" class="form-label">Title</label>
+                                                <input type="text" class="form-control" id="title" name="title" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                <label for="description" class="form-label">Description</label>
+                                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                <label for="category" class="form-label">Category</label>
+                                                <select id="myDropdown" class="form-select" id="category" name="category" required>
+                                                    <option value="">Select Department</option>
+                                                    <option value="accounting and finance">Accounting and Finance</option>
+                                                    <option value="Management">Management</option>
+                                                    <option value="Computer Science">Computer Science</option>
+                                                    <option value="Software Engineering">Software Engineering</option>
+                                                    <option value="Sport">Sport</option>
+                                                    <option value="Medecine">Medecine</option>
+                                                    <option value="Engineering">Engineering</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                                <input type="text" id="otherInput" class="form-control mt-2" disabled>
+                                                </div>
+                                                <div class="mb-3">
+                                                <label for="pageCount" class="form-label">Page Count (if applicable)</label>
+                                                <input type="number" class="form-control" id="pageCount" name="pageCount">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary"><i class="lni lni-upload me-2"></i>Upload Resource</button>
+                                            </form>
+                                        </div>
+                                        <div class="container d-flex">
+                                            <div class="container">
+                                                <form action="../../php/cv_template_upload.php" method="post" enctype="multipart/form-data">
+                                                    <div>
+                                                        <input class="form-control" type="file" name="cover_image" required>
+                                                        <input class="form-control" type="text" name="cv_location" placeholder="Insert CV location" required>
+                                                        <button type="submit" name="submit">Insert New CV</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="resourceFile" class="form-label">Resource File</label><br>
-                                        <input class="form-control" type="file" id="resourceFile" name="resourceFile" required>
-                                      </div>          
-                                    <div class="mb-3">
-                                      <label for="title" class="form-label">Title</label>
-                                      <input type="text" class="form-control" id="title" name="title" required>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="description" class="form-label">Description</label>
-                                      <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="category" class="form-label">Category</label>
-                                      <select id="myDropdown" class="form-select" id="category" name="category" required>
-                                        <option value="">Select Department</option>
-                                        <option value="accounting and finance">Accounting and Finance</option>
-                                        <option value="Management">Management</option>
-                                        <option value="Computer Science">Computer Science</option>
-                                        <option value="Software Engineering">Software Engineering</option>
-                                        <option value="Sport">Sport</option>
-                                        <option value="Medecine">Medecine</option>
-                                        <option value="Engineering">Engineering</option>
-                                        <option value="other">Other</option>
-                                      </select>
-                                      <input type="text" id="otherInput" class="form-control mt-2" disabled>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="pageCount" class="form-label">Page Count (if applicable)</label>
-                                      <input type="number" class="form-control" id="pageCount" name="pageCount">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary"><i class="lni lni-upload me-2"></i>Upload Resource</button>
-                                  </form>
                                 </div>
                               </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="container-fluid">
+            <div class="container-fluid d-flex">
                     <!-- resource list -->
-              <div class="container">
-                <div class="row">
+              <div class="container m-2">
+                   <div class="row m-2">
                         <?php
                             include "../../php/connection.php";
                             $sql = "SELECT * FROM resources";
@@ -244,31 +259,55 @@ session_start();
                             if ($result -> num_rows > 0) {
                                 while($row = mysqli_fetch_assoc($result)) {
                                     echo '
-                                    <div class="col-md-4">
-                                    <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
-                            <img src="../'.$row["coverimg"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
-                            <div class="card-body">
-                            <h5 class="card-title">'.$row["title"].'</h5>
-                            <p class="card-text">'.$row["descr"].'</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-
-                            <li class="list-group-item">'.$row["category"].'</li>
-                            <li class="list-group-item">'.$row["page_count"].'</li>
-                            <li class="list-group-item" style="display: none;">'.$row["registration_date"].'</li>
-                            </ul>
-                            <div class="card-body justify-content-center align-items-center d-flex">
-                                <p><a id="download-link" href="../'.$row["resourcefile"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
-                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
-                            </div>
-                            </div>
-                    </div>
-                            ';
+                                    <div class="col-md-6">
+                                        <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
+                                            <img src="../'.$row["coverimg"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
+                                            <div class="card-body">
+                                                <h5 class="card-title">'.$row["title"].'</h5>
+                                                <p class="card-text">'.$row["descr"].'</p>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">'.$row["category"].'</li>
+                                                <li class="list-group-item">'.$row["page_count"].'</li>
+                                                <li class="list-group-item" style="display: none;">'.$row["registration_date"].'</li>
+                                            </ul>
+                                            <div class="card-body justify-content-center align-items-center d-flex">
+                                                <p><a id="download-link" href="../'.$row["resourcefile"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
+                                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
                         }
-                    }
-                ?>
-                        
+                    ?>
+                            
+                    </div>
                 </div>
+
+                <div class="container">
+                    <div class="row">
+                        <?php
+                            include "../../php/connection.php";
+                            $sql = "SELECT * FROM cv_template";
+                            $result = $conn -> query($sql);
+                            if ($result -> num_rows > 0) {
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    echo '
+                                    <div class="col-md-6">
+                                        <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
+                                            <img src="../'.$row["cover_img"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
+                                            <div class="card-body justify-content-center align-items-center d-flex">
+                                                <p><a id="download-link" href="../'.$row["cv_path"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
+                                                <p><a id="download-link" href="#" data-file-path="'.$row["cv_path"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>         
+                    </div>
                 </div>
                 </div>
             </main>
