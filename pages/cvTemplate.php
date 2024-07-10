@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
+      include "../php/connection.php";
       session_start();
 
       include "include/header.php";
@@ -26,6 +27,9 @@
     <div class="container-fluid cv-store">
       <h1 class="text-center pt-4">CV TEMPLATE</h1>
       <div class="list-cv row d-flex justify-content-center align-items-center">
+        <?php
+
+        echo '
         <div class="col-md-4">
           <div class="cv-temp-img">
             <img src="../Cv-Template/image/template-1.png" alt="">
@@ -34,6 +38,8 @@
             <a href="../Cv-Template/cvPage/jhonCv.html" class="btn btn-primary">Explore</a>
           </div>
         </div>
+        ';
+        ?>
         <div class="col-md-4">
           <div class="cv-temp-img">
             <img src="../Cv-Template/image/template-2.jpg" alt="">

@@ -18,6 +18,24 @@ session_start();
 </head>
 
 <body>
+
+<?php
+    if(isset($_SESSION['delete']) && $_SESSION['delete']) {
+        $msg = $_SESSION['delete'];
+        echo'
+            <script>alert("'.$msg.'");</script>
+        ';
+        unset($_SESSION['delete']);
+    }
+
+    if(isset($_SESSION['successmsg']) && $_SESSION['successmsg']) {
+        $msg = $_SESSION['successmsg'];
+        echo'
+            <script>alert("'.$msg.'");</script>
+        ';
+        unset($_SESSION['successmsg']);
+    }
+?>
     <div class="wrapper">
     <aside id="sidebar">
             <div class="d-flex">
@@ -188,9 +206,9 @@ session_start();
                                         unset($_SESSION['msg']);
                                     }
                                 ?>
-                                  <h1>Uploader Files</h1>
                                   <div class="container d-flex">
                                         <div class="container">
+                                            <h1>Resource Upload</h1>
                                             <form action="../receive-upload-resource.php" method="post" enctype="multipart/form-data">
                                                 <div class="mb-3">
                                                 <label for="coverImage" class="form-label">Cover Image</label><br>
@@ -232,11 +250,14 @@ session_start();
                                         </div>
                                         <div class="container d-flex">
                                             <div class="container">
+                                                <h1>CV Upload</h1>
                                                 <form action="../../php/cv_template_upload.php" method="post" enctype="multipart/form-data">
                                                     <div>
-                                                        <input class="form-control" type="file" name="cover_image" required>
-                                                        <input class="form-control" type="text" name="cv_location" placeholder="Insert CV location" required>
-                                                        <button type="submit" name="submit">Insert New CV</button>
+                                                        <label for="photo">Upload cover page</label>
+                                                        <input id="photo" class="form-control mt-2" type="file" name="cover_image" required>
+                                                        <label for="location" class="mt-3">Insert location of CV template (Folder location)</label>
+                                                        <input id="location"class="form-control mt-2" type="text" name="cv_location" placeholder="Insert CV location" required>
+                                                        <button type="submit" name="submit" class="btn btn-primary mt-4"><i class="lni lni-upload me-2"></i>Insert New CV</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -273,7 +294,10 @@ session_start();
                                             </ul>
                                             <div class="card-body justify-content-center align-items-center d-flex">
                                                 <p><a id="download-link" href="../'.$row["resourcefile"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
-                                                <p><a id="download-link" href="#" data-file-path="'.$row["resourcefile"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
+                                                <form action="../../php/delete_resource.php" method="POST">
+                                                    <input name="cover" type="hidden" value="'.$row["coverimg"].'">
+                                                    <button class="btn btn-danger m-2 mb-4"><i class="lni lni-trash-can"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -296,10 +320,12 @@ session_start();
                                     echo '
                                     <div class="col-md-6">
                                         <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
-                                            <img src="../'.$row["cover_img"].'" style="border-radius: 20px; height: 420px;" class="card-img-top" alt="'.$row["title"].'">
+                                            <img src="../../photo/cvImage/'.$row["cover_image"].'" style="border-radius: 20px; height: 420px;" class="card-img-top">
                                             <div class="card-body justify-content-center align-items-center d-flex">
-                                                <p><a id="download-link" href="../'.$row["cv_path"].'" data-file-path="" class="btn btn-primary m-2"><i class="lni lni-download"></i></a></p>
-                                                <p><a id="download-link" href="#" data-file-path="'.$row["cv_path"].'" class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></a></p>
+                                                <form action="../../php/delete_resource.php" method="POST">
+                                                    <input name="cover" type="hidden" value="'.$row["cover_image"].'">
+                                                    <button class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     uploadAndSaveFile("cover_image", "cover_image", $cvLocation, $conn, $successFlag);
 
-    if ($successFlag) {
-        echo "File has been uploaded successfully.";
+    if ($successFlag) { 
+        $_SESSION["successmsg"] = "File has been uploaded successfully.";
     } else {
         echo "No files were uploaded successfully.";
     }
 }
-
+header("Location: ../admin-panel/pages/resource.php");
 $conn->close();
 ?>
