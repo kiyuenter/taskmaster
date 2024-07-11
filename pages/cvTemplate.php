@@ -28,60 +28,25 @@
       <h1 class="text-center pt-4">CV TEMPLATE</h1>
       <div class="list-cv row d-flex justify-content-center align-items-center">
         <?php
+        $sql = "SELECT * FROM cv_template";
+        $result = $conn -> query($sql);
 
-        echo '
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-1.png" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="../Cv-Template/cvPage/jhonCv.html" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
-        ';
+        if($result -> num_rows > 0)
+        {
+          while($row = $result -> fetch_assoc()) {
+            echo '
+              <div class="col-md-4">
+                <div class="cv-temp-img">
+                  <img src="../Cv-Template/image/'.$row["cover_image"].'" alt="">
+                </div>
+                <div class="cv-temp-img">
+                  <a href="../Cv-Template/cvPage/'.$row["cv_path"].'" class="btn btn-primary">Explore</a>
+                </div>
+              </div>
+            ';
+          }
+        }
         ?>
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-2.jpg" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="#" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-3.avif" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="#" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
-      </div>
-      <div class="list-cv row d-flex justify-content-center align-items-center">
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-4.svg" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="#" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-5.webp" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="#" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="cv-temp-img">
-            <img src="../Cv-Template/image/template-6.png" alt="">
-          </div>
-          <div class="cv-temp-img">
-            <a href="#" class="btn btn-primary">Explore</a>
-          </div>
-        </div>
       </div>
     </div>
 

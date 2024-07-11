@@ -4,7 +4,7 @@ include 'connection.php';
 
 function uploadAndSaveFile($fileKey, $columnName, $cvLocation, $conn, &$successFlag) {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES[$fileKey])) {
-        $targetDir = "../photo/cvImage/";
+        $targetDir = "../Cv-Template/image/";
         $fileExtension = pathinfo($_FILES[$fileKey]["name"], PATHINFO_EXTENSION);
         $uniqueFileName = uniqid() . '.' . $fileExtension;
         $targetFile = $targetDir . $uniqueFileName;

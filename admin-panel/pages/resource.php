@@ -255,8 +255,8 @@ session_start();
                                                     <div>
                                                         <label for="photo">Upload cover page</label>
                                                         <input id="photo" class="form-control mt-2" type="file" name="cover_image" required>
-                                                        <label for="location" class="mt-3">Insert location of CV template (Folder location)</label>
-                                                        <input id="location"class="form-control mt-2" type="text" name="cv_location" placeholder="Insert CV location" required>
+                                                        <label for="location" class="mt-3">Insert correct name with file extention <br><span style="font-size: 12px;">(Example: sample_cv.html)</span></label>
+                                                        <input id="location"class="form-control mt-2" type="text" name="cv_location" required>
                                                         <button type="submit" name="submit" class="btn btn-primary mt-4"><i class="lni lni-upload me-2"></i>Insert New CV</button>
                                                     </div>
                                                 </form>
@@ -320,8 +320,9 @@ session_start();
                                     echo '
                                     <div class="col-md-6">
                                         <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">            
-                                            <img src="../../photo/cvImage/'.$row["cover_image"].'" style="border-radius: 20px; height: 420px;" class="card-img-top">
+                                            <img src="../../Cv-Template/image/'.$row["cover_image"].'" style="border-radius: 20px; height: 420px;" class="card-img-top">
                                             <div class="card-body justify-content-center align-items-center d-flex">
+                                                <a href="../../Cv-Template/cvPage/'.$row["cv_path"].'" class="btn btn-success m-2"><i class="lni lni-link me-2"></i>Check</a>
                                                 <form action="../../php/delete_resource.php" method="POST">
                                                     <input name="cover" type="hidden" value="'.$row["cover_image"].'">
                                                     <button class="btn btn-danger m-2"><i class="lni lni-trash-can"></i></button>
