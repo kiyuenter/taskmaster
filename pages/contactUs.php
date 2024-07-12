@@ -6,6 +6,7 @@
 
         include "include/header.php";
     ?>
+    <link rel="stylesheet" href="../css/contactus.css">
     <title>Taskmaster | Contact Us</title>
 <body>
     <?php
@@ -28,34 +29,38 @@
         </div>
       </div>
       <div class="container-fluid">
-      <h2>Contact Us</h2>
-        <div class="container mt-5">
-          <form>
+      <h2 class="contact-us text-center mt-5">Contact Us</h2>
+      <div class="container d-flex w-100 form-style">
+        <div class="container w-50">
+          <form action="../php/contact_us.php" method="POST">
               <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                  <input name="name" type="text" class="form-control" id="name" placeholder="Enter your name" required>
               </div>
               <div class="form-group">
                   <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                  <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
               </div>
               <div class="form-group">
                   <label for="subject">Subject</label>
-                  <input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
+                  <input name="subject" type="text" class="form-control" id="subject" placeholder="Enter subject" required>
               </div>
               <div class="form-group">
                   <label for="message">Message</label>
-                  <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required></textarea>
+                  <textarea name="message" class="form-control" id="message" rows="4" placeholder="Enter your message" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary mt-3">Submit</button>
+              <div class="d-flex align-items-center justify-content-center">
+                  <button type="submit" class="btn btn-success mt-3">Submit</button>
+              </div>
           </form>
         </div>
-        <div class="container">
-          <div class="container">
+        <div class="container w-50">
+          <div class="container sideimage">
             <img src="../photo/contact_us_img.jpeg" alt="">
           </div>  
         </div>
       </div>
+    </div>
 
     <?php
         include "include/footer.php";
