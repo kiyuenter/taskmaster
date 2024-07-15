@@ -13,7 +13,7 @@
         include "include/navigation.php";
     ?>
     <div class="container-fluid exp-div-1-contact">
-        <div class="row exp-div-1 align-items-center justify-content-center">
+        <div class="row exp-div-1-contact align-items-center justify-content-center">
           <div class="col-md-6 text-center">
             <img data-aos="zoom-out" data-aos-delay="200" src="../photo/contact_us_image.png" alt="Taskmaster Background" class="img-fluid expert-bg">
           </div>
@@ -32,6 +32,17 @@
       <h2 class="contact-us text-center mt-5">Contact Us</h2>
       <div class="container d-flex w-100 form-style">
         <div class="container w-50">
+          <?php
+            if(isset($_SESSION["msg"]) && $_SESSION["msg"] == TRUE) {
+                $msg = $_SESSION["msg"];
+                echo "<script>
+                      alert('".$msg."');
+                </script>";
+
+                unset($_SESSION["msg"]);
+            }
+
+          ?>
           <form action="../php/contact_us.php" method="POST">
               <div class="form-group">
                   <label for="name">Name</label>
