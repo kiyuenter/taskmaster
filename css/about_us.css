@@ -1,0 +1,6 @@
+.our-team img{
+    border-radius: 50%;
+    width: 80%;
+    border: 4px solid #4700b993;
+    object-fit: cover;
+     }

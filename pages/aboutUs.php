@@ -6,6 +6,7 @@
 
         include "include/header.php";
     ?>
+    <link rel="stylesheet" href="../css/about_us.css">
     <title>Taskmaster | About Us</title>
 <body>
     <?php
@@ -19,9 +20,6 @@
             </div>
             <div class="col-md-6 become-list">
                 <p class="text-center" style="font-size: 20px; line-height: 45px;">Thank you for visiting our website! We value your feedback and are here to assist you with any questions or concerns you may have. <span class="text-white">Whether you need more information about our services, have a specific inquiry, or just want to share your thoughts, we're here to help.</span></p>
-                <div class="d-flex justify-content-center align-items-center m-5">
-                <button class="custom-btn btn-4 px-2" onclick="scrollDown()"><span>Contact Us</span></button>
-                </div>
             <div class="scroll-down-btn text-center text-md-right">
                 <button onclick="scrollDown()">Scroll Down</button>
             </div>
@@ -53,14 +51,29 @@
             </ul>
 
             <h3>Meet Our Team</h3>
-            <p>Our dedicated team is comprised of educators, programmer, and designer who are passionate about helping you succeed.</p>
+            <p>Our dedicated team is comprised of Document Writer, Manager, Programmer, and Designer who are passionate about helping you succeed.</p>
             <div class="container">
                 <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-md-3">
-                        <img src="" alt="">
-                    </div>
-                    <div class="col-md-9">
-
+                    <div class="row text-center">
+                        <div class="col-md-3 our-team">
+                            <img src="../photo/about/programmer.jpeg" alt="">
+                            <b><p>Kidus Seleshi</p></b>
+                            <p>Developer</p>
+                        </div>
+                        <div class="col-md-3 our-team">
+                            <img src="../photo/about/designer.jpeg" alt="">
+                            <b><p>Eyerusalem Kebede</p></b>
+                            <p>Designer</p>
+                        </div>
+                        <div class="col-md-3 our-team">
+                            <img src="../photo/about/Counselor.jpeg" alt="">
+                            <b><p>Feven Shambu</p></b>
+                            <p>Counselor</p>
+                        </div><div class="col-md-3 our-team">
+                            <img src="../photo/about/Writer.jpeg" alt="">
+                            <b><p>Firdesa Tayir</p></b>
+                            <p>Writer</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,114 +64,9 @@
   </head>
   <body>
     <div class="navigation">
-      <nav
-        class="navbar navbar-expand-lg bg-body-tertiary navbar-transparent fixed-top"
-      >
-        <div class="container-fluid">
-          <a class="navbar-brand text-dark" href="../../index.php"
-            ><img
-              style="border-radius: 20px; margin-right: 5px"
-              src="../../photo/logo.gif"
-              alt=""
-              width="50px"
-            />Taskmaster</a
-          >
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul
-              class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-              style="--bs-scroll-height: 100px"
-            >
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-dark me-4 text-center w-100"
-                  aria-current="page"
-                  href="../../index.php"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-light text-dark me-4 text-center w-100"
-                  href="../../pages/experts.html"
-                  >Experts</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle text-dark me-4 text-center w-100 text-light"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Service
-                </a>
-                <ul class="dropdown-menu dr">
-                  <li>
-                    <a
-                      class="dropdown-item text-dark"
-                      href="../../pages/askQuestion.html"
-                      >Ask Question</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item text-dark"
-                      href="../../pages/cvTemplate.html"
-                      >CV Maker</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item text-dark"
-                      href="../../pages/resource.html"
-                      >Resource</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item text-dark"
-                      href="../../pages/faq.html"
-                      >FAQ</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-light text-dark me-4 text-center w-100"
-                  href="../../pages/contactUs.html"
-                  >Contact Us</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-light text-dark me-4 text-center w-100"
-                  href="../../pages/aboutUs.html"
-                  >About Us</a
-                >
-              </li>
-            </ul>
-            <div class="d-flex" role="search">
-              <a href="../../join.php" class="btn me-2 join-button">SIGN IN</a>
-              <a href="../../accountType.html" class="btn join-button"
-                >JOIN US</a
-              >
-            </div>
-          </div>
-        </div>
-      </nav>
+      <?php
+        include "include/navigation.php";
+      ?>
     </div>
 
     <div
@@ -364,131 +262,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
-      <!-- Section: Social media -->
-      <section
-        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-      >
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
-
-        <!-- Right -->
-        <div>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </div>
-        <!-- Right -->
-      </section>
-      <!-- Section: Social media -->
-
-      <!-- Section: Links  -->
-      <section class="">
-        <div class="container text-center text-md-start mt-5">
-          <!-- Grid row -->
-          <div class="row mt-3">
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                <img
-                  src="photo/logo.gif"
-                  width="50px"
-                  style="border-radius: 50%"
-                  alt=""
-                />Taskmaster
-              </h6>
-              <p class="text-center">
-                "<span class="text-primary">TaskMaster</span>: Elevating your
-                tasks, empowering your success."
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Service</h6>
-              <p>
-                <a href="pages/askQuestion.html" class="text-reset"
-                  >Ask Question</a
-                >
-              </p>
-              <p>
-                <a href="pages/cvTemplate.html" class="text-reset">CV Maker</a>
-              </p>
-              <p>
-                <a href="pages/resource.html" class="text-reset">Resource</a>
-              </p>
-              <p>
-                <a href="pages/faq.html" class="text-reset">FAQ</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
-              <p>
-                <a href="index.html" class="text-reset">Home</a>
-              </p>
-              <p>
-                <a href="pages/aboutUs.html" class="text-reset">About Us</a>
-              </p>
-              <p>
-                <a href="pages/experts.html" class="text-reset">Experts</a>
-              </p>
-              <p>
-                <a href="pages/help.html" class="text-reset">Help</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="fas fa-home me-3"></i> ADDIS ABABA, ETHIOPIA</p>
-              <p>
-                <i class="fas fa-envelope me-3"></i>
-                info@taskmaster.com
-              </p>
-              <p><i class="fas fa-phone me-3"></i> + 251 11 777 55 55</p>
-              <p><i class="fas fa-print me-3"></i> + 251 11 555 77 77</p>
-            </div>
-            <!-- Grid column -->
-          </div>
-          <!-- Grid row -->
-        </div>
-      </section>
-      <!-- Section: Links  -->
-
-      <!-- Copyright -->
-      <div
-        class="text-center p-4"
-        style="background-color: rgba(0, 0, 0, 0.05)"
-      >
-        © 2024 Copyright:
-        <a class="text-reset fw-bold" href="index.html">Taskmaster</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
+    <?php
+      include "include/footer.php";
+    ?>
     <!-- Footer -->
 
     <script

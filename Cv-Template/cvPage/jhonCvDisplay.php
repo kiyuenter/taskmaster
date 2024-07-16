@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $fname = $_POST['fullname'];
     $phone = $_POST['pnumber'];
     $email = $_POST['email'];
@@ -44,8 +46,16 @@
 </head>
 <body>
     <div class="container-fluid bg-dark-subtle d-flex align-items-center justify-content-center dot-print">
-            <a href="jhonCv.html" class="btn btn-success m-2">Back</a>
-            <button class="btn btn-primary m-2" id="download">Download</button>
+            <a href="jhonCv.php" class="btn btn-success m-2">Back</a>
+            <?php
+                if(isset($_SESSION['status']) && $_SESSION['status'] == true) {
+                    echo '
+                    <button class="btn btn-primary m-2" id="download">Download</button>
+                    ';
+                } else {
+                    echo 'To download this file please login first <a href="../../join.php" class="btn btn-success">Login Here</a>';
+                }
+            ?>
     </div>
 
     <div class="container-fluid bg-primary-subtle d-flex justify-content-center align-items-center py-5">
@@ -155,6 +165,7 @@
     <!-- Download document -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-rc.5/html2canvas.min.js"></script>
+
   <script>
     window.onload = function(){
         document.getElementById("download")
