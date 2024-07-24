@@ -61,6 +61,7 @@
                   }
                   
             ?>
+            <img src="photo/logo.png" alt="" width="150px">
                 <h1>Sign In</h1>
                 <hr style="width: 100%; margin: 10px; border: 2px solid #6f16aa;">
                 <span>Insert your email address, and password</span>
@@ -73,6 +74,7 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
+                    <img src="photo/logo.png" alt="" width="150px">
                     <h1>Welcome Back!</h1>
                     <p>Enter your personal details to use all of site features</p>
                     <button class="hidden button" id="login">Sign In</button>

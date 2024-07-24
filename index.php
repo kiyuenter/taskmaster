@@ -108,9 +108,7 @@ session_start();
                                     <div class="bg-info-subtle text-center w-100">
                                     <span class="p-2 text-success w-100">Welcome ' . $_SESSION["username"] . '😊</span>
                                     </div>
-                                    <li><a class="dropdown-item text-dark" href="pages/askQuestion.html">Profile</a></li>
-                                    <li><a class="dropdown-item text-dark" href="pages/cvTemplate.html">Asked Questions</a></li>
-                                    <li><a class="dropdown-item text-dark" href="pages/resource.html">Setting</a></li>
+                                    <li><a class="dropdown-item text-dark" href="pages/studQuestions.php">Asked Questions</a></li>
                                     <li><a class="dropdown-item text-dark" href="php/logout.php" onclick="return confirm(\'Are you sure you want to logout?\');">Logout</a></li>
                                 </ul>
                                 </li>

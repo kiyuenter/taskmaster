@@ -2,11 +2,7 @@
 
     session_start();
 
-    include '../php/connection.php';
 
-    $sql = "SELECT * FROM askedquestions";
-    $result = $conn -> query($sql);
-    $status = "unsolved";
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +12,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../photo/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Taskmaster | Teacher Dashboard</title>
+    <title>Taskmaster | Asked Questions</title>
     <?php
         if(isset($_SESSION['answers']))
         {
@@ -56,35 +53,14 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Asked Questions</h2>
+                    <h2 class="fs-2 m-0">Ask Questions</h2>
                 </div>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../photo/teacher-type/computer-science-tutor.jpg" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt=""> John Doe
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
+            <?php
+                include "include/navigation.php";
+            ?>
             <div class="container-fluid px-4 mt-4">
     <table class="table table-hover">
         <thead class="table-dark">
@@ -101,6 +77,12 @@
             </tr>
         </thead>
         <?php
+        include '../php/connection.php';
+
+        $sql = "SELECT * FROM askedquestions";
+        $result = $conn -> query($sql);
+        $status = "unsolved";
+
         $i = 1;
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -142,12 +124,10 @@
                                         <input type="hidden" name="askerName" value="'.$row["askerName"].'">
                                         <input type="hidden" name="question" value="'.$row["question"].'">
                                         <div class="mb-3">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" value="Kidus">
+                                            <input type="hidden" class="form-control" id="username" name="username" value="'.$user.'">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email address</label>
-                                            <input title="" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="kidus@gmail.com">
+                                            <input title="" type="hidden" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="'.$_SESSION["email"].'">
                                             <div id="emailHelp" class="form-text">Insert the correct answer here</div>
                                         </div>
                                         <div class="mb-3">
@@ -165,14 +145,17 @@
                     <!-- Modal end -->
                     ';
                     $i++;
+                        }
+                    }
                 }
-            }
-        }
-        ?>
-    </table>
-</div>
-
+                ?>
+                    </table>
+                </div>
+                <?php
+                    include "include/footer.php";
+                ?>
             </div>
+
         </div>
     </div>
 

@@ -50,8 +50,9 @@ if (isset($_POST['submit'])) {
     } else {
     $_SESSION['status'] = "Welcomeback!";
     $_SESSION['username'] = $row["FName"]; 
+    $_SESSION['email'] = $row["emailAdd"];
     echo "Login successful!";
-    header("Location: ../teacher-panel/dashboard.html");
+    header("Location: ../teacher-panel/dashboard.php");
   }
   } else {
     $_SESSION['status'] = "<p style='background-color: #f5d167; border-radius: 10px; padding: 5px; text-align: center; margin-bottom: -30px;'>Invalid email or password.<p>";
