@@ -1,4 +1,3 @@
-<div id="pageloader"></div>
 <div class="navigation">
       <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-transparent fixed-top">
         <div class="container-fluid">
