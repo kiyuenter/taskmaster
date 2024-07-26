@@ -81,6 +81,7 @@ background: linear-gradient(256deg, rgba(108,247,149,0.8799894957983193) 0%, rgb
                                   <div class="modal-body">
                                       <input type="hidden" name="askerEmail" value="'.$row["askerEmail"].'">
                                       <input type="hidden" name="question" value="'.$row["question"].'">
+                                      <input type="hidden" name="solver" value="'.$row["solverEmail"].'">
                                       <p style="font-size: 14px;">'.$row["question"].'</p>
                                       <hr>
                                       <div class="mb-3">
