@@ -244,22 +244,15 @@ session_start()
                                                         <p class="card-text">Education Level:&nbsp'.$row["eduLevel"].'</p>
                                                         <p class="card-text">Department:&nbsp'.$row["department"].'</p>
                                                         <p class="card-text">Academic:&nbsp'.$row["academic"].'</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                        <p class="card-text">Educational Document</p>
-                                                        <a href="#" class="btn btn-success">Download</a>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between mt-2 align-items-center">
-                                                        <p class="card-text">CV Document</p>
-                                                        <a href="#" class="btn btn-success">Download</a>
-                                                        </div>
                                                         <p class="card-text">Registration Date:&nbsp'.$row["registration_date"].'</p>
                                                         <div>
                                                             <div class="alert alert-danger" role="alert">
-                                                                <p class="text-center" style="font-size: 12px !important;">Before click please make sure the account is correct!</p>
+                                                                <p class="text-center" style="font-size: 12px !important;">Before click please make sure about your decision!</p>
                                                             </div>
                                                             <p></p>
                                                         </div>
                                                         <div class="d-flex justify-content-center align-items-center">
+                                                        <form action="../../../php/teacherstatus.php" method="POST">
                                                             <a href="#" class="btn btn-danger me-3">Remove from partnership</a>
                                                         </div>
                                                     </div>

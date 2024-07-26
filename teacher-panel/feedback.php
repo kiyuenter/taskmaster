@@ -104,20 +104,35 @@
             <div class="container-fluid px-4">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
-                                <img src="../photo/feedbacker-photo.webp" style="border-radius: 20px; height: 300px;" class="card-img-top" alt="'.$row["title"].'">
-                                <div class="card-body">
-                                    <h5 class="card-title">Kidus Seleshi</h5>
-                                    <h6><p class="card-text">Feedback</p></h6>
-                                    <p class="card-text">Ooooo, you are awesome. I get full mark from my homework. Thank you so much</p>
-                                </div>
-                                <div class="card-body justify-content-center align-items-center d-flex flex-column">
-                                    <div id="countdown-container"></div>
-                                </div>
+                        <?php
+                            include "../php/connection.php";
+                            $email = $_SESSION['emailA'];
+                            $feed = "";
+                            $sql = "SELECT * FROM askedquestions WHERE solverEmail = '$email' AND studentFeedback != '$feed'";
+                            $result = $conn -> query($sql);
 
-                            </div>
-                        </div>
+                            if($result-> num_rows > 0) {
+                                while($row = $result -> fetch_assoc()) {
+                                    echo '
+                                        <div class="col-md-4">
+                                            <div class="card mt-5 m-4" style="width: 18rem; border-radius: 20px;">
+                                                <img src="../photo/feedbacker-photo.webp" style="border-radius: 20px; height: 300px;" class="card-img-top" alt="'.$row["askerName"].'">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">'.$row["askerName"].'</h5>
+                                                    <h6><p class="card-text">Feedback</p></h6>
+                                                    <p class="card-text">'.$row["studentFeedback"].'</p>
+                                                </div>
+                                                <div class="card-body justify-content-center align-items-center d-flex flex-column">
+                                                    <div id="countdown-container"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ';
+                                }
+                            } else {
+                                echo "No feedback available.";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

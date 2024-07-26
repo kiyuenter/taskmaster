@@ -3,6 +3,7 @@
 
     session_start();
     $coverName = $_POST['cover'];
+    $email = $_POST['email'];
 
     $sql = "DELETE FROM cv_template WHERE cover_image = '$coverName'";
     $result = $conn -> query($sql);

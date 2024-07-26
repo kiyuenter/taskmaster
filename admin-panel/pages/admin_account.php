@@ -239,8 +239,13 @@
                             <th scope="row">'.$i.'</th>
                             <td>'.$row["username"].'</td>
                             <td>'.$row["email"].'</td>
-                            <td><button  type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button></td>
-                            <td><button class="btn btn-danger"><i class="lni lni-trash-can"></i></button></td>
+                            <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal'.$i.'"><i class="lni lni-pencil"></i></button></td>
+                            <td>
+                                <form action="../../php/delete_admin.php" method="POST">
+                                    <input name="email" type="hidden" value="'.$row["email"].'">
+                                    <button class="btn btn-danger m-2 mb-4"><i class="lni lni-trash-can"></i></button>
+                                </form>
+                            </td>
                           </tr>
                           '.$i++.'
                         
@@ -251,52 +256,73 @@
                       </tbody>
                       </table>
                 </div>
-                <div class="modal" tabindex="-1" role="dialog" id="myModal">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
+                <?php
+                if(isset($_SESSION["update"]) && $_SESSION["update"] == TRUE) {
+                    echo '
+                        <script>alert("'.$_SESSION["update"].'")</script>;
+                    ';
+
+                    unset($_SESSION["update"]);
+                }
+                ?>
+                <?php
+                if(isset($_SESSION["msgs"]) && $_SESSION["msgs"] == TRUE) {
+                    echo '
+                        <script>alert("'.$_SESSION["msgs"].'")</script>;
+                    ';
+
+                    unset($_SESSION["msgs"]);
+                }
+                ?>
+
+                <?php
+            include '../../php/connection.php';
+            $sql = "SELECT * FROM admin_account";
+            $result = $conn->query($sql);
+            $i = 1;
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                    <div class="modal fade" id="myModal'.$i.'" tabindex="-1" aria-labelledby="myModalLabel'.$i.'" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title">Question</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h5 class="modal-title" id="myModalLabel'.$i.'">Edit Admin Account '.$i.'</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                  <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">A.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">B.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">C.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">D.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <select class="form-control">
-                                    <option value="Select">Select</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="English">English</option>
-                                    <option value="Amharic">Amharic</option>
-                                    <option value="Science">Science</option>
-                                    <option value="Accounting and Finance">Accounting and Finance</option>
-                                    <option value="Human Resources Management">Human Resources Management</option>
-                                    <option value="Management">Management</option>
-                                    <option value="Marketing">Marketing</option>
-                                    <option value="Engineering">Engineering</option>
-                                    <option value="Computer Science">Computer Science</option>
-                                  </select>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
+                                <form action="../../php/editAdmin.php" method="POST">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="username'.$i.'" class="form-label">Username</label>
+                                            <input type="text" class="form-control" id="username'.$i.'" name="username" value="'.$row["username"].'">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email'.$i.'" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email'.$i.'" value="'.$row["email"].'" disabled>
+                                            <input type="hidden" class="form-control" id="email'.$i.'" value="'.$row["email"].'" name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password'.$i.'" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="password'.$i.'" name="password" value="'.$row["APassword"].'">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
                             </div>
-                          </div>
+                        </div>
+                    </div>';
+                    $i++;
+                }
+            } else {
+                echo '<p>No admin accounts found.</p>';
+            }
+        ?>
+        </div>
+    </div>
+
             </main>
             <footer class="footer">
                 <div class="container-fluid">

@@ -13,8 +13,17 @@
         ?>
     <div class="container-fluid d-flex justify-content-center align-items-center" style="padding-bottom: 50px; padding-top: 100px !important; background: rgb(108,247,149);
 background: linear-gradient(256deg, rgba(108,247,149,0.8799894957983193) 0%, rgba(112,115,245,0.7567401960784313) 99%);">
-      <div class="container row">
+      <div class="container-fluid row">
       <h2 class="text-center">Your Questions</h2>
+      <?php
+        if(isset($_SESSION['msg']) && $_SESSION['msg'] == true) {
+          echo '
+            <script>alert("'.$_SESSION["msg"].'")</script>
+          ';
+          unset($_SESSION["msg"]);
+        }
+
+      ?>
           <?php
           if(isset($_SESSION["status"]) && $_SESSION["status"] == true ) {
               include "../php/connection.php";
@@ -30,13 +39,21 @@ background: linear-gradient(256deg, rgba(108,247,149,0.8799894957983193) 0%, rgb
                   echo '
                   <div class="col-md-4">
                     <div class="card m-2">
-                      <div class="card-header text-danger">'.$row["course_code"].'</div>
+                      <div class="container-fluid d-flex justify-content-end mt-2" style="height: 20px;">
+                        ';
+                        if($row["statuss"] == "solved") {
+                          echo '<span class="badge text-bg-success">'.$row["statuss"].'</span>';
+                        } else{
+                          echo '<span class="badge text-bg-danger">'.$row["statuss"].'</span>';
+                        }
+                        echo '
+                      </div>
                       <div class="card-body">
                         <h5 class="card-title">'.$row["subjects"].'</h5>
                         <p class="card-text">'.$row["question"].'</p>
-                        <div class="container d-flex justify-content-between">
-                          <button style="background-color: #7073f5; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal'.$i.'">View Detail</button>
-                          <button style="background-color: #00b335; color: white;" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModals'.$j.'">Give Feedback</button>
+                        <div class="container-fluid d-flex justify-content-between">
+                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal'.$i.'">View Detail</button>
+                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModals'.$j.'">Give Feedback</button>
                         </div>
                       </div>
                     </div>
@@ -57,8 +74,13 @@ background: linear-gradient(256deg, rgba(108,247,149,0.8799894957983193) 0%, rgb
                                           <input title="" type="hidden" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="'.$user.'">
                                           <div id="emailHelp" class="form-text"><b>Solution</b></div>
                                       </div>
-                                      <div class="mb-3">
-                                        <p style="font-size: 12px;">'.$row["solution_answer"].'</p>
+                                      <div class="mb-3">';
+                                      if($row['solution_answer'] == ""){
+                                        echo "Sorry, this question is not solved. Please wait some minute.";
+                                      } else {
+                                        echo '<p style="font-size: 12px;">'.$row["solution_answer"].'</p>';
+                                      }
+                                      echo '
                                       </div>
                                   </div>
                                   <div class="modal-footer">
@@ -81,7 +103,7 @@ background: linear-gradient(256deg, rgba(108,247,149,0.8799894957983193) 0%, rgb
                                   <div class="modal-body">
                                       <input type="hidden" name="askerEmail" value="'.$row["askerEmail"].'">
                                       <input type="hidden" name="question" value="'.$row["question"].'">
-                                      <input type="hidden" name="solver" value="'.$row["solverEmail"].'">
+                                      <input type="hidden" name="solverEmail" value="'.$row["solverEmail"].'">
                                       <p style="font-size: 14px;">'.$row["question"].'</p>
                                       <hr>
                                       <div class="mb-3">

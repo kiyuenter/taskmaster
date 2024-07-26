@@ -221,11 +221,11 @@
                                                         <p class="card-text">Academic:&nbsp'.$row["academic"].'</p>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                         <p class="card-text">Educational Document</p>
-                                                        <a href="#" class="btn btn-success">Download</a>
+                                                        <p><a id="download-link" href="../../../teacherfiles/'.$row["EdPath"].'" data-file-path="" class="btn btn-success m-2">Download</a></p>
                                                         </div>
                                                         <div class="d-flex justify-content-between mt-2 align-items-center">
                                                         <p class="card-text">CV Document</p>
-                                                        <a href="#" class="btn btn-success">Download</a>
+                                                        <p><a id="download-link" href="../../../teacherfiles/'.$row["CvPath"].'" data-file-path="" class="btn btn-success m-2">Download</a></p>
                                                         </div>
                                                         <p class="card-text">Registration Date:&nbsp'.$row["registration_date"].'</p>
                                                         <div>
@@ -236,8 +236,11 @@
                                                             <p></p>
                                                         </div>
                                                         <div class="d-flex justify-content-center align-items-center">
-                                                            <a href="#" class="btn btn-primary me-3">Accept</a>
-                                                            <a href="#" class="btn btn-danger ms-3">Reject</a>
+                                                            <form action="../../../php/teacherstatus.php" method="POST">
+                                                                <input type="hidden" name="email" value="'.$row["emailAdd"].'">
+                                                                <input class="btn btn-primary ms-3" name="accept" type="submit" value="Accept">    
+                                                                <input class="btn btn-danger ms-3" name="accept" type="submit" value="Reject">
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,6 +285,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="../../script.js"></script>
+    <script src="../../js/download.js"></script>
     <!-- Chart Script -->
     
 </body>

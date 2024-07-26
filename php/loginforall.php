@@ -40,6 +40,7 @@ if (isset($_POST['submit'])) {
 
   } else if (mysqli_num_rows($tResult) > 0) {
     $row = $tResult->fetch_assoc();
+    $_SESSION['emailA'] = $row["emailAdd"];
     $st = $row["statusActivity"];
 
     if ($st == "Disable")
