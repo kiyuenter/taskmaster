@@ -228,8 +228,8 @@
                                 if($result -> num_rows > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                         echo '
-                                            <div class="col-md-4 mt-2">
-                                                <div class="card" style="width: 20rem;">
+                                            <div class="col-md-4 mt-2" style="width: 20rem;">
+                                                <div class="card">
                                                     <div class="card-body">
                                                     <h5 class="card-title">Asker Name: '.$row["askerName"].'</h5>
                                                     <p class="card-text">Asker Email: '.$row["askerEmail"].'</p>
@@ -272,28 +272,9 @@
                 </div>
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "footer.php";
+                ?>
             </footer>
         </div>
     </div>

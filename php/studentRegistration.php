@@ -21,7 +21,8 @@ if ($emailCheckResult->num_rows > 0) {
     // Email doesn't exist, proceed with the insertion
     $insert = "INSERT INTO studentaccount(FName, LName, emailAdd, sPassword) values('$FName','$LName','$emailAdd','$sPassword')";
     $conn->query($insert);
-    $_SESSION['email'] = $emailAdd;
+    $_SESSION["username"] = $FName;
+    $_SESSION['emailA'] = $emailAdd;
     $_SESSION['status'] = "Hello dear $FName, welcome to Taskmaster Assignment Helper and CV Maker website. You can access any service with your email 😊";
     header("Location: ../index.php");
 }

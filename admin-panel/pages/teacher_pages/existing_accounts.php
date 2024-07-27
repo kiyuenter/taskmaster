@@ -136,11 +136,11 @@ session_start()
                                 <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
+                                    <img src="../../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
                                 <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
                                     <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
-                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../../../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
@@ -221,6 +221,18 @@ session_start()
                 </div>
                 <h1 class="text-center m-4">Our Partners</h1>
                           <div class="container-fluid">
+                          <div class="container d-flex justify-content-center align-items-center">
+                                <?php
+                                    if(isset($_SESSION['update'])) {
+                                        echo '
+                                            <div class="alert alert-warning w-50" role="alert">
+                                                <p class="text-center">'.$_SESSION["update"].'</p>
+                                            </div>
+                                        ';
+                                        unset($_SESSION['update']);
+                                    }
+                                ?>
+                            </div>
                             <div class="row">
                                 <?php
                                 include '../../../php/connection.php';
@@ -238,6 +250,7 @@ session_start()
                                                     </div>
                                                     <div class="card-body">
                                                         <h5 class="card-title">Full Name:&nbsp'.$row["FName"].'&nbsp'.$row["LName"].'</h5>
+                                                        <p class="card-text">Email:&nbsp'.$row["emailAdd"].'</p>
                                                         <p class="card-text">Gender:&nbsp'.$row["Gender"].'</p>
                                                         <p class="card-text">DOB:&nbsp'.$row["dob"].'</p>
                                                         <p class="card-text">Country:&nbsp'.$row["country"].'</p>
@@ -252,8 +265,10 @@ session_start()
                                                             <p></p>
                                                         </div>
                                                         <div class="d-flex justify-content-center align-items-center">
-                                                        <form action="../../../php/teacherstatus.php" method="POST">
-                                                            <a href="#" class="btn btn-danger me-3">Remove from partnership</a>
+                                                            <form action="../../../php/teacherstatus.php" method="POST">
+                                                                    <input type="hidden" name="email" value="' . $row["emailAdd"] . '">
+                                                                    <input class="btn btn-danger ms-3" name="accept" type="submit" value="Remove Partnership">
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -266,28 +281,9 @@ session_start()
                           </div>
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "../footer.php";
+                ?>
             </footer>
         </div>
     </div>

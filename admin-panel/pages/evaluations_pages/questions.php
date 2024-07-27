@@ -208,107 +208,127 @@
                                 </form>
                             </div>
                         </div>
+                        <?php
+                            if(isset($_SESSION['msg'])) {
+                                echo '<script>alert("'.$_SESSION['msg'].'")</script>;';
+
+                                unset($_SESSION['msg']);
+                            }
+                        ?>
                         <h4 class="text-center text-primary">List of Questions</h4>
-                        <table class="table table-dark table-hover">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Question</th>
-                                <th scope="col">Choose A</th>
-                                <th scope="col">Choose B</th>
-                                <th scope="col">Choose C</th>
-                                <th scope="col">Choose D</th>
-                                <th scope="col">Answer</th>
-                                <th scope="col">Department</th>
-                                <th scope="col" class="text-center">Edit</th>
-                                <th scope="col" class="text-center">Delete</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    include '../../../php/connection.php';
-                                    $sql = "SELECT * FROM evaluationque";
-                                    $result = $conn -> query($sql);
-                                    $i = 1;
-                                    if($result -> num_rows > 0){
-                                        while($row = mysqli_fetch_assoc($result)){
-                                            echo '
-                                                <tr>
-                                                    <th scope="row">'.$i.'</th>
-                                                    <td>'.$row["evaDetail"].'</td>
-                                                    <td>'.$row["A"].'</td>
-                                                    <td>'.$row["B"].'</td>
-                                                    <td>'.$row["C"].'</td>
-                                                    <td>'.$row["D"].'</td>
-                                                    <td>'.$row["departQ"].'</td>
-                                                    <td>'.$row["answer"].'</td>
-                                                    <td>
-                                                    <div class="d-flex align-items-center justify-content-center">
-                                                        <button  type="button" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button>
-                                                    </div>
-                                                    </td>
-                                                    <td>
-                                                    <div class="d-flex align-items-center justify-content-center">
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Question</th>
+            <th scope="col">Choose A</th>
+            <th scope="col">Choose B</th>
+            <th scope="col">Choose C</th>
+            <th scope="col">Choose D</th>
+            <th scope="col">Answer</th>
+            <th scope="col">Department</th>
+            <th scope="col" class="text-center">Edit</th>
+            <th scope="col" class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            include '../../../php/connection.php';
+            $sql = "SELECT * FROM evaluationque";
+            $result = $conn -> query($sql);
+            $i = 1;
+            if($result -> num_rows > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    // Unique modal ID
+                    $modalId = "myModal".$i;
+                    echo '
+                        <tr>
+                            <th scope="row">'.$i.'</th>
+                            <td>'.$row["evaDetail"].'</td>
+                            <td>'.$row["A"].'</td>
+                            <td>'.$row["B"].'</td>
+                            <td>'.$row["C"].'</td>
+                            <td>'.$row["D"].'</td>
+                            <td>'.$row["answer"].'</td>
+                            <td>'.$row["departQ"].'</td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#'.$modalId.'" class="btn btn-success me-2"><i class="lni lni-pencil"></i></button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <button class="btn btn-danger"><i class="lni lni-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
 
-                                                    <button class="btn btn-danger"><i class="lni lni-trash-can"></i></button>
-                                                    </div>
-                                                    </td>
-                                                </tr>
-
-                                                ';
-                                                $i++;
-                                        }
-                                    }
-                              ?>
-                            </tbody>
-                          </table>
-<!-- Modal Form -->
-                          <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                        <!-- Modal Form -->
+                        <div class="modal fade" id="'.$modalId.'" tabindex="-1" role="dialog">
                             <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Question</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal-content">
+                                    <form action="../../../php/update_question.php" method="POST">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Question</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input class="form-control" name="evaDetail" type="hidden" value="'.$row["evaDetail"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="a">A</label>
+                                                <input class="form-control" name="a" type="text" value="'.$row["A"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="b">B</label>
+                                                <input class="form-control" name="b" type="text" value="'.$row["B"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="c">C</label>
+                                                <input class="form-control" name="c" type="text" value="'.$row["C"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="d">D</label>
+                                                <input class="form-control" name="d" type="text" value="'.$row["D"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="answer">Answer</label>
+                                                <input class="form-control" name="answer" type="text" value="'.$row["answer"].'">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="department">Department</label>
+                                                <select class="form-control" name="department">
+                                                    <option value="Select">Select</option>
+                                                    <option value="Mathematics" '.($row["departQ"] == "Mathematics" ? "selected" : "").'>Mathematics</option>
+                                                    <option value="English" '.($row["departQ"] == "English" ? "selected" : "").'>English</option>
+                                                    <option value="Amharic" '.($row["departQ"] == "Amharic" ? "selected" : "").'>Amharic</option>
+                                                    <option value="Science" '.($row["departQ"] == "Science" ? "selected" : "").'>Science</option>
+                                                    <option value="Accounting and Finance" '.($row["departQ"] == "Accounting and Finance" ? "selected" : "").'>Accounting and Finance</option>
+                                                    <option value="Human Resources Management" '.($row["departQ"] == "Human Resources Management" ? "selected" : "").'>Human Resources Management</option>
+                                                    <option value="Management" '.($row["departQ"] == "Management" ? "selected" : "").'>Management</option>
+                                                    <option value="Marketing" '.($row["departQ"] == "Marketing" ? "selected" : "").'>Marketing</option>
+                                                    <option value="Engineering" '.($row["departQ"] == "Engineering" ? "selected" : "").'>Engineering</option>
+                                                    <option value="Computer Science" '.($row["departQ"] == "Computer Science" ? "selected" : "").'>Computer Science</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-body">
-                                  <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">A.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">B.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">C.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <div class="d-flex align-items-center">
-                                    <p class="m-2">D.</p>
-                                    <input class="w-100 m-2 form-control" type="text" value="Question">
-                                  </div>
-                                  <select class="form-control">
-                                    <option value="Select">Select</option>
-                                    <option value="Mathematics">Mathematics</option>
-                                    <option value="English">English</option>
-                                    <option value="Amharic">Amharic</option>
-                                    <option value="Science">Science</option>
-                                    <option value="Accounting and Finance">Accounting and Finance</option>
-                                    <option value="Human Resources Management">Human Resources Management</option>
-                                    <option value="Management">Management</option>
-                                    <option value="Marketing">Marketing</option>
-                                    <option value="Engineering">Engineering</option>
-                                    <option value="Computer Science">Computer Science</option>
-                                  </select>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                              </div>
                             </div>
-                          </div>
+                        </div>
+                    ';
+                    $i++;
+                }
+            }
+        ?>
+    </tbody>
+</table>
+
                           </div>
                     </div>
                         <script>
@@ -376,28 +396,9 @@
                 
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "../footer.php";
+                ?>
             </footer>
         </div>
     </div>

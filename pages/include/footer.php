@@ -61,9 +61,6 @@
             <p>
               <a href="resource.php" class="text-reset">Resource</a>
             </p>
-            <p>
-              <a href="faq.php" class="text-reset">FAQ</a>
-            </p>
           </div>
           <!-- Grid column -->
   
@@ -81,9 +78,6 @@
             </p>
             <p>
               <a href="experts.php" class="text-reset">Experts</a>
-            </p>
-            <p>
-              <a href="help.php" class="text-reset">Help</a>
             </p>
           </div>
           <!-- Grid column -->

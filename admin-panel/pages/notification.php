@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Taskmaster | Notification</title>
+    <link rel="icon" href="../../photo/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -223,28 +224,9 @@
                 </div>
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "footer.php";
+                ?>
             </footer>
         </div>
     </div>
@@ -259,10 +241,6 @@
             .then(() => console.log('Successfully registered and subscribed!'))
             .catch(console.error);
     </script>
-    curl -H "Content-Type: application/json" \
-     -H "Authorization: Bearer BDB87E70CCE94B4E98B65E08FEE78146DFBC40648AA922DCEFEA515D1645EFD0" \
-     -X POST "https://edd14a53-c771-4cce-bfc2-48c0215f04f3.pushnotifications.pusher.com/publish_api/v1/instances/edd14a53-c771-4cce-bfc2-48c0215f04f3/publishes" \
-     -d '{"interests":["hello"],"web":{"notification":{"title":"Hello","body":"Hello, world!"}}}'
     <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

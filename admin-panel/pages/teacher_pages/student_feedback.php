@@ -130,8 +130,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
                     <?php
-                        if(isset($_SESSION['username']))
-                        {
+                        if (isset($_SESSION['username'])) {
                             echo '
                                 <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
@@ -139,13 +138,13 @@
                                     <img src="../../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
                                 <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
-                                    <li><p>Welcome back<br>'.$_SESSION['username'].'</p>
-                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../php/logout.php">Logout</a></li>
+                                    <li><p>Welcome back<br>' . $_SESSION['username'] . '</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../../../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
                         }
-                    ?>
+                        ?>
                     </ul>
                 </div>
             </nav>
@@ -153,6 +152,7 @@
                 <div class="container-fluid">
                     <div class="mb-3">
                         <div class="container-fluid">
+                            <h2 class="text-primary">FEEDBACK</h2>
                             <div class="row">
                                 <?php
                                 include '../../../php/connection.php';
@@ -174,6 +174,45 @@
                                         </div>
                                         ';
                                     }
+                                } else {
+                                    echo 'No feedback available';
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <main class="content px-3 py-4">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        <div class="container-fluid">
+                            <h2 class="text-success">CONTACT US</h2>
+                            <div class="row">
+                                <?php
+                                include '../../../php/connection.php';
+                                $sql = "SELECT * FROM contact_us";
+                                $result = $conn -> query($sql);
+                                if($result -> num_rows > 0) {
+                                    while($row = mysqli_fetch_assoc($result)) {
+                                        echo'
+                                        <div class="col-md-4 mt-2">
+                                            <div class="card" style="width: 24rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-text">Name:&nbsp'.$row["CName"].'</h5>
+                                                    <p class="card-text">Email:&nbsp'.$row["CEmail"].'</p>
+                                                    <p class="card-text">Subject: &nbsp'.$row["CSubject"].'</p>
+                                                    <p class="card-text">Message:</p>
+                                                    <p class="card-text">'.$row["CMessage"].'</p>
+                                                </div>
+                                                <a href="../../sendResult.html" class="btn btn-primary">Contact this User</a>
+                                            </div>
+                                        </div>
+                                        ';
+                                    }
+                                } else {
+                                    echo 'No feedback available';
                                 }
                                 ?>
                             </div>
@@ -182,28 +221,9 @@
                 </div>
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "../footer.php";
+                ?>
             </footer>
         </div>
     </div>

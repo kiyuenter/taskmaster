@@ -130,21 +130,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php
-                        if(isset($_SESSION['msg']))
-                        {
+                        if (isset($_SESSION['username'])) {
                             echo '
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown me-5" style="margin-right: 100px !important;">
                                 <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="../account.png" style="width: 40px; border-radius: 50%; border: 2px solid #b41af1;" alt="">
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="../../php/logout.php">Logout</a></li>
+                                <ul class="dropdown-menu me-5 p-2" aria-labelledby="navbarDropdown">
+                                    <li><p>Welcome back<br>' . $_SESSION['username'] . '</p>
+                                    <li><a class="dropdown-item bg-warning rounded text-center" href="../../../php/logout.php">Logout</a></li>
                                 </ul>
                                 </li>
                             ';
                         }
-                    ?> 
+                        ?> 
                     </ul>
                 </div>
             </nav>
@@ -325,28 +325,9 @@
 
             </main>
             <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-body-secondary">
-                        <div class="col-6 text-start ">
-                            <a class="text-body-secondary" href=" #">
-                                <strong>CodzSwod</strong>
-                            </a>
-                        </div>
-                        <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Contact</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">About Us</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include "footer.php";
+                ?>
             </footer>
         </div>
     </div>
